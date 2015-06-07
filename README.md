@@ -1,2 +1,4 @@
-# ca-windsor-transit-bus-parser
-Parser for Windsor Transit Bus data
+ca-windsor-transit-bus-parser
+=============================
+
+Parser for Transit Windsor Bus data
