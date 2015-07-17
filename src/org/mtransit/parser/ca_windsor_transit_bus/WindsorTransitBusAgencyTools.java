@@ -13,6 +13,7 @@ import org.mtransit.parser.gtfs.data.GRoute;
 import org.mtransit.parser.gtfs.data.GSpec;
 import org.mtransit.parser.gtfs.data.GTrip;
 import org.mtransit.parser.mt.data.MAgency;
+import org.mtransit.parser.mt.data.MDirectionType;
 import org.mtransit.parser.mt.data.MRoute;
 import org.mtransit.parser.CleanUtils;
 import org.mtransit.parser.mt.data.MTrip;
@@ -141,7 +142,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 	private static final String COLOR_CE910E = "CE910E";
 	private static final String COLOR_ED1248 = "ED1248";
 	private static final String COLOR_F68312 = "F68312";
-	private static final String COLOR_FFF44C = "FFF44C";
+	private static final String COLOR_FEDF3F = "FEDF3F";
 	private static final String COLOR_65C1EF = "65C1EF";
 	private static final String COLOR_222771 = "222771";
 	private static final String COLOR_FBC1A0 = "FBC1A0";
@@ -155,16 +156,16 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 		if (Utils.isDigitsOnly(gRoute.route_short_name)) {
 			switch (Integer.parseInt(gRoute.route_short_name)) {
 			// @formatter:off
-    			case 2: return COLOR_F68312;
-    			case 3: return COLOR_FFF44C;
-    			case 4: return COLOR_65C1EF;
-    			case 5: return COLOR_222771;
-    			case 6: return COLOR_FBC1A0;
-    			case 7: return COLOR_184A31;
-    			case 8: return COLOR_87CF32;
-    			case 10: return COLOR_F0319A;
-    			case 14: return COLOR_A67AC4;
-    			// @formatter:on
+			case 2: return COLOR_F68312;
+			case 3: return COLOR_FEDF3F; // COLOR_FFF44C;
+			case 4: return COLOR_65C1EF;
+			case 5: return COLOR_222771;
+			case 6: return COLOR_FBC1A0;
+			case 7: return COLOR_184A31;
+			case 8: return COLOR_87CF32;
+			case 10: return COLOR_F0319A;
+			case 14: return COLOR_A67AC4;
+			// @formatter:on
 			}
 		}
 		if (RSN_1A.equalsIgnoreCase(gRoute.route_short_name)) {
@@ -184,7 +185,113 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public void setTripHeadsign(MRoute mRoute, MTrip mTrip, GTrip gTrip, GSpec gtfs) {
-		mTrip.setHeadsignString(cleanTripHeadsign(gTrip.trip_headsign), gTrip.direction_id);
+		if (mRoute.id == 1l + RID_ID_A) { // 1A
+			if (gTrip.direction_id == 0) {
+				mTrip.setHeadsignDirection(MDirectionType.SOUTH); // Devonshire Mall
+				return;
+			} else if (gTrip.direction_id == 1) {
+				mTrip.setHeadsignDirection(MDirectionType.NORTH); // Downtown Transit Terminal
+				return;
+			}
+		} else if (mRoute.id == 1l + RID_ID_C) { // 1C
+			if (gTrip.direction_id == 0) {
+				mTrip.setHeadsignDirection(MDirectionType.EAST); // Forest Glade
+				return;
+			} else if (gTrip.direction_id == 1) {
+				mTrip.setHeadsignDirection(MDirectionType.WEST); // College Ave Community Ctr
+				return;
+			}
+		} else if (mRoute.id == 2l) {
+			if (gTrip.direction_id == 0) {
+				mTrip.setHeadsignDirection(MDirectionType.EAST); // Tecumseh Mall
+				return;
+			} else if (gTrip.direction_id == 1) {
+				mTrip.setHeadsignDirection(MDirectionType.WEST); // College Ave Community Ctr
+				return;
+			}
+		} else if (mRoute.id == 3l) {
+			if (gTrip.direction_id == 0) {
+				mTrip.setHeadsignDirection(MDirectionType.EAST); // Transit Ctr
+				return;
+			} else if (gTrip.direction_id == 1) {
+				mTrip.setHeadsignDirection(MDirectionType.WEST); // College Ave Community Ctr
+				return;
+			}
+		} else if (mRoute.id == 3l + RID_ID_W) { // 3W
+			if (gTrip.direction_id == 0) {
+				mTrip.setHeadsignDirection(MDirectionType.EAST); // Downtown Transit Terminal
+				return;
+			} else if (gTrip.direction_id == 1) {
+				mTrip.setHeadsignDirection(MDirectionType.WEST); // College Ave Community Ctr
+				return;
+			}
+		} else if (mRoute.id == 4l) {
+			if (gTrip.direction_id == 0) {
+				mTrip.setHeadsignDirection(MDirectionType.EAST); // Meadowbrook via Tecumseh Mall
+				return;
+			} else if (gTrip.direction_id == 1) {
+				mTrip.setHeadsignDirection(MDirectionType.WEST); // Downtown Transit Terminal
+				return;
+			}
+		} else if (mRoute.id == 5l) {
+			if (gTrip.direction_id == 0) {
+				mTrip.setHeadsignDirection(MDirectionType.SOUTH); // St Clair College
+				return;
+			} else if (gTrip.direction_id == 1) {
+				mTrip.setHeadsignDirection(MDirectionType.NORTH); // Downtown Transit Terminal
+				return;
+			}
+		} else if (mRoute.id == 6l) {
+			if (gTrip.direction_id == 0) {
+				mTrip.setHeadsignDirection(MDirectionType.SOUTH); // St Clair College
+				return;
+			} else if (gTrip.direction_id == 1) {
+				mTrip.setHeadsignDirection(MDirectionType.NORTH); // Downtown Transit Terminal
+				return;
+			}
+		} else if (mRoute.id == 7l) {
+			if (gTrip.direction_id == 0) {
+				mTrip.setHeadsignDirection(MDirectionType.EAST); // South Walker Rd
+				return;
+			} else if (gTrip.direction_id == 1) {
+				mTrip.setHeadsignDirection(MDirectionType.WEST); // College Ave Community Ctr
+				return;
+			}
+		} else if (mRoute.id == 8l) {
+			if (gTrip.direction_id == 0) {
+				mTrip.setHeadsignDirection(MDirectionType.SOUTH); // South Walker Rd
+				return;
+			} else if (gTrip.direction_id == 1) {
+				mTrip.setHeadsignDirection(MDirectionType.NORTH); // Downtown Transit Terminal
+				return;
+			}
+		} else if (mRoute.id == 10l) {
+			if (gTrip.direction_id == 0) {
+				mTrip.setHeadsignDirection(MDirectionType.SOUTH); // South Loop
+				return;
+			} else if (gTrip.direction_id == 1) {
+				mTrip.setHeadsignDirection(MDirectionType.NORTH); // North Loop
+				return;
+			}
+		} else if (mRoute.id == 14l) {
+			if (gTrip.direction_id == 0) {
+				mTrip.setHeadsignDirection(MDirectionType.SOUTH); // Devonshire Mall
+				return;
+			} else if (gTrip.direction_id == 1) {
+				mTrip.setHeadsignDirection(MDirectionType.NORTH); // Downtown Transit Terminal
+				return;
+			}
+		} else if (mRoute.id == TUNNEL_BUS_RID) { // Tunnel Bus
+			if (gTrip.direction_id == 0) {
+				mTrip.setHeadsignDirection(MDirectionType.SOUTH); // 'Windsor Transit Terminal
+				return;
+			} else if (gTrip.direction_id == 1) {
+				mTrip.setHeadsignDirection(MDirectionType.NORTH); // Detroit
+				return;
+			}
+		}
+		System.out.printf("Unexpected trip (unexpected route ID: %s): %s\n", mRoute.id, gTrip);
+		System.exit(-1);
 	}
 
 	@Override
