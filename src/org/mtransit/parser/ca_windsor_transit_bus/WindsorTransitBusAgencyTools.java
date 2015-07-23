@@ -87,20 +87,20 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public long getRouteId(GRoute gRoute) {
-		if (Utils.isDigitsOnly(gRoute.route_short_name)) {
-			return Long.parseLong(gRoute.route_short_name); // use route short name as route ID
+		if (Utils.isDigitsOnly(gRoute.getRouteShortName())) {
+			return Long.parseLong(gRoute.getRouteShortName()); // use route short name as route ID
 		}
-		if (RSN_TUNNEL_BUS.equalsIgnoreCase(gRoute.route_short_name)) {
+		if (RSN_TUNNEL_BUS.equalsIgnoreCase(gRoute.getRouteShortName())) {
 			return TUNNEL_BUS_RID;
 		}
-		Matcher matcher = DIGITS.matcher(gRoute.route_short_name);
+		Matcher matcher = DIGITS.matcher(gRoute.getRouteShortName());
 		matcher.find();
 		long id = Long.parseLong(matcher.group());
-		if (gRoute.route_short_name.endsWith(A)) {
+		if (gRoute.getRouteShortName().endsWith(A)) {
 			return RID_ID_A + id;
-		} else if (gRoute.route_short_name.endsWith(C)) {
+		} else if (gRoute.getRouteShortName().endsWith(C)) {
 			return RID_ID_C + id;
-		} else if (gRoute.route_short_name.endsWith(W)) {
+		} else if (gRoute.getRouteShortName().endsWith(W)) {
 			return RID_ID_W + id;
 		}
 		System.out.println("Unexpected route ID " + gRoute);
@@ -112,7 +112,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public String getRouteShortName(GRoute gRoute) {
-		if (RSN_TUNNEL_BUS.equalsIgnoreCase(gRoute.route_short_name)) {
+		if (RSN_TUNNEL_BUS.equalsIgnoreCase(gRoute.getRouteShortName())) {
 			return TUNNEL;
 		}
 		return super.getRouteShortName(gRoute);
@@ -120,7 +120,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public String getRouteLongName(GRoute gRoute) {
-		String routeLongName = gRoute.route_long_name;
+		String routeLongName = gRoute.getRouteLongName();
 		routeLongName = routeLongName.toLowerCase(Locale.ENGLISH);
 		return CleanUtils.cleanLabel(routeLongName);
 	}
@@ -153,8 +153,8 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public String getRouteColor(GRoute gRoute) {
-		if (Utils.isDigitsOnly(gRoute.route_short_name)) {
-			switch (Integer.parseInt(gRoute.route_short_name)) {
+		if (Utils.isDigitsOnly(gRoute.getRouteShortName())) {
+			switch (Integer.parseInt(gRoute.getRouteShortName())) {
 			// @formatter:off
 			case 2: return COLOR_F68312;
 			case 3: return COLOR_FEDF3F; // COLOR_FFF44C;
@@ -168,17 +168,17 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 			// @formatter:on
 			}
 		}
-		if (RSN_1A.equalsIgnoreCase(gRoute.route_short_name)) {
+		if (RSN_1A.equalsIgnoreCase(gRoute.getRouteShortName())) {
 			return COLOR_B50C43;
-		} else if (RSN_1C.equalsIgnoreCase(gRoute.route_short_name)) {
+		} else if (RSN_1C.equalsIgnoreCase(gRoute.getRouteShortName())) {
 			return COLOR_4E1E18;
-		} else if (RSN_3W.equalsIgnoreCase(gRoute.route_short_name)) {
+		} else if (RSN_3W.equalsIgnoreCase(gRoute.getRouteShortName())) {
 			return COLOR_CE910E;
 		}
-		if (RSN_TUNNEL_BUS.equalsIgnoreCase(gRoute.route_short_name)) {
+		if (RSN_TUNNEL_BUS.equalsIgnoreCase(gRoute.getRouteShortName())) {
 			return COLOR_ED1248;
 		}
-		System.out.println("Unexpected route color " + gRoute);
+		System.out.printf("\nUnexpected route color %s!\n", gRoute);
 		System.exit(-1);
 		return null;
 	}
@@ -186,106 +186,106 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 	@Override
 	public void setTripHeadsign(MRoute mRoute, MTrip mTrip, GTrip gTrip, GSpec gtfs) {
 		if (mRoute.id == 1l + RID_ID_A) { // 1A
-			if (gTrip.direction_id == 0) {
+			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH); // Devonshire Mall
 				return;
-			} else if (gTrip.direction_id == 1) {
+			} else if (gTrip.getDirectionId() == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH); // Downtown Transit Terminal
 				return;
 			}
 		} else if (mRoute.id == 1l + RID_ID_C) { // 1C
-			if (gTrip.direction_id == 0) {
+			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST); // Forest Glade
 				return;
-			} else if (gTrip.direction_id == 1) {
+			} else if (gTrip.getDirectionId() == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST); // College Ave Community Ctr
 				return;
 			}
 		} else if (mRoute.id == 2l) {
-			if (gTrip.direction_id == 0) {
+			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST); // Tecumseh Mall
 				return;
-			} else if (gTrip.direction_id == 1) {
+			} else if (gTrip.getDirectionId() == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST); // College Ave Community Ctr
 				return;
 			}
 		} else if (mRoute.id == 3l) {
-			if (gTrip.direction_id == 0) {
+			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST); // Transit Ctr
 				return;
-			} else if (gTrip.direction_id == 1) {
+			} else if (gTrip.getDirectionId() == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST); // College Ave Community Ctr
 				return;
 			}
 		} else if (mRoute.id == 3l + RID_ID_W) { // 3W
-			if (gTrip.direction_id == 0) {
+			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST); // Downtown Transit Terminal
 				return;
-			} else if (gTrip.direction_id == 1) {
+			} else if (gTrip.getDirectionId() == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST); // College Ave Community Ctr
 				return;
 			}
 		} else if (mRoute.id == 4l) {
-			if (gTrip.direction_id == 0) {
+			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST); // Meadowbrook via Tecumseh Mall
 				return;
-			} else if (gTrip.direction_id == 1) {
+			} else if (gTrip.getDirectionId() == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST); // Downtown Transit Terminal
 				return;
 			}
 		} else if (mRoute.id == 5l) {
-			if (gTrip.direction_id == 0) {
+			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH); // St Clair College
 				return;
-			} else if (gTrip.direction_id == 1) {
+			} else if (gTrip.getDirectionId() == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH); // Downtown Transit Terminal
 				return;
 			}
 		} else if (mRoute.id == 6l) {
-			if (gTrip.direction_id == 0) {
+			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH); // St Clair College
 				return;
-			} else if (gTrip.direction_id == 1) {
+			} else if (gTrip.getDirectionId() == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH); // Downtown Transit Terminal
 				return;
 			}
 		} else if (mRoute.id == 7l) {
-			if (gTrip.direction_id == 0) {
+			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST); // South Walker Rd
 				return;
-			} else if (gTrip.direction_id == 1) {
+			} else if (gTrip.getDirectionId() == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.WEST); // College Ave Community Ctr
 				return;
 			}
 		} else if (mRoute.id == 8l) {
-			if (gTrip.direction_id == 0) {
+			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH); // South Walker Rd
 				return;
-			} else if (gTrip.direction_id == 1) {
+			} else if (gTrip.getDirectionId() == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH); // Downtown Transit Terminal
 				return;
 			}
 		} else if (mRoute.id == 10l) {
-			if (gTrip.direction_id == 0) {
+			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH); // South Loop
 				return;
-			} else if (gTrip.direction_id == 1) {
+			} else if (gTrip.getDirectionId() == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH); // North Loop
 				return;
 			}
 		} else if (mRoute.id == 14l) {
-			if (gTrip.direction_id == 0) {
+			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH); // Devonshire Mall
 				return;
-			} else if (gTrip.direction_id == 1) {
+			} else if (gTrip.getDirectionId() == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH); // Downtown Transit Terminal
 				return;
 			}
 		} else if (mRoute.id == TUNNEL_BUS_RID) { // Tunnel Bus
-			if (gTrip.direction_id == 0) {
+			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH); // 'Windsor Transit Terminal
 				return;
-			} else if (gTrip.direction_id == 1) {
+			} else if (gTrip.getDirectionId() == 1) {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH); // Detroit
 				return;
 			}
