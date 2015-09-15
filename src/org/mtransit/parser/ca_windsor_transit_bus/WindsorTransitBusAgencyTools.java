@@ -20,6 +20,7 @@ import org.mtransit.parser.mt.data.MTrip;
 
 // http://www.citywindsor.ca/opendata/Pages/Open-Data-Catalogue.aspx
 // http://www.citywindsor.ca/opendata/Lists/OpenData/Attachments/34/google_transit.zip
+// http://www.citywindsor.ca/opendata/Lists/OpenData/Attachments/34/gtfs.zip
 public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 
 	public static void main(String[] args) {
