@@ -186,7 +186,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public void setTripHeadsign(MRoute mRoute, MTrip mTrip, GTrip gTrip, GSpec gtfs) {
-		if (mRoute.id == 1l + RID_ID_A) { // 1A
+		if (mRoute.getId() == 1l + RID_ID_A) { // 1A
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH); // Devonshire Mall
 				return;
@@ -194,7 +194,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH); // Downtown Transit Terminal
 				return;
 			}
-		} else if (mRoute.id == 1l + RID_ID_C) { // 1C
+		} else if (mRoute.getId() == 1l + RID_ID_C) { // 1C
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST); // Forest Glade
 				return;
@@ -202,7 +202,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.WEST); // College Ave Community Ctr
 				return;
 			}
-		} else if (mRoute.id == 2l) {
+		} else if (mRoute.getId() == 2l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST); // Tecumseh Mall
 				return;
@@ -210,7 +210,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.WEST); // College Ave Community Ctr
 				return;
 			}
-		} else if (mRoute.id == 3l) {
+		} else if (mRoute.getId() == 3l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST); // Transit Ctr
 				return;
@@ -218,7 +218,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.WEST); // College Ave Community Ctr
 				return;
 			}
-		} else if (mRoute.id == 3l + RID_ID_W) { // 3W
+		} else if (mRoute.getId() == 3l + RID_ID_W) { // 3W
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST); // Downtown Transit Terminal
 				return;
@@ -226,7 +226,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.WEST); // College Ave Community Ctr
 				return;
 			}
-		} else if (mRoute.id == 4l) {
+		} else if (mRoute.getId() == 4l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST); // Meadowbrook via Tecumseh Mall
 				return;
@@ -234,7 +234,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.WEST); // Downtown Transit Terminal
 				return;
 			}
-		} else if (mRoute.id == 5l) {
+		} else if (mRoute.getId() == 5l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH); // St Clair College
 				return;
@@ -242,7 +242,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH); // Downtown Transit Terminal
 				return;
 			}
-		} else if (mRoute.id == 6l) {
+		} else if (mRoute.getId() == 6l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH); // St Clair College
 				return;
@@ -250,7 +250,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH); // Downtown Transit Terminal
 				return;
 			}
-		} else if (mRoute.id == 7l) {
+		} else if (mRoute.getId() == 7l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.EAST); // South Walker Rd
 				return;
@@ -258,7 +258,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.WEST); // College Ave Community Ctr
 				return;
 			}
-		} else if (mRoute.id == 8l) {
+		} else if (mRoute.getId() == 8l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH); // South Walker Rd
 				return;
@@ -266,7 +266,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH); // Downtown Transit Terminal
 				return;
 			}
-		} else if (mRoute.id == 10l) {
+		} else if (mRoute.getId() == 10l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH); // South Loop
 				return;
@@ -274,7 +274,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH); // North Loop
 				return;
 			}
-		} else if (mRoute.id == 14l) {
+		} else if (mRoute.getId() == 14l) {
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH); // Devonshire Mall
 				return;
@@ -282,7 +282,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignDirection(MDirectionType.NORTH); // Downtown Transit Terminal
 				return;
 			}
-		} else if (mRoute.id == TUNNEL_BUS_RID) { // Tunnel Bus
+		} else if (mRoute.getId() == TUNNEL_BUS_RID) { // Tunnel Bus
 			if (gTrip.getDirectionId() == 0) {
 				mTrip.setHeadsignDirection(MDirectionType.SOUTH); // 'Windsor Transit Terminal
 				return;
@@ -291,7 +291,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				return;
 			}
 		}
-		System.out.printf("Unexpected trip (unexpected route ID: %s): %s\n", mRoute.id, gTrip);
+		System.out.printf("Unexpected trip (unexpected route ID: %s): %s\n", mRoute.getId(), gTrip);
 		System.exit(-1);
 	}
 
@@ -301,13 +301,11 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 		return CleanUtils.cleanLabel(tripHeadsign);
 	}
 
-	private static final Pattern AT = Pattern.compile("( at )", Pattern.CASE_INSENSITIVE);
 
-	private static final String AT_REPLACEMENT = " / ";
 
 	@Override
 	public String cleanStopName(String gStopName) {
-		gStopName = AT.matcher(gStopName).replaceAll(AT_REPLACEMENT);
+		gStopName = CleanUtils.CLEAN_AT.matcher(gStopName).replaceAll(CleanUtils.CLEAN_AT_REPLACEMENT);
 		gStopName = CleanUtils.cleanStreetTypes(gStopName);
 		return CleanUtils.cleanLabel(gStopName);
 	}
