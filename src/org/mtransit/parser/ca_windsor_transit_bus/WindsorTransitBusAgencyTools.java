@@ -11,6 +11,7 @@ import org.mtransit.parser.gtfs.data.GCalendar;
 import org.mtransit.parser.gtfs.data.GCalendarDate;
 import org.mtransit.parser.gtfs.data.GRoute;
 import org.mtransit.parser.gtfs.data.GSpec;
+import org.mtransit.parser.gtfs.data.GStop;
 import org.mtransit.parser.gtfs.data.GTrip;
 import org.mtransit.parser.mt.data.MAgency;
 import org.mtransit.parser.mt.data.MDirectionType;
@@ -20,7 +21,6 @@ import org.mtransit.parser.mt.data.MTrip;
 
 // http://www.citywindsor.ca/opendata/Pages/Open-Data-Catalogue.aspx
 // http://www.citywindsor.ca/opendata/Lists/OpenData/Attachments/34/google_transit.zip
-// http://www.citywindsor.ca/opendata/Lists/OpenData/Attachments/34/gtfs.zip
 public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 
 	public static void main(String[] args) {
@@ -79,8 +79,11 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 	private static final String C = "C";
 	private static final String W = "W";
 
-	private static final String RSN_TUNNEL_BUS = "TunnelBus";
-	private static final long TUNNEL_BUS_RID = 999999l;
+	private static final String RSN_TUNNEL_BUS = "2222";
+
+	private static final long TUNNEL_BUS_RID = 9L;
+	private static final String TUNNEL_BUS_RSN = "Tunnel";
+	private static final String TUNNEL_BUS_RLN = "Tunnel Bus";
 
 	private static final long RID_ID_A = 10000l;
 	private static final long RID_ID_C = 30000l;
@@ -88,39 +91,41 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public long getRouteId(GRoute gRoute) {
-		if (Utils.isDigitsOnly(gRoute.getRouteShortName())) {
-			return Long.parseLong(gRoute.getRouteShortName()); // use route short name as route ID
-		}
 		if (RSN_TUNNEL_BUS.equalsIgnoreCase(gRoute.getRouteShortName())) {
 			return TUNNEL_BUS_RID;
 		}
+		if (Utils.isDigitsOnly(gRoute.getRouteShortName())) {
+			return Long.parseLong(gRoute.getRouteShortName()); // use route short name as route ID
+		}
 		Matcher matcher = DIGITS.matcher(gRoute.getRouteShortName());
-		matcher.find();
-		long id = Long.parseLong(matcher.group());
-		if (gRoute.getRouteShortName().endsWith(A)) {
-			return RID_ID_A + id;
-		} else if (gRoute.getRouteShortName().endsWith(C)) {
-			return RID_ID_C + id;
-		} else if (gRoute.getRouteShortName().endsWith(W)) {
-			return RID_ID_W + id;
+		if (matcher.find()) {
+			long id = Long.parseLong(matcher.group());
+			if (gRoute.getRouteShortName().endsWith(A)) {
+				return RID_ID_A + id;
+			} else if (gRoute.getRouteShortName().endsWith(C)) {
+				return RID_ID_C + id;
+			} else if (gRoute.getRouteShortName().endsWith(W)) {
+				return RID_ID_W + id;
+			}
 		}
 		System.out.println("Unexpected route ID " + gRoute);
 		System.exit(-1);
 		return -1l;
 	}
 
-	private static final String TUNNEL = "Tunnel";
-
 	@Override
 	public String getRouteShortName(GRoute gRoute) {
 		if (RSN_TUNNEL_BUS.equalsIgnoreCase(gRoute.getRouteShortName())) {
-			return TUNNEL;
+			return TUNNEL_BUS_RSN;
 		}
 		return super.getRouteShortName(gRoute);
 	}
 
 	@Override
 	public String getRouteLongName(GRoute gRoute) {
+		if (RSN_TUNNEL_BUS.equalsIgnoreCase(gRoute.getRouteShortName())) {
+			return TUNNEL_BUS_RLN;
+		}
 		String routeLongName = gRoute.getRouteLongName();
 		routeLongName = routeLongName.toLowerCase(Locale.ENGLISH);
 		return CleanUtils.cleanLabel(routeLongName);
@@ -291,7 +296,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				return;
 			}
 		}
-		System.out.printf("Unexpected trip (unexpected route ID: %s): %s\n", mRoute.getId(), gTrip);
+		System.out.printf("\nUnexpected trip (unexpected route ID: %s): %s\n", mRoute.getId(), gTrip);
 		System.exit(-1);
 	}
 
@@ -301,12 +306,15 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 		return CleanUtils.cleanLabel(tripHeadsign);
 	}
 
-
-
 	@Override
 	public String cleanStopName(String gStopName) {
 		gStopName = CleanUtils.CLEAN_AT.matcher(gStopName).replaceAll(CleanUtils.CLEAN_AT_REPLACEMENT);
 		gStopName = CleanUtils.cleanStreetTypes(gStopName);
 		return CleanUtils.cleanLabel(gStopName);
+	}
+
+	@Override
+	public int getStopId(GStop gStop) {
+		return Integer.parseInt(gStop.getStopCode()); // use stop code as stop ID
 	}
 }
