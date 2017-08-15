@@ -307,39 +307,39 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // Downtown Transit Terminal
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"521", // Transit Windsor Terminal
+						"573", // Transit Windsor Terminal
 								"5", // ==
 								"6", // !=
-								"527", // !=
+								"628", // !=
 								"400", // !=
-								"629", // !=
-								"528", // ==
-								"534", // ==
-								"630", // !=
+								"574", // !=
+								"575", // ==
+								"581", // ==
+								"582", // !=
 								"417", // !=
-								"535", // !=
-								"536", // !=
-								"537", // ==
-								"571", // Lauzon Rd. at Hawthorne
-								"577", // Essex Way at Meadowbrook
+								"629", // !=
+								"630", // !=
+								"583", // ==
+								"617", // Lauzon Rd. at Hawthorne
+								"521", // Essex Way at Meadowbrook
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"577", // Essex Way at Meadowbrook
-								"585", // Lauzon Road at Hawthorne
-								"619", // ==
+						"521", // Essex Way at Meadowbrook
+								"529", // Lauzon Road at Hawthorne
+								"563", // ==
 								"633", // !=
 								"634", // !=
 								"488", // !=
-								"620", // !=
-								"621", // ==
-								"627", // ==
-								"628", // !=
+								"564", // !=
+								"565", // ==
+								"571", // ==
+								"572", // !=
 								"505", // !=
 								"635", // !=
 								"47", // !=
 								"48", // ==
-								"521", // Transit Windsor Terminal
+								"573", // Transit Windsor Terminal
 						})) //
 				.compileBothTripSort());
 		map2.put(5L, new RouteTripSpec(5L, //
@@ -347,14 +347,14 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // St Clair College
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"683", // St. Clair College Front Entrance
-								"1042", // Labelle at Dominion
-								"992", // Windsor Transit Terminal
+						"641", // St. Clair College Front Entrance
+								"1007", // Labelle at Dominion
+								"1030", // Windsor Transit Terminal
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"992", // Windsor Transit Terminal
-								"683", // St. Clair College Front Entrance
+						"1030", // Windsor Transit Terminal
+								"641", // St. Clair College Front Entrance
 						})) //
 				.compileBothTripSort());
 		map2.put(6L, new RouteTripSpec(6L, //
@@ -362,13 +362,13 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // St Clair College
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"683", // St. Clair College Front Entrance
-								"641", // Transit Terminal at Chatham
+						"641", // St. Clair College Front Entrance
+								"682", // Transit Terminal at Chatham
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"641", // Transit Terminal at Chatham
-								"683", // St. Clair College Front Entrance
+						"682", // Transit Terminal at Chatham
+								"641", // St. Clair College Front Entrance
 						})) //
 				.compileBothTripSort());
 		map2.put(7L, new RouteTripSpec(7L, //
@@ -392,19 +392,17 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // South Walker Rd
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"778", // Sixth Concession at North Talbot
-								"779", // ++
-								"791", // ==
+						"724", // Sixth Concession at North Talbot
+								"737", // ==
 								"832", // !=
-								"792", // ==
-								"724", // Transit Terminal Church at Pitt
+								"738", // ==
+								"778", // Transit Terminal Church at Pitt
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"724", // Transit Terminal Church at Pitt
-								"768", // ++
-								"769", // ++
-								"778", // Sixth Concession at North Talbot
+						"778", // Transit Terminal Church at Pitt
+								"804", // ++
+								"724", // Sixth Concession at North Talbot
 						})) //
 				.compileBothTripSort());
 		map2.put(TUNNEL_BUS_RID, new RouteTripSpec(TUNNEL_BUS_RID, // 9 - Tunnel Bus
@@ -412,14 +410,14 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // Windsor Transit Terminal
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"887", // Windsor Transit Terminal
-								"897", // Rosa Parks Transit Center
+						"895", // Windsor Transit Terminal
+								"887", // Rosa Parks Transit Center
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"897", // Rosa Parks Transit Center
-								"903", // Chatham at Goyeau
-								"887", // Windsor Transit Terminal
+						"887", // Rosa Parks Transit Center
+								"893", // Chatham at Goyeau
+								"895", // Windsor Transit Terminal
 						})) //
 				.compileBothTripSort());
 		map2.put(10L, new RouteTripSpec(10L, //
