@@ -71,6 +71,9 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public boolean excludeTrip(GTrip gTrip) {
+		if ("NotinService".equals(gTrip.getTripHeadsign())) {
+			return true; // EXCLUDE
+		}
 		if (this.serviceIds != null) {
 			return excludeUselessTrip(gTrip, this.serviceIds);
 		}
@@ -188,6 +191,81 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 		return null;
 	}
 
+	private static final String STOP_1000 = "1";
+	private static final String STOP_1008 = "5";
+	private static final String STOP_1009 = "48";
+	private static final String STOP_1010 = "6";
+	private static final String STOP_1011 = "47";
+	private static final String STOP_1049 = "24";
+	private static final String STOP_1050 = "25";
+	private static final String STOP_1051 = "26";
+	private static final String STOP_1052 = "59";
+	private static final String STOP_1126 = "180";
+	private static final String STOP_1132 = "104";
+	private static final String STOP_1134 = "105";
+	private static final String STOP_1173 = "124";
+	private static final String STOP_1197 = "136";
+	private static final String STOP_1206 = "291";
+	private static final String STOP_1231 = "302";
+	private static final String STOP_1248 = "310";
+	private static final String STOP_1322 = "417";
+	private static final String STOP_1375 = "210";
+	private static final String STOP_1376 = "373";
+	private static final String STOP_1396 = "520";
+	private static final String STOP_1399 = "388";
+	private static final String STOP_1428 = "505";
+	private static final String STOP_1429 = "400";
+	private static final String STOP_1462 = "488";
+	private static final String STOP_1474 = "423";
+	private static final String STOP_1504 = "464";
+	private static final String STOP_1524 = "462";
+	private static final String STOP_1529 = "521";
+	private static final String STOP_1543 = "631";
+	private static final String STOP_1544 = "527";
+	private static final String STOP_1545 = "630";
+	private static final String STOP_1546 = "528";
+	private static final String STOP_1559 = "534";
+	private static final String STOP_1560 = "624";
+	private static final String STOP_1561 = "535";
+	private static final String STOP_1562 = "623";
+	private static final String STOP_1563 = "536";
+	private static final String STOP_1564 = "622";
+	private static final String STOP_1565 = "537";
+	private static final String STOP_1566 = "621";
+	private static final String STOP_1644 = "571";
+	private static final String STOP_1656 = "577";
+	private static final String STOP_1661 = "640";
+	private static final String STOP_1662 = "637";
+	private static final String STOP_1663 = "991";
+	private static final String STOP_1734 = "641";
+	private static final String STOP_1737 = "682";
+	private static final String STOP_1819 = "951";
+	private static final String STOP_1877 = "859";
+	private static final String STOP_1881 = "53";
+	private static final String STOP_1884 = "986";
+	private static final String STOP_1893 = "910";
+	private static final String STOP_1894 = "724";
+	private static final String STOP_1997 = "778";
+	private static final String STOP_1998 = "1063";
+	private static final String STOP_2034 = "1079";
+	private static final String STOP_2038 = "1083";
+	private static final String STOP_2039 = "1080";
+	private static final String STOP_2041 = "1081";
+	private static final String STOP_2046 = "1087";
+	private static final String STOP_2047 = "1112";
+	private static final String STOP_2048 = "1086";
+	private static final String STOP_2049 = "1085";
+	private static final String STOP_2051 = "463";
+	private static final String STOP_2063 = "639";
+	private static final String STOP_2064 = "638";
+	private static final String STOP_2111 = "58";
+	private static final String STOP_2116 = "895";
+	private static final String STOP_2120 = "892";
+	private static final String STOP_2135 = "887";
+	private static final String STOP_2136 = "83";
+	private static final String STOP_2140 = "1113";
+	private static final String STOP_2185 = "1158";
+
 	private static HashMap<Long, RouteTripSpec> ALL_ROUTE_TRIPS2;
 	static {
 		HashMap<Long, RouteTripSpec> map2 = new HashMap<Long, RouteTripSpec>();
@@ -196,17 +274,17 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // Devonshire Mall
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"1", // "1051", // Devonshire Mall at Moxies
-								"28", // "1000", // Windsor Transit Terminal
+						STOP_1051, // Devonshire Mall at Moxies
+								STOP_1000, // Windsor Transit Terminal
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"28", // "1000", // Windsor Transit Terminal
-								"51", // ==
-								"52", // !=
-								"53", // !=
-								"58", // !=
-								"1", // "1051", // Devonshire Mall at Moxies
+						STOP_1000, // Windsor Transit Terminal
+								STOP_1049, // == Howard at Roundhouse
+								STOP_1050, // != Sydney at Windsor Commons
+								STOP_1881, // != Marentette at Division
+								STOP_2111, // != Marentette at Sydney
+								STOP_1051, // Devonshire Mall at Moxies
 						})) //
 				.compileBothTripSort());
 		map2.put(1L + RID_ID_C, new RouteTripSpec(1L + RID_ID_C, // 1C
@@ -214,19 +292,16 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // College Ave Community Ctr
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"68", // "1052", // College Ave. at Community Centre
-								"222", // "1067", // Felix at College
-								"93", // "2136", // University at Curry
-								"134", // "1173", // Tecumseh Mall Rear Entrance
-								"146", // "1197", // Forest Glade at Mulberry
+						STOP_1052, // College Ave. at Community Centre
+								STOP_2136, // University at Curry
+								STOP_1173, // Tecumseh Mall Rear Entrance
+								STOP_1197, // Forest Glade at Mulberry
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"146", // "1197", // Forest Glade at Mulberry
-								"151", // "1200", // Wildwood at Forest Glade
-								"151", // "1200", // Wildwood at Forest Glade
-								"190", // "1126", // Tecumseh at Factoria
-								"68", // "1052", // College Ave. at Community Centre
+						STOP_1197, // Forest Glade at Mulberry
+								STOP_1126, // Tecumseh at Factoria
+								STOP_1052, // College Ave. at Community Centre
 						})) //
 				.compileBothTripSort());
 		map2.put(2L, new RouteTripSpec(2L, //
@@ -234,14 +309,14 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // College Ave Community Ctr
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"323", // "1206", // College Ave. at Community Centre
-								"334", // "1231", // Wyandotte at Randolph
-								"242", // "1375", // Tecumseh Mall Rear Entrance
+						STOP_1206, // College Ave. at Community Centre
+								STOP_1231, // Wyandotte at Randolph
+								STOP_1375, // Tecumseh Mall Rear Entrance
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"242", // "1375", // Tecumseh Mall Rear Entrance
-								"323", // "1206", // College Ave. at Community Centre
+						STOP_1375, // Tecumseh Mall Rear Entrance
+								STOP_1206, // College Ave. at Community Centre
 						})) //
 				.compileBothTripSort());
 		map2.put(3L, new RouteTripSpec(3L, //
@@ -249,26 +324,21 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // College Ave Community Ctr
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"413", // "1376", // College Ave. at Community Centre <= START
-								"428", // "1399", // Tecumseh at Northway
-								"342", // !=
-								"503", // != "2051", // Transit Terminal at Chatham <= START
-								"29", // !=
-								"30", // !=
-								"31", // ==
-								"115", // "1134", // Tecumseh at Central
-								"502", // "1524", // Transit Centre Front Entrance
+						STOP_1376, // College Ave. at Community Centre <= START
+								STOP_1399, // Tecumseh at Northway
+								STOP_1248, // !=
+								STOP_2051, // != Transit Terminal at Chatham <= START
+								STOP_1132, // ++ Tecumseh at Meldrum
+								STOP_1134, // Tecumseh at Central
+								STOP_1474, // ++ George at Tecumseh
+								STOP_1524, // Transit Centre Front Entrance
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"502", // "1524", // Transit Centre Front Entrance
-								"504", // ++
-								"185", // ++
-								"115", // != "1134", // Tecumseh at Central => END
-								"239", // != "1133" // Tecumseh at Central => CONTINUE
-								"187", // ++
-								"560", // "1396", // Tecumseh at Felix
-								"413", // "1376", // College Ave. at Community Centre
+						STOP_1524, // Transit Centre Front Entrance
+								STOP_1504, // ++ N. Service at Central
+								STOP_1396, // Tecumseh at Felix
+								STOP_1376, // College Ave. at Community Centre
 						})) //
 				.compileBothTripSort());
 		map2.put(3L + RID_ID_W, new RouteTripSpec(3L + RID_ID_W, // 3W
@@ -276,15 +346,14 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // College Ave Community Ctr
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"413", // "1376", // College Ave. at Community Centre
-								"428", // "1399", // Tecumseh at Northway
-								"503", // "2051", // Transit Terminal at Chatham
+						STOP_1376, // College Ave. at Community Centre
+								STOP_2051, // Transit Terminal at Chatham
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"503", // "2051", // Transit Terminal at Chatham
-								"560", // "1396", // Tecumseh at Felix
-								"413", // "1376", // College Ave. at Community Centre
+						STOP_2051, // Transit Terminal at Chatham
+								STOP_1396, // Tecumseh at Felix
+								STOP_1376, // College Ave. at Community Centre
 						})) //
 				.compileBothTripSort());
 		map2.put(4L, new RouteTripSpec(4L, //
@@ -292,42 +361,38 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // Downtown Transit Terminal
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"590", // "1529", // Transit Windsor Terminal
-								"59", // ==
-								"33", // !=
-								"697", // !=
-								"440", // !=
-								"591", // !=
-								"592", // ==
-								"598", // ==
-								"735", // !=
-								"699", // !=
-								"599", // !=
-								"457", // !=
-								"600", // ==
-								"718", // "1644", // Lauzon Rd. at Hawthorne
-								"640", // "1656", // Essex Way at Meadowbrook
+						STOP_1529, // Transit Windsor Terminal
+								STOP_1008, // == Ouellette at Elliott
+								STOP_1010, // != Ouellette at Erie
+								STOP_1544, // != Giles at Parent
+								STOP_1429, // != Erie at Ouellette
+								STOP_2063, // != Giles at Parent
+								STOP_1546, // == Ottawa at Parent
+								STOP_1559, // == Ottawa at Walker
+								STOP_1661, // != Walker at Ontario
+								STOP_1322, // != Drouillard at Metcalfe
+								STOP_1561, // != Seminole at Walker
+								STOP_1563, // != Seminole at Albert
+								STOP_1565, // == Seminole at Drouillard
+								STOP_1644, // Lauzon Rd. at Hawthorne
+								STOP_1656, // Essex Way at Meadowbrook
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"640", // "1656", // Essex Way at Meadowbrook
-								"700", // !=
-								"736", // !=
-								"641", // ==
-								"682", // ==
-								"702", // !=
-								"703", // !=
-								"528", // !=
-								"732", // !=
-								"684", // ==
-								"690", // ==
-								"691", // !=
-								"545", // !=
-								"737", // !=
-								"22", // !=
-								"23", // ==
-								"648", // "1645", // Lauzon Road at Hawthorne
-								"590", // "1529", // Transit Windsor Terminal
+						STOP_1656, // Essex Way at Meadowbrook
+								STOP_1566, // == Seminole at Drouillard
+								STOP_1564, // != Seminole at Albert
+								STOP_1562, // != Seminole at Walker
+								STOP_1462, // != Drouillard at Metcalfe
+								STOP_1662, // != Walker at Ontario
+								STOP_1560, // == Ottawa at Monmouth
+								STOP_1545, // == Parent at Ottawa
+								STOP_2064, // != Parent at Giles
+								STOP_1428, // != Erie at Ouellette
+								STOP_1543, // != Giles at Elsmere
+								STOP_1011, // != Ouellette at Erie
+								STOP_1009, // == Ouellette at Ouellette Manor
+								STOP_1529, // "1529", // Transit Windsor Terminal
 						})) //
 				.compileBothTripSort());
 		map2.put(5L, new RouteTripSpec(5L, //
@@ -335,14 +400,13 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // St Clair College
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"738", // "1734", // St. Clair College Front Entrance
-								"1197", // "1707", // Labelle at Dominion
-								"1220", // "1663", // Windsor Transit Terminal
+						STOP_1734, // St. Clair College Front Entrance
+								STOP_1663, // Windsor Transit Terminal
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"1220", // "1663", // Windsor Transit Terminal
-								"738", // "1734", // St. Clair College Front Entrance
+						STOP_1663, // Windsor Transit Terminal
+								STOP_1734, // St. Clair College Front Entrance
 						})) //
 				.compileBothTripSort());
 		map2.put(6L, new RouteTripSpec(6L, //
@@ -350,13 +414,13 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // St Clair College
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"738", // "1734", // St. Clair College Front Entrance
-								"779", // "1737", // Transit Terminal at Chatham
+						STOP_1734, // St. Clair College Front Entrance
+								STOP_1737, // Transit Terminal at Chatham
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"779", // "1737", // Transit Terminal at Chatham
-								"738", // "1734", // St. Clair College Front Entrance
+						STOP_1737, // Transit Terminal at Chatham
+								STOP_1734, // St. Clair College Front Entrance
 						})) //
 				.compileBothTripSort());
 		map2.put(7L, new RouteTripSpec(7L, //
@@ -364,15 +428,14 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // College Ave Community Ctr
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"1119", // "1819", // College Ave. at Community Centre
-								"1154", // "1884", // Provincial at Humane Society
-								"1078", // "1893", // Legacy Park at Sears Home
+						STOP_1819, // College Ave. at Community Centre
+								STOP_1884, // Provincial at Humane Society
+								STOP_1893, // Legacy Park at Sears Home
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"1078", // "1893", // Legacy Park at Sears Home
-								"1", // "1051" // Devonshire Mall at Moxies
-								"1119", // "1819", // College Ave. at Community Centre
+						STOP_1893, // Legacy Park at Sears Home
+								STOP_1819, // College Ave. at Community Centre
 						})) //
 				.compileBothTripSort());
 		map2.put(8L, new RouteTripSpec(8L, //
@@ -380,17 +443,13 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // South Walker Rd
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"851", // "1997", // Sixth Concession at North Talbot
-								"864", // ==
-								"959", // !=
-								"961", // ==
-								"905", // "1894", // Transit Terminal Church at Pitt
+						STOP_1997, // " Sixth Concession at North Talbot
+								STOP_1894, // Transit Terminal Church at Pitt
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"905", // "1894", // Transit Terminal Church at Pitt
-								"928", // ++
-								"851", // "1997", // Sixth Concession at North Talbot
+						STOP_1894, // Transit Terminal Church at Pitt
+								STOP_1997, // Sixth Concession at North Talbot
 						})) //
 				.compileBothTripSort());
 		map2.put(TUNNEL_BUS_RID, new RouteTripSpec(TUNNEL_BUS_RID, // 9 - Tunnel Bus
@@ -398,14 +457,14 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // Windsor Transit Terminal
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"1058", // "2116", // Windsor Transit Terminal
-								"1050", // "2135", // Rosa Parks Transit Center
+						STOP_2116, // Windsor Transit Terminal
+								STOP_2135, // Rosa Parks Transit Center
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"1050", // "2135", // Rosa Parks Transit Center
-								"1068", // "2120", // McDougall at University Avenue
-								"1058", // "2116", // Windsor Transit Terminal
+						STOP_2135, // Rosa Parks Transit Center
+								STOP_2120, // McDougall at University Avenue
+								STOP_2116, // Windsor Transit Terminal
 						})) //
 				.compileBothTripSort());
 		map2.put(10L, new RouteTripSpec(10L, //
@@ -413,26 +472,21 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // South Loop
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"242", // "1375", // Tecumseh Mall Rear Entrance
-								"1286", // ==
-								"1314", // !=
-								"1287", // !=
-								"1288", // ==
-								"402", // !=
-								"403", // <>
-								"1265", // "1998", // Tecumseh Mall Rear Entrance
+						STOP_1375, // Tecumseh Mall Rear Entrance
+								STOP_2049, // == McHugh at Darfield
+								STOP_2048, // != WFCU Centre Main Entrance
+								STOP_2047, // != McHugh at Mickey Renuad Way
+								STOP_2046, // == McHugh at Cypress
+								STOP_1998, // Tecumseh Mall Rear Entrance
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"1265", // "1998", // Tecumseh Mall Rear Entrance
-								"135", // ++
-								"1281", // ==
-								"1313", // !=
-								"1282", // !=
-								"1283", // ==
-								"1284", // !=
-								"403", // <>
-								"242", // "1375", // Tecumseh Mall Rear Entrance
+						STOP_1998, // Tecumseh Mall Rear Entrance
+								STOP_2034, // == McHugh at Cypress
+								STOP_2038, // != McHugh at Micky Renaud Way
+								STOP_2039, // != WFCU Centre Main Entrance
+								STOP_2041, // == McHugh at Darfield
+								STOP_1375, // Tecumseh Mall Rear Entrance
 						})) //
 				.compileBothTripSort());
 		map2.put(14L, new RouteTripSpec(14L, //
@@ -440,13 +494,13 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // Devonshire Mall
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"982", // "1877", // Devonshire Mall at Moxies
-								"503", // "2051", // Transit Terminal at Chatham
+						STOP_1877, // Devonshire Mall at Moxies
+								STOP_2051, // Transit Terminal at Chatham
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"503", // "2051", // Transit Terminal at Chatham
-								"982", // "1877", // Devonshire Mall at Moxies
+						STOP_2051, // Transit Terminal at Chatham
+								STOP_1877, // Devonshire Mall at Moxies
 						})) //
 				.compileBothTripSort());
 		map2.put(25L, new RouteTripSpec(25L, //
@@ -454,13 +508,13 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // Morton @ Ojibway
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"1315", // "2185", // Morton at Ojibway
-								"1369", // "2140", // St Clair Front Entrance
+						STOP_2185, // Morton at Ojibway
+								STOP_2140, // St Clair Front Entrance
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"1369", // "2140", // St Clair Front Entrance
-								"1315", // "2185", // Morton at Ojibway
+						STOP_2140, // St Clair Front Entrance
+								STOP_2185, // Morton at Ojibway
 						})) //
 				.compileBothTripSort());
 		ALL_ROUTE_TRIPS2 = map2;
