@@ -236,17 +236,23 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 	private static final String STOP_1656 = "576";
 	private static final String STOP_1661 = "639";
 	private static final String STOP_1662 = "636";
-	private static final String STOP_1663 = "1027";
+	private static final String STOP_1663 = "990";
 	private static final String STOP_1734 = "640";
 	private static final String STOP_1737 = "681";
 	private static final String STOP_1819 = "950";
-	private static final String STOP_1877 = "858";
+	private static final String STOP_1877 = "832";
 	private static final String STOP_1881 = "53";
 	private static final String STOP_1884 = "985";
 	private static final String STOP_1893 = "909";
-	private static final String STOP_1894 = "723";
-	private static final String STOP_1997 = "777";
-	private static final String STOP_1998 = "1090";
+	private static final String STOP_1894 = "778";
+	private static final String STOP_1997 = "723";
+	private static final String STOP_1998 = "1062";
+	private static final String STOP_2012 = "1085";
+	private static final String STOP_2013 = "1084";
+	private static final String STOP_2014 = "1083";
+	private static final String STOP_2017 = "1080";
+	private static final String STOP_2018 = "1079";
+	private static final String STOP_2019 = "1078";
 	private static final String STOP_2034 = "1106";
 	private static final String STOP_2038 = "1111";
 	private static final String STOP_2039 = "1107";
@@ -263,8 +269,8 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 	private static final String STOP_2120 = "891";
 	private static final String STOP_2135 = "886";
 	private static final String STOP_2136 = "83";
-	private static final String STOP_2140 = "1112";
-	private static final String STOP_2185 = "1157";
+	private static final String STOP_2140 = "1166";
+	private static final String STOP_2185 = "1112";
 
 	private static HashMap<Long, RouteTripSpec> ALL_ROUTE_TRIPS2;
 	static {
@@ -366,10 +372,10 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								STOP_1010, // != Ouellette at Erie
 								STOP_1544, // != Giles at Parent
 								STOP_1429, // != Erie at Ouellette
-								STOP_2063, // != Giles at Parent
+								STOP_1662, // != Walker at Ontario
 								STOP_1546, // == Ottawa at Parent
 								STOP_1559, // == Ottawa at Walker
-								STOP_1661, // != Walker at Ontario
+								STOP_2064, // != Parent at Giles
 								STOP_1322, // != Drouillard at Metcalfe
 								STOP_1561, // != Seminole at Walker
 								STOP_1563, // != Seminole at Albert
@@ -384,10 +390,10 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								STOP_1564, // != Seminole at Albert
 								STOP_1562, // != Seminole at Walker
 								STOP_1462, // != Drouillard at Metcalfe
-								STOP_1662, // != Walker at Ontario
+								STOP_2063, // != Giles at Parent
 								STOP_1560, // == Ottawa at Monmouth
 								STOP_1545, // == Parent at Ottawa
-								STOP_2064, // != Parent at Giles
+								STOP_1661, // != Walker at Ontario
 								STOP_1428, // != Erie at Ouellette
 								STOP_1543, // != Giles at Elsmere
 								STOP_1011, // != Ouellette at Erie
@@ -443,7 +449,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // South Walker Rd
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						STOP_1997, // " Sixth Concession at North Talbot
+						STOP_1997, // Sixth Concession at North Talbot
 								STOP_1894, // Transit Terminal Church at Pitt
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
@@ -473,19 +479,19 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
 						STOP_1375, // Tecumseh Mall Rear Entrance
-								STOP_2049, // == McHugh at Darfield
-								STOP_2048, // != WFCU Centre Main Entrance
+								STOP_2014, // == Wyandotte at Greendale
+								STOP_2013, // != Wyandotte at Westchester
 								STOP_2047, // != McHugh at Mickey Renuad Way
-								STOP_2046, // == McHugh at Cypress
+								STOP_2012, // == Wyandotte at Isack
 								STOP_1998, // Tecumseh Mall Rear Entrance
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
 						STOP_1998, // Tecumseh Mall Rear Entrance
-								STOP_2034, // == McHugh at Cypress
+								STOP_2019, // == Greenpark at Amalfi
 								STOP_2038, // != McHugh at Micky Renaud Way
-								STOP_2039, // != WFCU Centre Main Entrance
-								STOP_2041, // == McHugh at Darfield
+								STOP_2018, // != Wyandotte at Greenpark
+								STOP_2017, // == 2017 Wyandotte at Clover
 								STOP_1375, // Tecumseh Mall Rear Entrance
 						})) //
 				.compileBothTripSort());
