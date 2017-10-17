@@ -7,58 +7,58 @@ public class Stops {
 	static {
 		HashMap<String, String> allStops = new HashMap<String, String>();
 		// awk -F "\"*,\"*" '{print "allStops.put(\"" $2 "\", \"" $1"\"); // " $3}' input/gtfs/stops.txt > output/output.java
-		allStops.put("1051", "1"); // Devonshire Mall at Moxies
-		allStops.put("1048", "2"); // Howard at Devonshire Mall
-		allStops.put("1046", "3"); // Howard at Grand Marais
-		allStops.put("1044", "4"); // Howard at Charles
-		allStops.put("1042", "5"); // Howard at Edinborough
-		allStops.put("1041", "6"); // Howard at McDougall
-		allStops.put("1039", "7"); // Howard at Hildegard
-		allStops.put("1038", "8"); // Howard at Eugenie
-		allStops.put("1035", "9"); // Howard at Lens
-		allStops.put("1034", "10"); // Howard at Foch
-		allStops.put("1032", "11"); // Howard at Logan
-		allStops.put("1030", "12"); // Tecumseh E at Howard
-		allStops.put("1028", "13"); // Tecumseh E at McDougall
-		allStops.put("1026", "14"); // Tecumseh E at Goyeau
-		allStops.put("1025", "15"); // Ouellette at Tecumseh E
-		allStops.put("1023", "16"); // Ouellette at Hanna
-		allStops.put("1021", "17"); // Ouellette at Shepherd
-		allStops.put("1019", "18"); // Ouellette at Ellis
-		allStops.put("1017", "19"); // Ouellette at Montrose
-		allStops.put("1015", "20"); // Ouellette at Giles
-		allStops.put("1013", "21"); // Ouellette at Pine
-		allStops.put("1011", "22"); // Ouellette at Erie
-		allStops.put("1009", "23"); // Ouellette at Ouellette Manor
-		allStops.put("1007", "24"); // Ouellette at Elliott
-		allStops.put("1005", "25"); // Ouellette at Wyandotte
-		allStops.put("1003", "26"); // Ouellette at Park
-		allStops.put("1001", "27"); // Chatham at Ouellette
-		allStops.put("1000", "28"); // Windsor Transit Terminal
-		allStops.put("1002", "29"); // Ouellette at Chatham
-		allStops.put("1004", "30"); // Ouellette at Park
-		allStops.put("1006", "31"); // Ouellette at Wyandotte
-		allStops.put("1008", "32"); // Ouellette at Elliott
-		allStops.put("1010", "33"); // Ouellette at Erie
-		allStops.put("1012", "34"); // Ouellette at Pine
-		allStops.put("1014", "35"); // Ouellette at Giles
-		allStops.put("1016", "36"); // Ouellette at Montrose
-		allStops.put("1018", "37"); // Ouellette at Ellis
-		allStops.put("1020", "38"); // Ouellette at Shepherd
-		allStops.put("1022", "39"); // Ouellette at Hanna
-		allStops.put("1024", "40"); // Tecumseh E at Ouellette
-		allStops.put("1027", "41"); // Tecumseh E at McDougall
-		allStops.put("1029", "42"); // Howard at Tecumseh E
-		allStops.put("1031", "43"); // Howard at Logan
-		allStops.put("1033", "44"); // Howard at Foch
-		allStops.put("1036", "45"); // Howard at Memorial
-		allStops.put("1037", "46"); // Howard at Eugenie
-		allStops.put("1040", "47"); // Howard at McDougall
-		allStops.put("1043", "48"); // Howard at Edinborough
-		allStops.put("1045", "49"); // Howard at Charles
-		allStops.put("1047", "50"); // Howard at Grand Marais
-		allStops.put("1049", "51"); // Howard at Roundhouse
-		allStops.put("1050", "52"); // Sydney at Windsor Commons
+		allStops.put("1000", "1"); // Windsor Transit Terminal
+		allStops.put("1002", "2"); // Ouellette at Chatham
+		allStops.put("1004", "3"); // Ouellette at Park
+		allStops.put("1006", "4"); // Ouellette at Wyandotte
+		allStops.put("1008", "5"); // Ouellette at Elliott
+		allStops.put("1010", "6"); // Ouellette at Erie
+		allStops.put("1012", "7"); // Ouellette at Pine
+		allStops.put("1014", "8"); // Ouellette at Giles
+		allStops.put("1016", "9"); // Ouellette at Montrose
+		allStops.put("1018", "10"); // Ouellette at Ellis
+		allStops.put("1020", "11"); // Ouellette at Shepherd
+		allStops.put("1022", "12"); // Ouellette at Hanna
+		allStops.put("1024", "13"); // Tecumseh E at Ouellette
+		allStops.put("1027", "14"); // Tecumseh E at McDougall
+		allStops.put("1029", "15"); // Howard at Tecumseh E
+		allStops.put("1031", "16"); // Howard at Logan
+		allStops.put("1033", "17"); // Howard at Foch
+		allStops.put("1036", "18"); // Howard at Memorial
+		allStops.put("1037", "19"); // Howard at Eugenie
+		allStops.put("1040", "20"); // Howard at McDougall
+		allStops.put("1043", "21"); // Howard at Edinborough
+		allStops.put("1045", "22"); // Howard at Charles
+		allStops.put("1047", "23"); // Howard at Grand Marais
+		allStops.put("1049", "24"); // Howard at Roundhouse
+		allStops.put("1050", "25"); // Sydney at Windsor Commons
+		allStops.put("1051", "26"); // Devonshire Mall at Moxies
+		allStops.put("1048", "27"); // Howard at Devonshire Mall
+		allStops.put("1046", "28"); // Howard at Grand Marais
+		allStops.put("1044", "29"); // Howard at Charles
+		allStops.put("1042", "30"); // Howard at Edinborough
+		allStops.put("1041", "31"); // Howard at McDougall
+		allStops.put("1039", "32"); // Howard at Hildegard
+		allStops.put("1038", "33"); // Howard at Eugenie
+		allStops.put("1035", "34"); // Howard at Lens
+		allStops.put("1034", "35"); // Howard at Foch
+		allStops.put("1032", "36"); // Howard at Logan
+		allStops.put("1030", "37"); // Tecumseh E at Howard
+		allStops.put("1028", "38"); // Tecumseh E at McDougall
+		allStops.put("1026", "39"); // Tecumseh E at Goyeau
+		allStops.put("1025", "40"); // Ouellette at Tecumseh E
+		allStops.put("1023", "41"); // Ouellette at Hanna
+		allStops.put("1021", "42"); // Ouellette at Shepherd
+		allStops.put("1019", "43"); // Ouellette at Ellis
+		allStops.put("1017", "44"); // Ouellette at Montrose
+		allStops.put("1015", "45"); // Ouellette at Giles
+		allStops.put("1013", "46"); // Ouellette at Pine
+		allStops.put("1011", "47"); // Ouellette at Erie
+		allStops.put("1009", "48"); // Ouellette at Ouellette Manor
+		allStops.put("1007", "49"); // Ouellette at Elliott
+		allStops.put("1005", "50"); // Ouellette at Wyandotte
+		allStops.put("1003", "51"); // Ouellette at Park
+		allStops.put("1001", "52"); // Chatham at Ouellette
 		allStops.put("1881", "53"); // Marentette at Division
 		allStops.put("1879", "54"); // Marentette at Foster
 		allStops.put("2114", "55"); // Marentette at Sydney
@@ -468,184 +468,184 @@ public class Stops {
 		allStops.put("1522", "459"); // North Service Road at Pillette
 		allStops.put("1332", "460"); // Service Road at Electrical Union
 		allStops.put("1524", "461"); // Transit Centre Front Entrance
-		allStops.put("1504", "462"); // N. Service at Central
-		allStops.put("1502", "463"); // Grand Marais at Allyson
-		allStops.put("1500", "464"); // Grand Marais at Tourangeau
-		allStops.put("1498", "465"); // Grand Marais at Bernard
-		allStops.put("1496", "466"); // Grand Marais at Pillette
-		allStops.put("1494", "467"); // Pillette at Adstoll
-		allStops.put("1492", "468"); // Pillette at Tecumseh
-		allStops.put("1490", "469"); // Pillette at Guy
-		allStops.put("1488", "470"); // Pillette at Milloy
-		allStops.put("1486", "471"); // Pillette at Alice
-		allStops.put("1484", "472"); // Pillette at Reginald
-		allStops.put("1580", "473"); // Seminole at Pillette
-		allStops.put("1578", "474"); // Seminole at Ellrose
-		allStops.put("1576", "475"); // Seminole at Bernard
-		allStops.put("1481", "476"); // George at Seminole
-		allStops.put("1479", "477"); // George at Reginald
-		allStops.put("1477", "478"); // George at Alice
-		allStops.put("1475", "479"); // George at Milloy
-		allStops.put("1313", "480"); // George at Guy
-		allStops.put("1471", "481"); // Hickory at Tecumseh
-		allStops.put("1469", "482"); // Hickory at Milloy
-		allStops.put("1467", "483"); // Drouillard at Alice
-		allStops.put("1465", "484"); // Drouillard at Reginald
-		allStops.put("1463", "485"); // Drouillard at Seminole
-		allStops.put("1462", "486"); // Drouillard at Metcalfe
-		allStops.put("1460", "487"); // Drouillard at Franklin
-		allStops.put("1458", "488"); // Drouillard at Ontario
-		allStops.put("1456", "489"); // Richmond at Drouillard
-		allStops.put("1454", "490"); // Richmond at St. Luke
-		allStops.put("1453", "491"); // Richmond at Walker
-		allStops.put("1450", "492"); // Richmond at Monmouth
-		allStops.put("1448", "493"); // Richmond at Chilver
-		allStops.put("1446", "494"); // Richmond at Lincoln
-		allStops.put("1445", "495"); // Erie at Lincoln
-		allStops.put("1443", "496"); // Erie at Moy
-		allStops.put("1442", "497"); // Erie at Marion
-		allStops.put("1440", "498"); // Erie at Elsmere
-		allStops.put("1436", "499"); // Erie at Louis
-		allStops.put("1434", "500"); // Erie at Howard
-		allStops.put("1432", "501"); // Erie at McDougall
-		allStops.put("1426", "502"); // Erie at Goyeau
-		allStops.put("1428", "503"); // Erie at Ouellette
-		allStops.put("1424", "504"); // Crawford at Wyandotte
-		allStops.put("1423", "505"); // Crawford at Elliott
-		allStops.put("1421", "506"); // Crawford at College
-		allStops.put("1419", "507"); // Crawford at Erie
-		allStops.put("1417", "508"); // Crawford at Grove
-		allStops.put("1414", "509"); // Crawford at Tecumseh
-		allStops.put("1412", "510"); // Tecumseh at Crawford
-		allStops.put("1411", "511"); // Tecumseh at McKay
-		allStops.put("1407", "512"); // Tecumseh at Campbell
-		allStops.put("1406", "513"); // Tecumseh at Bridge
-		allStops.put("1404", "514"); // Tecumseh at Randolph
-		allStops.put("1402", "515"); // Tecumseh at California
-		allStops.put("1400", "516"); // Tecumseh at Northway
-		allStops.put("1398", "517"); // Tecumseh at Huron Church
-		allStops.put("1396", "518"); // Tecumseh at Felix
-		allStops.put("2051", "519"); // Transit Terminal at Chatham
+		allStops.put("2051", "462"); // Transit Terminal at Chatham
+		allStops.put("1504", "463"); // N. Service at Central
+		allStops.put("1502", "464"); // Grand Marais at Allyson
+		allStops.put("1500", "465"); // Grand Marais at Tourangeau
+		allStops.put("1498", "466"); // Grand Marais at Bernard
+		allStops.put("1496", "467"); // Grand Marais at Pillette
+		allStops.put("1494", "468"); // Pillette at Adstoll
+		allStops.put("1492", "469"); // Pillette at Tecumseh
+		allStops.put("1490", "470"); // Pillette at Guy
+		allStops.put("1488", "471"); // Pillette at Milloy
+		allStops.put("1486", "472"); // Pillette at Alice
+		allStops.put("1484", "473"); // Pillette at Reginald
+		allStops.put("1580", "474"); // Seminole at Pillette
+		allStops.put("1578", "475"); // Seminole at Ellrose
+		allStops.put("1576", "476"); // Seminole at Bernard
+		allStops.put("1481", "477"); // George at Seminole
+		allStops.put("1479", "478"); // George at Reginald
+		allStops.put("1477", "479"); // George at Alice
+		allStops.put("1475", "480"); // George at Milloy
+		allStops.put("1313", "481"); // George at Guy
+		allStops.put("1471", "482"); // Hickory at Tecumseh
+		allStops.put("1469", "483"); // Hickory at Milloy
+		allStops.put("1467", "484"); // Drouillard at Alice
+		allStops.put("1465", "485"); // Drouillard at Reginald
+		allStops.put("1463", "486"); // Drouillard at Seminole
+		allStops.put("1462", "487"); // Drouillard at Metcalfe
+		allStops.put("1460", "488"); // Drouillard at Franklin
+		allStops.put("1458", "489"); // Drouillard at Ontario
+		allStops.put("1456", "490"); // Richmond at Drouillard
+		allStops.put("1454", "491"); // Richmond at St. Luke
+		allStops.put("1453", "492"); // Richmond at Walker
+		allStops.put("1450", "493"); // Richmond at Monmouth
+		allStops.put("1448", "494"); // Richmond at Chilver
+		allStops.put("1446", "495"); // Richmond at Lincoln
+		allStops.put("1445", "496"); // Erie at Lincoln
+		allStops.put("1443", "497"); // Erie at Moy
+		allStops.put("1442", "498"); // Erie at Marion
+		allStops.put("1440", "499"); // Erie at Elsmere
+		allStops.put("1436", "500"); // Erie at Louis
+		allStops.put("1434", "501"); // Erie at Howard
+		allStops.put("1432", "502"); // Erie at McDougall
+		allStops.put("1426", "503"); // Erie at Goyeau
+		allStops.put("1428", "504"); // Erie at Ouellette
+		allStops.put("1424", "505"); // Crawford at Wyandotte
+		allStops.put("1423", "506"); // Crawford at Elliott
+		allStops.put("1421", "507"); // Crawford at College
+		allStops.put("1419", "508"); // Crawford at Erie
+		allStops.put("1417", "509"); // Crawford at Grove
+		allStops.put("1414", "510"); // Crawford at Tecumseh
+		allStops.put("1412", "511"); // Tecumseh at Crawford
+		allStops.put("1411", "512"); // Tecumseh at McKay
+		allStops.put("1407", "513"); // Tecumseh at Campbell
+		allStops.put("1406", "514"); // Tecumseh at Bridge
+		allStops.put("1404", "515"); // Tecumseh at Randolph
+		allStops.put("1402", "516"); // Tecumseh at California
+		allStops.put("1400", "517"); // Tecumseh at Northway
+		allStops.put("1398", "518"); // Tecumseh at Huron Church
+		allStops.put("1396", "519"); // Tecumseh at Felix
 		allStops.put("1529", "520"); // Transit Windsor Terminal
-		allStops.put("2063", "521"); // Giles at Parent
-		allStops.put("1546", "522"); // Ottawa at Parent
-		allStops.put("1549", "523"); // Ottawa at Pierre
-		allStops.put("1551", "524"); // Ottawa at Moy
-		allStops.put("1553", "525"); // Ottawa at Gladstone
-		allStops.put("1554", "526"); // Ottawa at Lincoln
-		allStops.put("1556", "527"); // Ottawa at Kildare
-		allStops.put("1559", "528"); // Ottawa at Walker
-		allStops.put("1661", "529"); // Walker at Ontario
-		allStops.put("1565", "530"); // Seminole at Drouillard
-		allStops.put("1567", "531"); // Seminole at Chandler
-		allStops.put("1569", "532"); // Seminole at Central
-		allStops.put("1571", "533"); // Seminole at Westcott
-		allStops.put("1579", "534"); // Pillette at Seminole
-		allStops.put("1581", "535"); // Pillette at Metcalfe
-		allStops.put("1583", "536"); // Pillette at South National
-		allStops.put("1585", "537"); // Pillette at Ontario
-		allStops.put("1587", "538"); // Pillette at Wyandotte
-		allStops.put("1590", "539"); // Jefferson at Ontario
-		allStops.put("1592", "540"); // Jefferson at Raymond
-		allStops.put("1594", "541"); // Jefferson at Edgar
-		allStops.put("1596", "542"); // South National at Jefferson
-		allStops.put("1598", "543"); // South National at Balfour
-		allStops.put("1600", "544"); // South National at Ferndale
-		allStops.put("1602", "545"); // South National at Ford
-		allStops.put("1604", "546"); // Ford at Reginald
-		allStops.put("1606", "547"); // Ford at Lassaline
-		allStops.put("1608", "548"); // Ford at Coronation
-		allStops.put("1610", "549"); // Ford at Empress
-		allStops.put("1612", "550"); // Rivard at Joinville
-		allStops.put("1614", "551"); // Rivard at Haig
-		allStops.put("1616", "552"); // Rivard at Grand
-		allStops.put("1618", "553"); // Rivard at Ambassador Church
-		allStops.put("1620", "554"); // Rivard at Queen Elizabeth
-		allStops.put("1622", "555"); // Queen Elizabeth at Clarence
-		allStops.put("1625", "556"); // Queen Elizabeth at Harmony
-		allStops.put("1628", "557"); // Queen Elizabeth at Clemenceau
-		allStops.put("1630", "558"); // Clemenceau at Roosevelt
-		allStops.put("1632", "559"); // Clemenceau at Grand
-		allStops.put("1634", "560"); // Clemenceau at Haig
-		allStops.put("1636", "561"); // Clemenceau at Joinville
-		allStops.put("1159", "562"); // Rose at Clemenceau
-		allStops.put("1642", "563"); // Lauzon Rd. at Yolanda
-		allStops.put("1644", "564"); // Lauzon Rd. at Hawthorne
-		allStops.put("1646", "565"); // Hawthorne at Sycamore
-		allStops.put("1648", "566"); // Meadowbrook at Hawthorne
-		allStops.put("1650", "567"); // Meadowbrook at Parkside Estates
-		allStops.put("1652", "568"); // Meadowbrook at Optimist Park
-		allStops.put("1654", "569"); // Meadowbrook at Essex Way
-		allStops.put("1656", "570"); // Essex Way at Meadowbrook
-		allStops.put("1531", "571"); // Giles at Ouellette
-		allStops.put("1533", "572"); // Giles at Goyeau
-		allStops.put("1535", "573"); // Giles at McDougall
-		allStops.put("1538", "574"); // Giles at Howard
-		allStops.put("1542", "575"); // Giles at Marentette
-		allStops.put("1544", "576"); // Giles at Parent
-		allStops.put("1561", "577"); // Seminole at Walker
-		allStops.put("1563", "578"); // Seminole at Albert
-		allStops.put("1660", "579"); // Cantelon at Kew
-		allStops.put("1659", "580"); // Cantelon at Lauzon Parkway
-		allStops.put("1658", "581"); // Forest Glade at Lauzon Parkway
-		allStops.put("1657", "582"); // Forest Glade at Lauzon
-		allStops.put("1655", "583"); // Beachdale at Chestnut
-		allStops.put("1653", "584"); // Esplanade at Beachdale
-		allStops.put("1651", "585"); // Esplanade at Ridge
-		allStops.put("1649", "586"); // Esplanade at Lilac
-		allStops.put("1647", "587"); // Lilac at Lauzon
-		allStops.put("1645", "588"); // Lauzon Road at Hawthorne
-		allStops.put("1643", "589"); // Lauzon Road at Yolanda
-		allStops.put("1639", "590"); // Clemenceau at Rose
-		allStops.put("1637", "591"); // Clemenceau at Joinville
-		allStops.put("1635", "592"); // Clemenceau at Haig
-		allStops.put("1633", "593"); // Clemenceau at Grand
-		allStops.put("1631", "594"); // Clemenceau at Roosevelt
-		allStops.put("1629", "595"); // Queen Elizabeth at Clemenceau
-		allStops.put("1626", "596"); // Queen Elizabeth at Grandview
-		allStops.put("1623", "597"); // Queen Elizabeth at Clarence
-		allStops.put("1621", "598"); // Rivard at Queen Elizabeth
-		allStops.put("1619", "599"); // Rivard at Library
-		allStops.put("1617", "600"); // Rivard at Grand
-		allStops.put("1615", "601"); // Rivard at Haig
-		allStops.put("1613", "602"); // Rivard at Joinville
-		allStops.put("1611", "603"); // Rivard at Rose
-		allStops.put("1609", "604"); // Ford at Empress
-		allStops.put("1607", "605"); // Ford at Coronation
-		allStops.put("1605", "606"); // Ford at Lassaline
-		allStops.put("1603", "607"); // Ford at Reginald
-		allStops.put("1601", "608"); // South National at Ford
-		allStops.put("1599", "609"); // South National at Ferndale
-		allStops.put("1597", "610"); // South National at Balfour
-		allStops.put("1595", "611"); // Jefferson at South National
-		allStops.put("1593", "612"); // Jefferson at Edgar
-		allStops.put("1591", "613"); // Jefferson at Raymond
-		allStops.put("1589", "614"); // Jefferson at Ontario
-		allStops.put("1588", "615"); // Pillette at Wyandotte
-		allStops.put("1586", "616"); // Pillette at Ontario
-		allStops.put("1584", "617"); // Pillette at South National
-		allStops.put("1582", "618"); // Pillette at Metcalfe
-		allStops.put("1573", "619"); // Seminole at George
-		allStops.put("1570", "620"); // Seminole at Central
-		allStops.put("1568", "621"); // Seminole at Chandler
-		allStops.put("1566", "622"); // Seminole at Drouillard
-		allStops.put("1564", "623"); // Seminole at Albert
-		allStops.put("1562", "624"); // Seminole at Walker
-		allStops.put("1560", "625"); // Ottawa at Monmouth
-		allStops.put("1557", "626"); // Ottawa at Kildare
-		allStops.put("1555", "627"); // Ottawa at Lincoln
-		allStops.put("1552", "628"); // Ottawa at Gladstone
-		allStops.put("1550", "629"); // Ottawa at Hall
-		allStops.put("1548", "630"); // Ottawa at Benjamin
-		allStops.put("1545", "631"); // Parent at Ottawa
+		allStops.put("1531", "521"); // Giles at Ouellette
+		allStops.put("1533", "522"); // Giles at Goyeau
+		allStops.put("1535", "523"); // Giles at McDougall
+		allStops.put("1538", "524"); // Giles at Howard
+		allStops.put("1542", "525"); // Giles at Marentette
+		allStops.put("1544", "526"); // Giles at Parent
+		allStops.put("1546", "527"); // Ottawa at Parent
+		allStops.put("1549", "528"); // Ottawa at Pierre
+		allStops.put("1551", "529"); // Ottawa at Moy
+		allStops.put("1553", "530"); // Ottawa at Gladstone
+		allStops.put("1554", "531"); // Ottawa at Lincoln
+		allStops.put("1556", "532"); // Ottawa at Kildare
+		allStops.put("1559", "533"); // Ottawa at Walker
+		allStops.put("1561", "534"); // Seminole at Walker
+		allStops.put("1563", "535"); // Seminole at Albert
+		allStops.put("1565", "536"); // Seminole at Drouillard
+		allStops.put("1567", "537"); // Seminole at Chandler
+		allStops.put("1569", "538"); // Seminole at Central
+		allStops.put("1571", "539"); // Seminole at Westcott
+		allStops.put("1579", "540"); // Pillette at Seminole
+		allStops.put("1581", "541"); // Pillette at Metcalfe
+		allStops.put("1583", "542"); // Pillette at South National
+		allStops.put("1585", "543"); // Pillette at Ontario
+		allStops.put("1587", "544"); // Pillette at Wyandotte
+		allStops.put("1590", "545"); // Jefferson at Ontario
+		allStops.put("1592", "546"); // Jefferson at Raymond
+		allStops.put("1594", "547"); // Jefferson at Edgar
+		allStops.put("1596", "548"); // South National at Jefferson
+		allStops.put("1598", "549"); // South National at Balfour
+		allStops.put("1600", "550"); // South National at Ferndale
+		allStops.put("1602", "551"); // South National at Ford
+		allStops.put("1604", "552"); // Ford at Reginald
+		allStops.put("1606", "553"); // Ford at Lassaline
+		allStops.put("1608", "554"); // Ford at Coronation
+		allStops.put("1610", "555"); // Ford at Empress
+		allStops.put("1612", "556"); // Rivard at Joinville
+		allStops.put("1614", "557"); // Rivard at Haig
+		allStops.put("1616", "558"); // Rivard at Grand
+		allStops.put("1618", "559"); // Rivard at Ambassador Church
+		allStops.put("1620", "560"); // Rivard at Queen Elizabeth
+		allStops.put("1622", "561"); // Queen Elizabeth at Clarence
+		allStops.put("1625", "562"); // Queen Elizabeth at Harmony
+		allStops.put("1628", "563"); // Queen Elizabeth at Clemenceau
+		allStops.put("1630", "564"); // Clemenceau at Roosevelt
+		allStops.put("1632", "565"); // Clemenceau at Grand
+		allStops.put("1634", "566"); // Clemenceau at Haig
+		allStops.put("1636", "567"); // Clemenceau at Joinville
+		allStops.put("1159", "568"); // Rose at Clemenceau
+		allStops.put("1642", "569"); // Lauzon Rd. at Yolanda
+		allStops.put("1644", "570"); // Lauzon Rd. at Hawthorne
+		allStops.put("1646", "571"); // Hawthorne at Sycamore
+		allStops.put("1648", "572"); // Meadowbrook at Hawthorne
+		allStops.put("1650", "573"); // Meadowbrook at Parkside Estates
+		allStops.put("1652", "574"); // Meadowbrook at Optimist Park
+		allStops.put("1654", "575"); // Meadowbrook at Essex Way
+		allStops.put("1656", "576"); // Essex Way at Meadowbrook
+		allStops.put("1660", "577"); // Cantelon at Kew
+		allStops.put("1659", "578"); // Cantelon at Lauzon Parkway
+		allStops.put("1658", "579"); // Forest Glade at Lauzon Parkway
+		allStops.put("1657", "580"); // Forest Glade at Lauzon
+		allStops.put("1655", "581"); // Beachdale at Chestnut
+		allStops.put("1653", "582"); // Esplanade at Beachdale
+		allStops.put("1651", "583"); // Esplanade at Ridge
+		allStops.put("1649", "584"); // Esplanade at Lilac
+		allStops.put("1647", "585"); // Lilac at Lauzon
+		allStops.put("1645", "586"); // Lauzon Road at Hawthorne
+		allStops.put("1643", "587"); // Lauzon Road at Yolanda
+		allStops.put("1639", "588"); // Clemenceau at Rose
+		allStops.put("1637", "589"); // Clemenceau at Joinville
+		allStops.put("1635", "590"); // Clemenceau at Haig
+		allStops.put("1633", "591"); // Clemenceau at Grand
+		allStops.put("1631", "592"); // Clemenceau at Roosevelt
+		allStops.put("1629", "593"); // Queen Elizabeth at Clemenceau
+		allStops.put("1626", "594"); // Queen Elizabeth at Grandview
+		allStops.put("1623", "595"); // Queen Elizabeth at Clarence
+		allStops.put("1621", "596"); // Rivard at Queen Elizabeth
+		allStops.put("1619", "597"); // Rivard at Library
+		allStops.put("1617", "598"); // Rivard at Grand
+		allStops.put("1615", "599"); // Rivard at Haig
+		allStops.put("1613", "600"); // Rivard at Joinville
+		allStops.put("1611", "601"); // Rivard at Rose
+		allStops.put("1609", "602"); // Ford at Empress
+		allStops.put("1607", "603"); // Ford at Coronation
+		allStops.put("1605", "604"); // Ford at Lassaline
+		allStops.put("1603", "605"); // Ford at Reginald
+		allStops.put("1601", "606"); // South National at Ford
+		allStops.put("1599", "607"); // South National at Ferndale
+		allStops.put("1597", "608"); // South National at Balfour
+		allStops.put("1595", "609"); // Jefferson at South National
+		allStops.put("1593", "610"); // Jefferson at Edgar
+		allStops.put("1591", "611"); // Jefferson at Raymond
+		allStops.put("1589", "612"); // Jefferson at Ontario
+		allStops.put("1588", "613"); // Pillette at Wyandotte
+		allStops.put("1586", "614"); // Pillette at Ontario
+		allStops.put("1584", "615"); // Pillette at South National
+		allStops.put("1582", "616"); // Pillette at Metcalfe
+		allStops.put("1573", "617"); // Seminole at George
+		allStops.put("1570", "618"); // Seminole at Central
+		allStops.put("1568", "619"); // Seminole at Chandler
+		allStops.put("1566", "620"); // Seminole at Drouillard
+		allStops.put("1662", "621"); // Walker at Ontario
+		allStops.put("1560", "622"); // Ottawa at Monmouth
+		allStops.put("1557", "623"); // Ottawa at Kildare
+		allStops.put("1555", "624"); // Ottawa at Lincoln
+		allStops.put("1552", "625"); // Ottawa at Gladstone
+		allStops.put("1550", "626"); // Ottawa at Hall
+		allStops.put("1548", "627"); // Ottawa at Benjamin
+		allStops.put("1545", "628"); // Parent at Ottawa
+		allStops.put("2064", "629"); // Parent at Giles
+		allStops.put("1564", "630"); // Seminole at Albert
+		allStops.put("1562", "631"); // Seminole at Walker
 		allStops.put("1543", "632"); // Giles at Elsmere
 		allStops.put("1541", "633"); // Giles at Louis
 		allStops.put("1539", "634"); // Giles at Howard
 		allStops.put("1536", "635"); // Giles at McDougall
 		allStops.put("1534", "636"); // Giles at Windsor
 		allStops.put("1532", "637"); // Giles at Ouellette
-		allStops.put("1662", "638"); // Walker at Ontario
-		allStops.put("2064", "639"); // Parent at Giles
+		allStops.put("2063", "638"); // Giles at Parent
+		allStops.put("1661", "639"); // Walker at Ontario
 		allStops.put("1734", "640"); // St. Clair College Front Entrance
 		allStops.put("1817", "641"); // Cousineau at Cousineau Circle
 		allStops.put("1816", "642"); // Cousineau at Mount Royal
@@ -797,47 +797,47 @@ public class Stops {
 		allStops.put("1973", "788"); // Walker at Walker Crossings
 		allStops.put("1971", "789"); // Walker at Canadian Tire
 		allStops.put("1969", "790"); // Walker at Ferrari Plaza
-		allStops.put("1968", "791"); // Airport at Front Entrance
-		allStops.put("1966", "792"); // Walker at Division
-		allStops.put("1964", "793"); // Walker at Moxlay
-		allStops.put("1963", "794"); // Walker at Airport
-		allStops.put("1961", "795"); // Walker at Melinda
-		allStops.put("1959", "796"); // Walker at Calderwood
-		allStops.put("1957", "797"); // Walker at Lappan
-		allStops.put("1955", "798"); // Walker at Foster
-		allStops.put("1953", "799"); // Walker at Seymour
-		allStops.put("1951", "800"); // Walker at Sydney
-		allStops.put("1949", "801"); // Walker at Digby
-		allStops.put("1947", "802"); // Walker at Parkdale
-		allStops.put("1945", "803"); // Walker at Grand Marais
-		allStops.put("1943", "804"); // Walker at St. Julien
-		allStops.put("1941", "805"); // Walker at Somme
-		allStops.put("1939", "806"); // Ypres at Turner
-		allStops.put("1937", "807"); // Ypres at Kildare
-		allStops.put("1935", "808"); // Ypres at Lincoln
-		allStops.put("1933", "809"); // Lincoln at Vimy
-		allStops.put("1931", "810"); // Lincoln at Lens
-		allStops.put("1929", "811"); // Lincoln at Tecumseh
-		allStops.put("1805", "812"); // Lincoln at Mohawk
-		allStops.put("1927", "813"); // Lincoln at Seneca
-		allStops.put("1925", "814"); // Lincoln at ETR Rail Tracks
-		allStops.put("1923", "815"); // Lincoln at Shepherd
-		allStops.put("1921", "816"); // Lincoln at Ottawa
-		allStops.put("1919", "817"); // Lincoln at Ontario
-		allStops.put("1917", "818"); // Lincoln at Richmond
-		allStops.put("1915", "819"); // Lincoln at Erie
-		allStops.put("1913", "820"); // Lincoln at Niagara
-		allStops.put("1911", "821"); // Lincoln at Cataraqui
-		allStops.put("1909", "822"); // Lincoln at Wyandotte
-		allStops.put("1907", "823"); // Lincoln at Assumption
-		allStops.put("1811", "824"); // Riverside at Gladstone
-		allStops.put("1905", "825"); // Riverside at Hall
-		allStops.put("1802", "826"); // Riverside at Langlois
-		allStops.put("1903", "827"); // Riverside at Parent
-		allStops.put("1901", "828"); // Riverside at Aylmer
-		allStops.put("1899", "829"); // Riverside at McDougall
-		allStops.put("1898", "830"); // Riverside at Goyeau
-		allStops.put("1896", "831"); // Ferry at Riverside
+		allStops.put("1966", "791"); // Walker at Division
+		allStops.put("1964", "792"); // Walker at Moxlay
+		allStops.put("1963", "793"); // Walker at Airport
+		allStops.put("1961", "794"); // Walker at Melinda
+		allStops.put("1959", "795"); // Walker at Calderwood
+		allStops.put("1957", "796"); // Walker at Lappan
+		allStops.put("1955", "797"); // Walker at Foster
+		allStops.put("1953", "798"); // Walker at Seymour
+		allStops.put("1951", "799"); // Walker at Sydney
+		allStops.put("1949", "800"); // Walker at Digby
+		allStops.put("1947", "801"); // Walker at Parkdale
+		allStops.put("1945", "802"); // Walker at Grand Marais
+		allStops.put("1943", "803"); // Walker at St. Julien
+		allStops.put("1941", "804"); // Walker at Somme
+		allStops.put("1939", "805"); // Ypres at Turner
+		allStops.put("1937", "806"); // Ypres at Kildare
+		allStops.put("1935", "807"); // Ypres at Lincoln
+		allStops.put("1933", "808"); // Lincoln at Vimy
+		allStops.put("1931", "809"); // Lincoln at Lens
+		allStops.put("1929", "810"); // Lincoln at Tecumseh
+		allStops.put("1805", "811"); // Lincoln at Mohawk
+		allStops.put("1927", "812"); // Lincoln at Seneca
+		allStops.put("1925", "813"); // Lincoln at ETR Rail Tracks
+		allStops.put("1923", "814"); // Lincoln at Shepherd
+		allStops.put("1921", "815"); // Lincoln at Ottawa
+		allStops.put("1919", "816"); // Lincoln at Ontario
+		allStops.put("1917", "817"); // Lincoln at Richmond
+		allStops.put("1915", "818"); // Lincoln at Erie
+		allStops.put("1913", "819"); // Lincoln at Niagara
+		allStops.put("1911", "820"); // Lincoln at Cataraqui
+		allStops.put("1909", "821"); // Lincoln at Wyandotte
+		allStops.put("1907", "822"); // Lincoln at Assumption
+		allStops.put("1811", "823"); // Riverside at Gladstone
+		allStops.put("1905", "824"); // Riverside at Hall
+		allStops.put("1802", "825"); // Riverside at Langlois
+		allStops.put("1903", "826"); // Riverside at Parent
+		allStops.put("1901", "827"); // Riverside at Aylmer
+		allStops.put("1899", "828"); // Riverside at McDougall
+		allStops.put("1898", "829"); // Riverside at Goyeau
+		allStops.put("1896", "830"); // Ferry at Riverside
+		allStops.put("1968", "831"); // Airport at Front Entrance
 		allStops.put("1877", "832"); // Devonshire Mall at Moxies
 		allStops.put("2113", "833"); // Marentette at EC Row Ave
 		allStops.put("2112", "834"); // E.C. Row Ave at Devon
@@ -892,23 +892,23 @@ public class Stops {
 		allStops.put("2106", "883"); // E.C. Row Ave at Conservation
 		allStops.put("2108", "884"); // E.C. Row Ave at Parkwood
 		allStops.put("1765", "885"); // Sydney at Windsor Commons
-		allStops.put("2116", "886"); // Windsor Transit Terminal
-		allStops.put("2117", "887"); // Goyeau at Pitt
-		allStops.put("2118", "888"); // City Hall Square
-		allStops.put("2119", "889"); // Canada Tunnel Plaza Duty Free
-		allStops.put("2126", "890"); // Congress at Beaubien
-		allStops.put("2127", "891"); // Congress at Randolph
-		allStops.put("2132", "892"); // Griswold at Congress
-		allStops.put("2129", "893"); // Washington at Jefferson
-		allStops.put("2130", "894"); // Fort at Cass
-		allStops.put("2131", "895"); // Cass at Lafayette
-		allStops.put("2135", "896"); // Rosa Parks Transit Center
-		allStops.put("2134", "897"); // Michigan at Washington
-		allStops.put("2124", "898"); // Tunnel Platform at Mariner's
-		allStops.put("2122", "899"); // McDougall at Wyandotte
-		allStops.put("2120", "900"); // McDougall at University Avenue
-		allStops.put("1755", "901"); // Chatham at Goyeau
-		allStops.put("1831", "902"); // Chatham at Ouellette
+		allStops.put("2135", "886"); // Rosa Parks Transit Center
+		allStops.put("2134", "887"); // Michigan at Washington
+		allStops.put("2132", "888"); // Griswold at Congress
+		allStops.put("2124", "889"); // Tunnel Platform at Mariner's
+		allStops.put("2122", "890"); // McDougall at Wyandotte
+		allStops.put("2120", "891"); // McDougall at University Avenue
+		allStops.put("1755", "892"); // Chatham at Goyeau
+		allStops.put("1831", "893"); // Chatham at Ouellette
+		allStops.put("2116", "894"); // Windsor Transit Terminal
+		allStops.put("2117", "895"); // Goyeau at Pitt
+		allStops.put("2118", "896"); // City Hall Square
+		allStops.put("2119", "897"); // Canada Tunnel Plaza Duty Free
+		allStops.put("2126", "898"); // Congress at Beaubien
+		allStops.put("2127", "899"); // Congress at Randolph
+		allStops.put("2129", "900"); // Washington at Jefferson
+		allStops.put("2130", "901"); // Fort at Cass
+		allStops.put("2131", "902"); // Cass at Lafayette
 		allStops.put("1528", "903"); // Crawford at University
 		allStops.put("1526", "904"); // Crawford at Riverside
 		allStops.put("1664", "905"); // Riverside at Caron
@@ -1085,39 +1085,39 @@ public class Stops {
 		allStops.put("2031", "1076"); // McHugh at Venetian
 		allStops.put("2033", "1077"); // McHugh at Clover
 		allStops.put("2034", "1078"); // McHugh at Cypress
-		allStops.put("2039", "1079"); // WFCU Centre Main Entrance
+		allStops.put("2038", "1079"); // McHugh at Micky Renaud Way
 		allStops.put("2041", "1080"); // McHugh at Darfield
 		allStops.put("2043", "1081"); // Lauzon Rd. at McHugh
-		allStops.put("2050", "1082"); // McHugh at Lauzon
-		allStops.put("2049", "1083"); // McHugh at Darfield
-		allStops.put("2048", "1084"); // WFCU Centre Main Entrance
-		allStops.put("2046", "1085"); // McHugh at Cypress
-		allStops.put("2045", "1086"); // McHugh at Clover
-		allStops.put("2042", "1087"); // Clover at Firgrove
-		allStops.put("2040", "1088"); // Clover at Little River
-		allStops.put("2037", "1089"); // Little River at Pearson
-		allStops.put("2035", "1090"); // Little River at Chateau
-		allStops.put("2032", "1091"); // Little River at Banwell
-		allStops.put("2029", "1092"); // Little River at Jarvis
-		allStops.put("2027", "1093"); // Cora Greenwood at Little River
-		allStops.put("2025", "1094"); // Cora Green at Castle Hill
-		allStops.put("2023", "1095"); // Cora Green at Dillon
-		allStops.put("2021", "1096"); // Cora Green at Riverside
-		allStops.put("2020", "1097"); // Riverside at Jarvis
-		allStops.put("2019", "1098"); // Greenpark at Amalfi
-		allStops.put("2018", "1099"); // Wyandotte at Greenpark
-		allStops.put("2017", "1100"); // Wyandotte at Clover
-		allStops.put("2016", "1101"); // Wyandotte at Florence
-		allStops.put("2015", "1102"); // Wyandotte at Martinique
-		allStops.put("2014", "1103"); // Wyandotte at Greendale
-		allStops.put("2013", "1104"); // Wyandotte at Westchester
-		allStops.put("2012", "1105"); // Wyandotte at Isack
-		allStops.put("2011", "1106"); // Wyandotte at Riverside Plaza
-		allStops.put("2010", "1107"); // Wyandotte at Watson
-		allStops.put("2009", "1108"); // Lauzon Rd. at Wyandotte
-		allStops.put("2008", "1109"); // Lauzon Road at St. Rose
-		allStops.put("2047", "1110"); // McHugh at Mickey Renuad Way
-		allStops.put("2038", "1111"); // McHugh at Micky Renaud Way
+		allStops.put("2039", "1082"); // WFCU Centre Main Entrance
+		allStops.put("2050", "1083"); // McHugh at Lauzon
+		allStops.put("2049", "1084"); // McHugh at Darfield
+		allStops.put("2048", "1085"); // WFCU Centre Main Entrance
+		allStops.put("2046", "1086"); // McHugh at Cypress
+		allStops.put("2045", "1087"); // McHugh at Clover
+		allStops.put("2042", "1088"); // Clover at Firgrove
+		allStops.put("2040", "1089"); // Clover at Little River
+		allStops.put("2037", "1090"); // Little River at Pearson
+		allStops.put("2035", "1091"); // Little River at Chateau
+		allStops.put("2032", "1092"); // Little River at Banwell
+		allStops.put("2029", "1093"); // Little River at Jarvis
+		allStops.put("2027", "1094"); // Cora Greenwood at Little River
+		allStops.put("2025", "1095"); // Cora Green at Castle Hill
+		allStops.put("2023", "1096"); // Cora Green at Dillon
+		allStops.put("2021", "1097"); // Cora Green at Riverside
+		allStops.put("2020", "1098"); // Riverside at Jarvis
+		allStops.put("2019", "1099"); // Greenpark at Amalfi
+		allStops.put("2018", "1100"); // Wyandotte at Greenpark
+		allStops.put("2017", "1101"); // Wyandotte at Clover
+		allStops.put("2016", "1102"); // Wyandotte at Florence
+		allStops.put("2015", "1103"); // Wyandotte at Martinique
+		allStops.put("2014", "1104"); // Wyandotte at Greendale
+		allStops.put("2013", "1105"); // Wyandotte at Westchester
+		allStops.put("2012", "1106"); // Wyandotte at Isack
+		allStops.put("2011", "1107"); // Wyandotte at Riverside Plaza
+		allStops.put("2010", "1108"); // Wyandotte at Watson
+		allStops.put("2009", "1109"); // Lauzon Rd. at Wyandotte
+		allStops.put("2008", "1110"); // Lauzon Road at St. Rose
+		allStops.put("2047", "1111"); // McHugh at Mickey Renuad Way
 		allStops.put("2140", "1112"); // St Clair Front Entrance
 		allStops.put("2141", "1113"); // Montgomery at Surrey
 		allStops.put("2142", "1114"); // Montgomery at Eastbourne
