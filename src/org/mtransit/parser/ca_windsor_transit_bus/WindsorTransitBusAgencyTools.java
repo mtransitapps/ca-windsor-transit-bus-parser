@@ -339,12 +339,22 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // St Clair College
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						Stops.ALL_STOPS.get("1734"), // St. Clair College Front Entrance
+						Stops.ALL_STOPS.get("1734"), // == St. Clair College Front Entrance
+								Stops.ALL_STOPS.get("1736"), // != Geraedts at St. Clair Residence
+								Stops.ALL_STOPS.get("1870"), // != Cabana at McGraw
+								Stops.ALL_STOPS.get("1817"), // != Cousineau at Cousineau Circle
+								Stops.ALL_STOPS.get("1788"), // != Cabana at Dougall
+								Stops.ALL_STOPS.get("1786"), // == Dougall at Granada
 								Stops.ALL_STOPS.get("1737"), // Transit Terminal at Chatham
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
 						Stops.ALL_STOPS.get("1737"), // Transit Terminal at Chatham
+								Stops.ALL_STOPS.get("1787"), // == Dougall at Granada
+								Stops.ALL_STOPS.get("1789"), // != Cabana at Dougall
+								Stops.ALL_STOPS.get("1732"), // !-= Cousineau at Highway 3
+								Stops.ALL_STOPS.get("1869"), // != Cabana at McGraw
+								Stops.ALL_STOPS.get("1867"), // !-= Cabana at Dominion
 								Stops.ALL_STOPS.get("1734"), // St. Clair College Front Entrance
 						})) //
 				.compileBothTripSort());
@@ -497,6 +507,17 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public int getStopId(GStop gStop) {
+		if ("Sto125649".equals(gStop.getStopCode())) {
+			return 125649;
+		}
 		return Integer.parseInt(gStop.getStopCode()); // use stop code as stop ID
+	}
+
+	@Override
+	public String getStopCode(GStop gStop) {
+		if ("Sto125649".equals(gStop.getStopCode())) {
+			return "125649";
+		}
+		return super.getStopCode(gStop);
 	}
 }
