@@ -1,4 +1,8 @@
 #!/bin/bash
+PRE_PARSE="parse_pre.sh";
+if [ -f $PRE_PARSE ]; then
+   ./$PRE_PARSE;
+fi
 echo ">> Parsing...";
 PARSER_DIRECTORY="../parser";
 PARSER_CLASSPATH=$(cat "$PARSER_DIRECTORY/classpath")
