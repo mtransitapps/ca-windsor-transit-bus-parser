@@ -370,6 +370,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						Stops.ALL_STOPS.get("1893"), // Legacy Park at Sears Home
+								Stops.ALL_STOPS.get("1051"), // Devonshire Mall at Moxies
 								Stops.ALL_STOPS.get("1819"), // College Ave. at Community Centre
 						})) //
 				.compileBothTripSort());
