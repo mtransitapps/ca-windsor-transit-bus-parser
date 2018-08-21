@@ -9,11 +9,12 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.mtransit.parser.CleanUtils;
 import org.mtransit.parser.DefaultAgencyTools;
 import org.mtransit.parser.Pair;
 import org.mtransit.parser.SplitUtils;
-import org.mtransit.parser.Utils;
 import org.mtransit.parser.SplitUtils.RouteTripSpec;
+import org.mtransit.parser.Utils;
 import org.mtransit.parser.gtfs.data.GCalendar;
 import org.mtransit.parser.gtfs.data.GCalendarDate;
 import org.mtransit.parser.gtfs.data.GRoute;
@@ -24,9 +25,8 @@ import org.mtransit.parser.gtfs.data.GTripStop;
 import org.mtransit.parser.mt.data.MAgency;
 import org.mtransit.parser.mt.data.MDirectionType;
 import org.mtransit.parser.mt.data.MRoute;
-import org.mtransit.parser.mt.data.MTripStop;
-import org.mtransit.parser.CleanUtils;
 import org.mtransit.parser.mt.data.MTrip;
+import org.mtransit.parser.mt.data.MTripStop;
 
 // http://www.citywindsor.ca/opendata/Pages/Open-Data-Catalogue.aspx
 // https://opendata.citywindsor.ca/Uploads/google_transit.zip
@@ -514,7 +514,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 	@Override
 	public int getStopId(GStop gStop) {
 		if ("Sto125649".equals(gStop.getStopCode())) {
-			return 125649;
+			return 1262; // Wyandotte @ Metro
 		}
 		return Integer.parseInt(gStop.getStopCode()); // use stop code as stop ID
 	}
@@ -522,7 +522,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 	@Override
 	public String getStopCode(GStop gStop) {
 		if ("Sto125649".equals(gStop.getStopCode())) {
-			return "125649";
+			return "1262"; // Wyandotte @ Metro
 		}
 		return super.getStopCode(gStop);
 	}
