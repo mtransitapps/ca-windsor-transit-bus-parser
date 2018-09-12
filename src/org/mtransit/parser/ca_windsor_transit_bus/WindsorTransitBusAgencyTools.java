@@ -519,10 +519,14 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 		return Integer.parseInt(gStop.getStopCode()); // use stop code as stop ID
 	}
 
+	// STOP CODE USED BY REAL-TIME API
 	@Override
 	public String getStopCode(GStop gStop) {
 		if ("Sto125649".equals(gStop.getStopCode())) {
-			return "1262"; // Wyandotte @ Metro
+			return "77" + "1262"; // Wyandotte @ Metro
+		}
+		if (!gStop.getStopCode().startsWith("77")) {
+			return "77" + gStop.getStopCode();
 		}
 		return super.getStopCode(gStop);
 	}
