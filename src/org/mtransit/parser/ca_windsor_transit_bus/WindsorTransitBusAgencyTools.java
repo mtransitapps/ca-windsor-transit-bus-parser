@@ -455,7 +455,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 						})) //
 				.addTripSort(StrategicMappingCommons.WEST, //
 						Arrays.asList(new String[] { //
-						Stops.ALL_STOPS.get("2140"), // St Clair Front Entrance
+						Stops.ALL_STOPS.get("1734"), // St Clair Front Entrance
 								Stops.ALL_STOPS.get("2185"), // Morton at Ojibway
 						})) //
 				.compileBothTripSort());
