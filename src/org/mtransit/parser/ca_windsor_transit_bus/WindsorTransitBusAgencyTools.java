@@ -400,11 +400,11 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(StrategicMappingCommons.NORTH, //
 						Arrays.asList(new String[] { //
 						Stops.ALL_STOPS.get("2116"), // Windsor Transit Terminal
-								Stops.ALL_STOPS.get("2135"), // Rosa Parks Transit Center
+								Stops.ALL_STOPS.get("2240"), // LCA
 						})) //
 				.addTripSort(StrategicMappingCommons.SOUTH, //
 						Arrays.asList(new String[] { //
-						Stops.ALL_STOPS.get("2135"), // Rosa Parks Transit Center
+						Stops.ALL_STOPS.get("2240"), // LCA
 								Stops.ALL_STOPS.get("2120"), // McDougall at University Avenue
 								Stops.ALL_STOPS.get("2116"), // Windsor Transit Terminal
 						})) //
@@ -451,7 +451,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(StrategicMappingCommons.EAST, //
 						Arrays.asList(new String[] { //
 						Stops.ALL_STOPS.get("2185"), // Morton at Ojibway
-								Stops.ALL_STOPS.get("2140"), // St Clair Front Entrance
+								Stops.ALL_STOPS.get("1734"), // St Clair Front Entrance
 						})) //
 				.addTripSort(StrategicMappingCommons.WEST, //
 						Arrays.asList(new String[] { //
