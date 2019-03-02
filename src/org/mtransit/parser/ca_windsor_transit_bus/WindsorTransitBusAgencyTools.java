@@ -256,13 +256,21 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(StrategicMappingCommons.EAST, //
 						Arrays.asList(new String[] { //
 						Stops.ALL_STOPS.get("1376"), // College Ave. at Community Centre <= START
-								Stops.ALL_STOPS.get("1399"), // Tecumseh at Northway
-								Stops.ALL_STOPS.get("1248"), // !=
+								Stops.ALL_STOPS.get("1399"), // ++ Tecumseh at Northway
+								Stops.ALL_STOPS.get("1248"), // != Wyandotte at Victoria
 								Stops.ALL_STOPS.get("2051"), // != Transit Terminal at Chatham <= START
+								Stops.ALL_STOPS.get("1004"), // != Ouellette at Park
+								Stops.ALL_STOPS.get("1006"), // == Ouellette at Wyandotte
 								Stops.ALL_STOPS.get("1132"), // ++ Tecumseh at Meldrum
-								Stops.ALL_STOPS.get("1134"), // Tecumseh at Central
+								Stops.ALL_STOPS.get("1134"), // ++ Tecumseh at Central
 								Stops.ALL_STOPS.get("1474"), // ++ George at Tecumseh
-								Stops.ALL_STOPS.get("1524"), // Transit Centre Front Entrance
+								Stops.ALL_STOPS.get("1506"), // === Plymouth at Grand Marais
+								Stops.ALL_STOPS.get("1507"), // !== Central at Temple
+								Stops.ALL_STOPS.get("1522"), // == North Service Road at Pillette
+								Stops.ALL_STOPS.get("1332"), // xx Service Road at Electrical Union #WTF
+								Stops.ALL_STOPS.get("1530"), // != North Service Road at Purolator
+								Stops.ALL_STOPS.get("1332"), // !== xx Service Road at Electrical Union
+								Stops.ALL_STOPS.get("1524"), // === Transit Centre Front Entrance
 						})) //
 				.addTripSort(StrategicMappingCommons.WEST, //
 						Arrays.asList(new String[] { //
