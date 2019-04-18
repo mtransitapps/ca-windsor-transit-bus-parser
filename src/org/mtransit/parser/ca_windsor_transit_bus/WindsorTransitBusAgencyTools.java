@@ -410,12 +410,10 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 						Stops.ALL_STOPS.get("2116"), // Windsor Transit Terminal
 								Stops.ALL_STOPS.get("2239"), // == Grand River at 2nd
 								Stops.ALL_STOPS.get("1427"), // != LCA =>
-								Stops.ALL_STOPS.get("2240"), // != LCA =>
 						})) //
 				.addTripSort(StrategicMappingCommons.SOUTH, //
 						Arrays.asList(new String[] { //
 						Stops.ALL_STOPS.get("1427"), // != LCA <=
-								Stops.ALL_STOPS.get("2240"), // != LCA <=
 								Stops.ALL_STOPS.get("2241"), // == Cass at Bagley
 								Stops.ALL_STOPS.get("2116"), // Windsor Transit Terminal
 						})) //
