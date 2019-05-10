@@ -459,13 +459,13 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // Morton @ Ojibway
 				.addTripSort(StrategicMappingCommons.EAST, //
 						Arrays.asList(new String[] { //
-						Stops.ALL_STOPS.get("2185"), // Morton at Ojibway
-								Stops.ALL_STOPS.get("1734"), // St Clair Front Entrance
+						Stops.ALL_STOPS.get("2185"), Stops2.ALL_STOPS2.get("2185"), // Morton at Ojibway
+								Stops.ALL_STOPS.get("1734"), Stops2.ALL_STOPS2.get("1734"), // St Clair Front Entrance
 						})) //
 				.addTripSort(StrategicMappingCommons.WEST, //
 						Arrays.asList(new String[] { //
-						Stops.ALL_STOPS.get("1734"), // St Clair Front Entrance
-								Stops.ALL_STOPS.get("2185"), // Morton at Ojibway
+						Stops.ALL_STOPS.get("1734"), Stops2.ALL_STOPS2.get("1734"), // St Clair Front Entrance
+								Stops.ALL_STOPS.get("2185"), Stops2.ALL_STOPS2.get("2185"), // Morton at Ojibway
 						})) //
 				.compileBothTripSort());
 		ALL_ROUTE_TRIPS2 = map2;
