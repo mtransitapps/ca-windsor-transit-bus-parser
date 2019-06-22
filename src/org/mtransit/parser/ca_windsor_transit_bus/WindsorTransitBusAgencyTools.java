@@ -468,6 +468,20 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.ALL_STOPS.get("2185"), Stops2.ALL_STOPS2.get("2185"), // Morton at Ojibway
 						})) //
 				.compileBothTripSort());
+		map2.put(42L, new RouteTripSpec(42L, //
+				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Essex
+				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // Leamington
+				.addTripSort(StrategicMappingCommons.NORTH, //
+						Arrays.asList(new String[] { //
+						Stops.ALL_STOPS.get("2248"), Stops2.ALL_STOPS2.get("2248"), // Leamington Kinsmen Recreation Co
+								Stops.ALL_STOPS.get("2246"), Stops2.ALL_STOPS2.get("2246"), // Essex Arena
+						})) //
+				.addTripSort(StrategicMappingCommons.SOUTH, //
+						Arrays.asList(new String[] { //
+						Stops.ALL_STOPS.get("2246"), Stops2.ALL_STOPS2.get("2246"), // Essex Arena
+								Stops.ALL_STOPS.get("2248"), Stops2.ALL_STOPS2.get("2248"), // Leamington Kinsmen Recreation Co
+						})) //
+				.compileBothTripSort());
 		ALL_ROUTE_TRIPS2 = map2;
 	}
 
