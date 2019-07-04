@@ -474,11 +474,11 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(StrategicMappingCommons.NORTH, //
 						Arrays.asList(new String[] { //
 						Stops.ALL_STOPS.get("2248"), Stops2.ALL_STOPS2.get("2248"), // Leamington Kinsmen Recreation Co
-								Stops.ALL_STOPS.get("2246"), Stops2.ALL_STOPS2.get("2246"), // Essex Arena
+								Stops.ALL_STOPS.get("1734"), Stops2.ALL_STOPS2.get("1734"), // St. Clair College Front Entrance
 						})) //
 				.addTripSort(StrategicMappingCommons.SOUTH, //
 						Arrays.asList(new String[] { //
-						Stops.ALL_STOPS.get("2246"), Stops2.ALL_STOPS2.get("2246"), // Essex Arena
+						Stops.ALL_STOPS.get("1734"), Stops2.ALL_STOPS2.get("1734"), // St. Clair College Front Entrance
 								Stops.ALL_STOPS.get("2248"), Stops2.ALL_STOPS2.get("2248"), // Leamington Kinsmen Recreation Co
 						})) //
 				.compileBothTripSort());
