@@ -100,8 +100,6 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 	private static final String RSN_TUNNEL_BUS = "2222";
 
 	private static final long TUNNEL_BUS_RID = 9L;
-	private static final String TUNNEL_BUS_RSN = "Tunnel";
-	private static final String TUNNEL_BUS_RLN = "Tunnel Bus";
 
 	private static final long RID_ID_A = 10_000L;
 	private static final long RID_ID_C = 30_000L;
@@ -133,17 +131,11 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public String getRouteShortName(GRoute gRoute) {
-		if (RSN_TUNNEL_BUS.equalsIgnoreCase(gRoute.getRouteShortName())) {
-			return TUNNEL_BUS_RSN;
-		}
-		return super.getRouteShortName(gRoute);
+		return super.getRouteShortName(gRoute); // used by Real-Time API
 	}
 
 	@Override
 	public String getRouteLongName(GRoute gRoute) {
-		if (RSN_TUNNEL_BUS.equalsIgnoreCase(gRoute.getRouteShortName())) {
-			return TUNNEL_BUS_RLN;
-		}
 		String routeLongName = gRoute.getRouteLongName();
 		routeLongName = routeLongName.toLowerCase(Locale.ENGLISH);
 		return CleanUtils.cleanLabel(routeLongName);
