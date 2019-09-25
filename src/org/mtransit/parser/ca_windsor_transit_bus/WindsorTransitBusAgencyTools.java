@@ -223,7 +223,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // College Ave Community Ctr / Tayfour Campus
 				.addTripSort(StrategicMappingCommons.EAST, //
 						Arrays.asList(new String[] { //
-						Stops.ALL_STOPS.get("1834"), // Tayfour Campus Terminal <=
+						Stops.ALL_STOPS.get("1834"), Stops2.ALL_STOPS2.get("1834"), // Tayfour Campus Terminal <=
 								Stops.ALL_STOPS.get("1052"), // College Ave. at Community Centre <=
 								Stops.ALL_STOPS.get("2136"), // University at Curry
 								Stops.ALL_STOPS.get("1173"), // Tecumseh Mall Rear Entrance
@@ -234,7 +234,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 						Stops.ALL_STOPS.get("1197"), // Forest Glade at Mulberry
 								Stops.ALL_STOPS.get("1126"), // Tecumseh at Factoria
 								Stops.ALL_STOPS.get("1052"), // College Ave. at Community Centre =>
-								Stops.ALL_STOPS.get("1834"), // Tayfour Campus Terminal =>
+								Stops.ALL_STOPS.get("1834"), Stops2.ALL_STOPS2.get("1834"), // Tayfour Campus Terminal =>
 						})) //
 				.compileBothTripSort());
 		map2.put(2L, new RouteTripSpec(2L, //
@@ -242,16 +242,14 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // Tecumseh Mall
 				.addTripSort(StrategicMappingCommons.EAST, //
 						Arrays.asList(new String[] { //
-						Stops.ALL_STOPS.get("1878"), // Tayfour Campus Terminal <=
-								Stops.ALL_STOPS.get("1206"), // College Ave. at Community Centre <=
+						Stops.ALL_STOPS.get("1878"), Stops2.ALL_STOPS2.get("1878"), // Tayfour Campus Terminal <=
 								Stops.ALL_STOPS.get("1231"), // Wyandotte at Randolph
 								Stops.ALL_STOPS.get("1375"), // Tecumseh Mall Rear Entrance
 						})) //
 				.addTripSort(StrategicMappingCommons.WEST, //
 						Arrays.asList(new String[] { //
 						Stops.ALL_STOPS.get("1375"), // Tecumseh Mall Rear Entrance
-								Stops.ALL_STOPS.get("1206"), // College Ave. at Community Centre =>
-								Stops.ALL_STOPS.get("1878"), // Tayfour Campus Terminal =>
+								Stops.ALL_STOPS.get("1878"), Stops2.ALL_STOPS2.get("1878"), // Tayfour Campus Terminal =>
 						})) //
 				.compileBothTripSort());
 		map2.put(3L, new RouteTripSpec(3L, //
@@ -259,8 +257,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // College Ave Community Ctr
 				.addTripSort(StrategicMappingCommons.EAST, //
 						Arrays.asList(new String[] { //
-						Stops.ALL_STOPS.get("1834"), // Tayfour Campus Terminal <=
-								Stops.ALL_STOPS.get("1376"), // College Ave. at Community Centre <= START
+						Stops.ALL_STOPS.get("1834"), Stops2.ALL_STOPS2.get("1834"), // Tayfour Campus Terminal <=
 								Stops.ALL_STOPS.get("1399"), // ++ Tecumseh at Northway
 								Stops.ALL_STOPS.get("1248"), // != Wyandotte at Victoria
 								Stops.ALL_STOPS.get("2051"), // != Transit Terminal at Chatham <= START
@@ -282,8 +279,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 						Stops.ALL_STOPS.get("1524"), // Transit Centre Front Entrance
 								Stops.ALL_STOPS.get("1504"), // ++ N. Service at Central
 								Stops.ALL_STOPS.get("1396"), // Tecumseh at Felix
-								Stops.ALL_STOPS.get("1376"), // College Ave. at Community Centre =>
-								Stops.ALL_STOPS.get("1834"), // Tayfour Campus Terminal =>
+								Stops.ALL_STOPS.get("1834"), Stops2.ALL_STOPS2.get("1834"), // Tayfour Campus Terminal =>
 						})) //
 				.compileBothTripSort());
 		map2.put(3L + RID_ID_W, new RouteTripSpec(3L + RID_ID_W, // 3W
@@ -291,7 +287,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // College Ave Community Ctr / Tayfour Campus
 				.addTripSort(StrategicMappingCommons.EAST, //
 						Arrays.asList(new String[] { //
-						Stops.ALL_STOPS.get("1834"), // Tayfour Campus Terminal <=
+						Stops.ALL_STOPS.get("1834"), Stops2.ALL_STOPS2.get("1834"), // Tayfour Campus Terminal <=
 								Stops.ALL_STOPS.get("1376"), // College Ave. at Community Centre <=
 								Stops.ALL_STOPS.get("2051"), // Transit Terminal at Chatham
 						})) //
@@ -300,7 +296,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 						Stops.ALL_STOPS.get("2051"), // Transit Terminal at Chatham
 								Stops.ALL_STOPS.get("1396"), // Tecumseh at Felix
 								Stops.ALL_STOPS.get("1376"), // College Ave. at Community Centre =>
-								Stops.ALL_STOPS.get("1834"), // Tayfour Campus Terminal =>
+								Stops.ALL_STOPS.get("1834"), Stops2.ALL_STOPS2.get("1834"), // Tayfour Campus Terminal =>
 						})) //
 				.compileBothTripSort());
 		map2.put(4L, new RouteTripSpec(4L, //
@@ -385,7 +381,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // Tayfour Campus / College Ave Community Ctr
 				.addTripSort(StrategicMappingCommons.EAST, //
 						Arrays.asList(new String[] { //
-						Stops.ALL_STOPS.get("1878"), // Tayfour Campus Terminal <=
+						Stops.ALL_STOPS.get("1878"), Stops2.ALL_STOPS2.get("1878"), // Tayfour Campus Terminal <=
 								Stops.ALL_STOPS.get("1819"), // College Ave. at Community Centre <=
 								Stops.ALL_STOPS.get("1884"), // Provincial at Humane Society
 								Stops.ALL_STOPS.get("1893"), // Legacy Park at Sears Home
@@ -395,7 +391,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 						Stops.ALL_STOPS.get("1893"), // Legacy Park at Sears Home
 								Stops.ALL_STOPS.get("1051"), // Devonshire Mall at Moxies
 								Stops.ALL_STOPS.get("1819"), // College Ave. at Community Centre =>
-								Stops.ALL_STOPS.get("1878"), // Tayfour Campus Terminal =>
+								Stops.ALL_STOPS.get("1878"), Stops2.ALL_STOPS2.get("1878"), // Tayfour Campus Terminal =>
 						})) //
 				.compileBothTripSort());
 		map2.put(8L, new RouteTripSpec(8L, //
