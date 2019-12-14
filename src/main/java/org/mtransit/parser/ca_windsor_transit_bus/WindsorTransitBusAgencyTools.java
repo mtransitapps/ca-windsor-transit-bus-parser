@@ -235,14 +235,30 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // Tecumseh Mall
 				.addTripSort(StrategicMappingCommons.EAST, //
 						Arrays.asList(new String[] { //
-						Stops.getALL_STOPS().get("1878"), // Tayfour Campus Terminal <=
+						Stops.getALL_STOPS().get("1878"), // != Hotel Dieu Grace Healthcare <=
+								Stops.getALL_STOPS().get("2062"), // == Prince at Wells
+								Stops.getALL_STOPS().get("2090"), // != Prince at College
+								Stops.getALL_STOPS().get("1072"), // != Mill at Sandwich
+								Stops.getALL_STOPS().get("2072"), // !=  College at Prince
+								Stops.getALL_STOPS().get("1073"), // != Mill at Sandwich
+								Stops.getALL_STOPS().get("1222"), // == Wyandotte at Mill
+								Stops.getALL_STOPS().get("1834"), // != Hotel Dieu Grace Healthcare <=
+								Stops.getALL_STOPS().get("2036"), // == Prince at Tecumseh
 								Stops.getALL_STOPS().get("1231"), // Wyandotte at Randolph
 								Stops.getALL_STOPS().get("1375"), // Tecumseh Mall Rear Entrance
 						})) //
 				.addTripSort(StrategicMappingCommons.WEST, //
 						Arrays.asList(new String[] { //
 						Stops.getALL_STOPS().get("1375"), // Tecumseh Mall Rear Entrance
-								Stops.getALL_STOPS().get("1878"), // Tayfour Campus Terminal =>
+								Stops.getALL_STOPS().get("1220"), // == Mill at Peter
+								Stops.getALL_STOPS().get("1070"), // != Mill at Wyandotte
+								Stops.getALL_STOPS().get("1054"), // != College at Prince
+								Stops.getALL_STOPS().get("1218"), // != Sandwich at Brock
+								Stops.getALL_STOPS().get("2091"), // != Prince at College
+								Stops.getALL_STOPS().get("2107"), // == Prince at Wells
+								Stops.getALL_STOPS().get("2121"), // == Prince at Matchette
+								Stops.getALL_STOPS().get("1834"), // != Hotel Dieu Grace Healthcare =>
+								Stops.getALL_STOPS().get("1878"), // != Hotel Dieu Grace Healthcare =>
 						})) //
 				.compileBothTripSort());
 		map2.put(3L, new RouteTripSpec(3L, //
