@@ -49,7 +49,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 	public void start(String[] args) {
 		System.out.printf("\nGenerating Windsor Transit bus data...");
 		long start = System.currentTimeMillis();
-		this.serviceIds = extractUsefulServiceIds(args, this);
+		this.serviceIds = extractUsefulServiceIds(args, this, true);
 		super.start(args);
 		System.out.printf("\nGenerating Windsor Transit bus data... DONE in %s.\n", Utils.getPrettyDuration(System.currentTimeMillis() - start));
 	}
@@ -378,7 +378,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						Stops.getALL_STOPS().get("1737"), // Transit Terminal at Chatham
 								Stops.getALL_STOPS().get("1787"), // == Dougall at Granada
-								Stops.getALL_STOPS().get("1789"), // != Cabana at Dougall
+								Stops.getALL_STOPS().get("1789"), "715", // != Cabana at Dougall
 								Stops.getALL_STOPS().get("1732"), // !-= Cousineau at Highway 3
 								Stops.getALL_STOPS().get("1869"), // != Cabana at McGraw
 								Stops.getALL_STOPS().get("1867"), // !-= Cabana at Dominion
