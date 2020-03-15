@@ -1,5 +1,6 @@
 package org.mtransit.parser.ca_windsor_transit_bus;
 
+import org.jetbrains.annotations.NotNull;
 import org.mtransit.commons.StrategicMappingCommons;
 import org.mtransit.parser.CleanUtils;
 import org.mtransit.parser.DefaultAgencyTools;
@@ -563,6 +564,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 	}
 
 	// STOP CODE USED BY REAL-TIME API
+	@NotNull
 	@Override
 	public String getStopCode(GStop gStop) {
 		if ("Sto125649".equals(gStop.getStopCode())) {
