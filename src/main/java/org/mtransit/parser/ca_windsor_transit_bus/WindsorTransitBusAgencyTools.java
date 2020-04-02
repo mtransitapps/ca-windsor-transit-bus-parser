@@ -1,5 +1,6 @@
 package org.mtransit.parser.ca_windsor_transit_bus;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.mtransit.commons.StrategicMappingCommons;
 import org.mtransit.parser.CleanUtils;
@@ -28,11 +29,11 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-// http://www.citywindsor.ca/opendata/Pages/Open-Data-Catalogue.aspx
+// https://opendata.citywindsor.ca/Opendata/Details/218
 // https://opendata.citywindsor.ca/Uploads/google_transit.zip
+// https://windsor.mapstrat.com/current/
+// https://windsor.mapstrat.com/current/google_transit.zip
 public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 
 	public static void main(String[] args) {
@@ -93,41 +94,11 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 		return MAgency.ROUTE_TYPE_BUS;
 	}
 
-	private static final Pattern DIGITS = Pattern.compile("[\\d]+");
-
-	private static final String A = "A";
-	private static final String C = "C";
-	private static final String W = "W";
-
 	private static final String RSN_TUNNEL_BUS = "2222";
 
-	private static final long TUNNEL_BUS_RID = 9L;
-
-	private static final long RID_ID_A = 10_000L;
-	private static final long RID_ID_C = 30_000L;
-	private static final long RID_ID_W = 230_000L;
-
 	@Override
-	public long getRouteId(GRoute gRoute) {
-		if (RSN_TUNNEL_BUS.equalsIgnoreCase(gRoute.getRouteShortName())) {
-			return TUNNEL_BUS_RID;
-		}
-		if (Utils.isDigitsOnly(gRoute.getRouteShortName())) {
-			return Long.parseLong(gRoute.getRouteShortName()); // use route short name as route ID
-		}
-		Matcher matcher = DIGITS.matcher(gRoute.getRouteShortName());
-		if (matcher.find()) {
-			long id = Long.parseLong(matcher.group());
-			if (gRoute.getRouteShortName().endsWith(A)) {
-				return RID_ID_A + id;
-			} else if (gRoute.getRouteShortName().endsWith(C)) {
-				return RID_ID_C + id;
-			} else if (gRoute.getRouteShortName().endsWith(W)) {
-				return RID_ID_W + id;
-			}
-		}
-		MTLog.logFatal("Unexpected route ID for %s!", gRoute);
-		return -1L;
+	public long getRouteId(GRoute gRoute) { // route_id used by GTFS-RT
+		return super.getRouteId(gRoute);
 	}
 
 	@Override
@@ -156,45 +127,45 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public String getRouteColor(GRoute gRoute) {
-		if (Utils.isDigitsOnly(gRoute.getRouteShortName())) {
-			switch (Integer.parseInt(gRoute.getRouteShortName())) {
-			// @formatter:off
-			case 2: return "F68312";
-			case 3: return "FEDF3F"; // "FFF44C";
-			case 4: return "65C1EF";
-			case 5: return "222771";
-			case 6: return "FBC1A0";
-			case 7: return "184A31";
-			case 8: return "87CF32";
-			case 10: return "F0319A";
-			case 14: return "A67AC4";
-			case 25: return "163A79";
-			case 42: return "8000FF";
-			// @formatter:on
+		if (StringUtils.isEmpty(gRoute.getRouteColor())) {
+			if (Utils.isDigitsOnly(gRoute.getRouteShortName())) {
+				switch (Integer.parseInt(gRoute.getRouteShortName())) {
+				// @formatter:off
+                case 2: return "F68312";
+                case 3: return "FEDF3F"; // "FFF44C";
+                case 4: return "65C1EF";
+                case 5: return "222771";
+                case 6: return "FBC1A0";
+                case 7: return "184A31";
+                case 8: return "87CF32";
+                case 10: return "F0319A";
+                case 14: return "A67AC4";
+                case 25: return "163A79";
+                case 42: return "8000FF";
+                // @formatter:on
+				}
 			}
-		}
-		if (RSN_1A.equalsIgnoreCase(gRoute.getRouteShortName())) {
-			return "B50C43";
-		} else if (RSN_1C.equalsIgnoreCase(gRoute.getRouteShortName())) {
-			return "4E1E18";
-		} else if (RSN_3W.equalsIgnoreCase(gRoute.getRouteShortName())) {
-			return "CE910E";
-		}
-		if (RSN_TUNNEL_BUS.equalsIgnoreCase(gRoute.getRouteShortName())) {
-			return "ED1248";
-		}
-		if (isGoodEnoughAccepted()) {
+			if (RSN_1A.equalsIgnoreCase(gRoute.getRouteShortName())) {
+				return "B50C43";
+			} else if (RSN_1C.equalsIgnoreCase(gRoute.getRouteShortName())) {
+				return "4E1E18";
+			} else if (RSN_3W.equalsIgnoreCase(gRoute.getRouteShortName())) {
+				return "CE910E";
+			}
+			if (RSN_TUNNEL_BUS.equalsIgnoreCase(gRoute.getRouteShortName())) {
+				return "ED1248";
+			}
+			MTLog.logFatal("Unexpected route color %s!", gRoute);
 			return null;
 		}
-		MTLog.logFatal("Unexpected route color %s!", gRoute);
-		return null;
+		return super.getRouteColor(gRoute);
 	}
 
 	private static HashMap<Long, RouteTripSpec> ALL_ROUTE_TRIPS2;
 
 	static {
 		HashMap<Long, RouteTripSpec> map2 = new HashMap<>();
-		map2.put(1L + RID_ID_A, new RouteTripSpec(1L + RID_ID_A, // 1A
+		map2.put(1L, new RouteTripSpec(1L, // 1A
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Downtown Transit Terminal
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // Devonshire Mall
 				.addTripSort(StrategicMappingCommons.NORTH, //
@@ -212,7 +183,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1051") // Devonshire Mall at Moxies
 						)) //
 				.compileBothTripSort());
-		map2.put(1L + RID_ID_C, new RouteTripSpec(1L + RID_ID_C, // 1C
+		map2.put(2L, new RouteTripSpec(2L, // 1C
 				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // Forest Glade
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // College Ave Community Ctr / Tayfour Campus
 				.addTripSort(StrategicMappingCommons.EAST, //
@@ -231,7 +202,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1834") // Tayfour Campus Terminal =>
 						)) //
 				.compileBothTripSort());
-		map2.put(2L, new RouteTripSpec(2L, //
+		map2.put(3L, new RouteTripSpec(3L, // 2
 				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // Tecumseh Mall
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // Tecumseh Mall
 				.addTripSort(StrategicMappingCommons.EAST, //
@@ -262,7 +233,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1878") // != Hotel Dieu Grace Healthcare =>
 						)) //
 				.compileBothTripSort());
-		map2.put(3L, new RouteTripSpec(3L, //
+		map2.put(4L, new RouteTripSpec(4L, // 3
 				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // Transit Ctr
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // College Ave Community Ctr
 				.addTripSort(StrategicMappingCommons.EAST, //
@@ -292,7 +263,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1834") // Tayfour Campus Terminal =>
 						)) //
 				.compileBothTripSort());
-		map2.put(3L + RID_ID_W, new RouteTripSpec(3L + RID_ID_W, // 3W
+		map2.put(10L, new RouteTripSpec(10L, // 3W
 				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // Downtown Transit Terminal
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // College Ave Community Ctr / Tayfour Campus
 				.addTripSort(StrategicMappingCommons.EAST, //
@@ -309,7 +280,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1834") // Tayfour Campus Terminal =>
 						)) //
 				.compileBothTripSort());
-		map2.put(4L, new RouteTripSpec(4L, //
+		map2.put(5L, new RouteTripSpec(5L, // 4
 				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // Meadowbrook via Tecumseh Mall
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // Downtown Transit Terminal
 				.addTripSort(StrategicMappingCommons.EAST, //
@@ -348,7 +319,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1529") // Transit Windsor Terminal
 						)) //
 				.compileBothTripSort());
-		map2.put(5L, new RouteTripSpec(5L, //
+		map2.put(12L, new RouteTripSpec(12L, // 5
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Downtown Transit Terminal
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // St Clair College
 				.addTripSort(StrategicMappingCommons.NORTH, //
@@ -362,7 +333,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1734") // St. Clair College Front Entrance
 						)) //
 				.compileBothTripSort());
-		map2.put(6L, new RouteTripSpec(6L, //
+		map2.put(6L, new RouteTripSpec(6L, // 6
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Downtown Transit Terminal
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // St Clair College
 				.addTripSort(StrategicMappingCommons.NORTH, //
@@ -386,7 +357,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1734") // St. Clair College Front Entrance
 						)) //
 				.compileBothTripSort());
-		map2.put(7L, new RouteTripSpec(7L, //
+		map2.put(11L, new RouteTripSpec(11L, //
 				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // South Walker Rd
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // Tayfour Campus / College Ave Community Ctr
 				.addTripSort(StrategicMappingCommons.EAST, //
@@ -404,7 +375,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1878") // Tayfour Campus Terminal =>
 						)) //
 				.compileBothTripSort());
-		map2.put(8L, new RouteTripSpec(8L, //
+		map2.put(7L, new RouteTripSpec(7L, // 8
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Downtown Transit Terminal
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // South Walker Rd
 				.addTripSort(StrategicMappingCommons.NORTH, //
@@ -418,7 +389,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1997") // Sixth Concession at North Talbot
 						)) //
 				.compileBothTripSort());
-		map2.put(TUNNEL_BUS_RID, new RouteTripSpec(TUNNEL_BUS_RID, // 9 - Tunnel Bus
+		map2.put(9L, new RouteTripSpec(9L, // 2222 - Tunnel Bus
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Detroit
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // Windsor Transit Terminal
 				.addTripSort(StrategicMappingCommons.NORTH, //
@@ -434,7 +405,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("2116") // Windsor Transit Terminal
 						)) //
 				.compileBothTripSort());
-		map2.put(10L, new RouteTripSpec(10L, //
+		map2.put(13L, new RouteTripSpec(13L, // 10
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // North Loop
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // South Loop
 				.addTripSort(StrategicMappingCommons.NORTH, //
@@ -456,7 +427,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1375") // Tecumseh Mall Rear Entrance
 						)) //
 				.compileBothTripSort());
-		map2.put(14L, new RouteTripSpec(14L, //
+		map2.put(8L, new RouteTripSpec(8L, // 14
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Downtown Transit Terminal
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // Devonshire Mall
 				.addTripSort(StrategicMappingCommons.NORTH, //
@@ -470,7 +441,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1877") // Devonshire Mall at Moxies
 						)) //
 				.compileBothTripSort());
-		map2.put(25L, new RouteTripSpec(25L, //
+		map2.put(14L, new RouteTripSpec(14L, // 25
 				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // St Clair College
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // Morton @ Ojibway
 				.addTripSort(StrategicMappingCommons.EAST, //
@@ -484,7 +455,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("2185") // Morton at Ojibway
 						)) //
 				.compileBothTripSort());
-		map2.put(42L, new RouteTripSpec(42L, //
+		map2.put(15L, new RouteTripSpec(15L, // 42
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Essex
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // Leamington
 				.addTripSort(StrategicMappingCommons.NORTH, //
@@ -546,6 +517,12 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 	}
 
 	@Override
+	public boolean mergeHeadsign(MTrip mTrip, MTrip mTripToMerge) {
+		MTLog.logFatal("Unexpected trip to merge %s VS %s!", mTrip, mTripToMerge);
+		return false;
+	}
+
+	@Override
 	public String cleanStopName(String gStopName) {
 		gStopName = CleanUtils.CLEAN_AT.matcher(gStopName).replaceAll(CleanUtils.CLEAN_AT_REPLACEMENT);
 		gStopName = CleanUtils.cleanStreetTypes(gStopName);
@@ -553,20 +530,13 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 	}
 
 	@Override
-	public int getStopId(GStop gStop) {
-		if ("Sto125649".equals(gStop.getStopCode())) {
-			return 1262; // Wyandotte @ Metro
-		}
-		if ("LEM".equals(gStop.getStopCode())) {
-			return 2248; // Leamington Kinsmen Recreation Co
-		}
-		return Integer.parseInt(gStop.getStopCode()); // use stop code as stop ID
+	public int getStopId(GStop gStop) { // used by GTFS-RT
+		return super.getStopId(gStop);
 	}
 
-	// STOP CODE USED BY REAL-TIME API
 	@NotNull
 	@Override
-	public String getStopCode(GStop gStop) {
+	public String getStopCode(GStop gStop) { // used by StrategicMapping API
 		if ("Sto125649".equals(gStop.getStopCode())) {
 			return "77" + "1262"; // Wyandotte @ Metro
 		}
