@@ -375,7 +375,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1878") // Tayfour Campus Terminal =>
 						)) //
 				.compileBothTripSort());
-		map2.put(6L, new RouteTripSpec(8L, // 8
+		map2.put(6L, new RouteTripSpec(6L, // 8
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Downtown Transit Terminal
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // South Walker Rd
 				.addTripSort(StrategicMappingCommons.NORTH, //
