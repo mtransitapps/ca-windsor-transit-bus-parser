@@ -155,8 +155,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 			if (RSN_TUNNEL_BUS.equalsIgnoreCase(gRoute.getRouteShortName())) {
 				return "ED1248";
 			}
-			MTLog.logFatal("Unexpected route color %s!", gRoute);
-			return null;
+			throw new MTLog.Fatal("Unexpected route color %s!", gRoute);
 		}
 		return super.getRouteColor(gRoute);
 	}
@@ -441,7 +440,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1877") // Devonshire Mall at Moxies
 						)) //
 				.compileBothTripSort());
-		map2.put(-1L, new RouteTripSpec(-1L, // 25
+		map2.put(10L, new RouteTripSpec(10L, // 25
 				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // St Clair College
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // Morton @ Ojibway
 				.addTripSort(StrategicMappingCommons.EAST, //
@@ -507,7 +506,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 			mTrip.setHeadsignString(cleanTripHeadsign(gTrip.getTripHeadsign()), gTrip.getDirectionId() == null ? 0 : gTrip.getDirectionId());
 			return;
 		}
-		MTLog.logFatal("Unexpected trip (unexpected route ID: %s): %s", mRoute.getId(), gTrip);
+		throw new MTLog.Fatal("Unexpected trip (unexpected route ID: %s): %s", mRoute.getId(), gTrip);
 	}
 
 	@Override
@@ -518,8 +517,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public boolean mergeHeadsign(MTrip mTrip, MTrip mTripToMerge) {
-		MTLog.logFatal("Unexpected trip to merge %s VS %s!", mTrip, mTripToMerge);
-		return false;
+		throw new MTLog.Fatal("Unexpected trip to merge %s VS %s!", mTrip, mTripToMerge);
 	}
 
 	@Override
