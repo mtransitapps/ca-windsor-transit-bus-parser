@@ -318,7 +318,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1529") // Transit Windsor Terminal
 						)) //
 				.compileBothTripSort());
-		map2.put(9L, new RouteTripSpec(9L, // 5
+		map2.put(10L, new RouteTripSpec(10L, // 5
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Downtown Transit Terminal
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // St Clair College
 				.addTripSort(StrategicMappingCommons.NORTH, //
@@ -356,7 +356,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1734") // St. Clair College Front Entrance
 						)) //
 				.compileBothTripSort());
-		map2.put(-1L, new RouteTripSpec(-1L, // ? 11 ?
+		map2.put(9L, new RouteTripSpec(9L, // 7
 				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // South Walker Rd
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // Tayfour Campus / College Ave Community Ctr
 				.addTripSort(StrategicMappingCommons.EAST, //
@@ -440,7 +440,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1877") // Devonshire Mall at Moxies
 						)) //
 				.compileBothTripSort());
-		map2.put(10L, new RouteTripSpec(10L, // 25
+		map2.put(11L, new RouteTripSpec(11L, // 25
 				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // St Clair College
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // Morton @ Ojibway
 				.addTripSort(StrategicMappingCommons.EAST, //
@@ -506,7 +506,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 			mTrip.setHeadsignString(cleanTripHeadsign(gTrip.getTripHeadsign()), gTrip.getDirectionId() == null ? 0 : gTrip.getDirectionId());
 			return;
 		}
-		throw new MTLog.Fatal("Unexpected trip (unexpected route ID: %s): %s", mRoute.getId(), gTrip);
+		throw new MTLog.Fatal("Unexpected trip (unexpected route ID: %s): %s", mRoute.getId(), gTrip.toStringPlus());
 	}
 
 	@Override
