@@ -232,7 +232,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1878") // != Hotel Dieu Grace Healthcare =>
 						)) //
 				.compileBothTripSort());
-		map2.put(3280L, new RouteTripSpec(3280L, // 3
+		map2.put(3331L, new RouteTripSpec(3331L, // 3
 				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // Transit Ctr
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // College Ave Community Ctr
 				.addTripSort(StrategicMappingCommons.EAST, //
@@ -404,7 +404,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("2116") // Windsor Transit Terminal
 						)) //
 				.compileBothTripSort());
-		map2.put(-1L, new RouteTripSpec(-1L, // 10
+		map2.put(3340L, new RouteTripSpec(3340L, // 10
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // North Loop
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // South Loop
 				.addTripSort(StrategicMappingCommons.NORTH, //
@@ -426,7 +426,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1375") // Tecumseh Mall Rear Entrance
 						)) //
 				.compileBothTripSort());
-		map2.put(-1L, new RouteTripSpec(-1L, // 14
+		map2.put(3335L, new RouteTripSpec(3335L, // 14
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Downtown Transit Terminal
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // Devonshire Mall
 				.addTripSort(StrategicMappingCommons.NORTH, //
@@ -454,7 +454,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("2185") // Morton at Ojibway
 						)) //
 				.compileBothTripSort());
-		map2.put(-1L, new RouteTripSpec(-1L, // 42
+		map2.put(3377L, new RouteTripSpec(3377L, // 42
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Essex
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // Leamington
 				.addTripSort(StrategicMappingCommons.NORTH, //
