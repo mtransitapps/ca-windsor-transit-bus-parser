@@ -160,11 +160,13 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 		return super.getRouteColor(gRoute);
 	}
 
+	private static final long ROUTE_ID_0 = 3327L;
+
 	private static HashMap<Long, RouteTripSpec> ALL_ROUTE_TRIPS2;
 
 	static {
 		HashMap<Long, RouteTripSpec> map2 = new HashMap<>();
-		map2.put(3277L, new RouteTripSpec(3277L, // 1A
+		map2.put(ROUTE_ID_0 + 1L, new RouteTripSpec(ROUTE_ID_0 + 1L, // 1A
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Downtown Transit Terminal
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // Devonshire Mall
 				.addTripSort(StrategicMappingCommons.NORTH, //
@@ -182,7 +184,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1051") // Devonshire Mall at Moxies
 						)) //
 				.compileBothTripSort());
-		map2.put(3278L, new RouteTripSpec(3278L, // 1C
+		map2.put(ROUTE_ID_0 + 2L, new RouteTripSpec(ROUTE_ID_0 + 2L, // 1C
 				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // Forest Glade
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // College Ave Community Ctr / Tayfour Campus
 				.addTripSort(StrategicMappingCommons.EAST, //
@@ -201,7 +203,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1834") // Tayfour Campus Terminal =>
 						)) //
 				.compileBothTripSort());
-		map2.put(3279L, new RouteTripSpec(3279L, // 2
+		map2.put(ROUTE_ID_0 + 3L, new RouteTripSpec(ROUTE_ID_0 + 3L, // 2
 				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // Tecumseh Mall
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // Tecumseh Mall
 				.addTripSort(StrategicMappingCommons.EAST, //
@@ -232,7 +234,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1878") // != Hotel Dieu Grace Healthcare =>
 						)) //
 				.compileBothTripSort());
-		map2.put(3331L, new RouteTripSpec(3331L, // 3
+		map2.put(ROUTE_ID_0 + 4L, new RouteTripSpec(ROUTE_ID_0 + 4L, // 3
 				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // Transit Ctr
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // College Ave Community Ctr
 				.addTripSort(StrategicMappingCommons.EAST, //
@@ -262,7 +264,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1834") // Tayfour Campus Terminal =>
 						)) //
 				.compileBothTripSort());
-		map2.put(3286L, new RouteTripSpec(3286L, // 3W
+		map2.put(ROUTE_ID_0 + 10L, new RouteTripSpec(ROUTE_ID_0 + 10L, // 3W
 				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // Downtown Transit Terminal
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // College Ave Community Ctr / Tayfour Campus
 				.addTripSort(StrategicMappingCommons.EAST, //
@@ -279,7 +281,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1834") // Tayfour Campus Terminal =>
 						)) //
 				.compileBothTripSort());
-		map2.put(3281L, new RouteTripSpec(3281L, // 4
+		map2.put(ROUTE_ID_0 + 5L, new RouteTripSpec(ROUTE_ID_0 + 5L, // 4
 				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // Meadowbrook via Tecumseh Mall
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // Downtown Transit Terminal
 				.addTripSort(StrategicMappingCommons.EAST, //
@@ -318,7 +320,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1529") // Transit Windsor Terminal
 						)) //
 				.compileBothTripSort());
-		map2.put(3288L, new RouteTripSpec(3288L, // 5
+		map2.put(ROUTE_ID_0 + 12L, new RouteTripSpec(ROUTE_ID_0 + 12L, // 5
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Downtown Transit Terminal
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // St Clair College
 				.addTripSort(StrategicMappingCommons.NORTH, //
@@ -332,7 +334,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1734") // St. Clair College Front Entrance
 						)) //
 				.compileBothTripSort());
-		map2.put(3282L, new RouteTripSpec(3282L, // 6
+		map2.put(ROUTE_ID_0 + 6L, new RouteTripSpec(ROUTE_ID_0 + 6L, // 6
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Downtown Transit Terminal
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // St Clair College
 				.addTripSort(StrategicMappingCommons.NORTH, //
@@ -356,7 +358,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1734") // St. Clair College Front Entrance
 						)) //
 				.compileBothTripSort());
-		map2.put(3287L, new RouteTripSpec(3287L, // 7
+		map2.put(ROUTE_ID_0 + 11L, new RouteTripSpec(ROUTE_ID_0 + 11L, // 7
 				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // South Walker Rd
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // Tayfour Campus / College Ave Community Ctr
 				.addTripSort(StrategicMappingCommons.EAST, //
@@ -374,7 +376,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1878") // Tayfour Campus Terminal =>
 						)) //
 				.compileBothTripSort());
-		map2.put(3283L, new RouteTripSpec(3283L, // 8
+		map2.put(ROUTE_ID_0 + 7L, new RouteTripSpec(ROUTE_ID_0 + 7L, // 8
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Downtown Transit Terminal
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // South Walker Rd
 				.addTripSort(StrategicMappingCommons.NORTH, //
@@ -388,7 +390,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1997") // Sixth Concession at North Talbot
 						)) //
 				.compileBothTripSort());
-		map2.put(3285L, new RouteTripSpec(3285L, // 2222 - Tunnel Bus
+		map2.put(ROUTE_ID_0 + 9L, new RouteTripSpec(ROUTE_ID_0 + 9L, // 2222 - Tunnel Bus
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Detroit
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // Windsor Transit Terminal
 				.addTripSort(StrategicMappingCommons.NORTH, //
@@ -404,7 +406,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("2116") // Windsor Transit Terminal
 						)) //
 				.compileBothTripSort());
-		map2.put(3340L, new RouteTripSpec(3340L, // 10
+		map2.put(ROUTE_ID_0 + 13L, new RouteTripSpec(ROUTE_ID_0 + 13L, // 10
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // North Loop
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // South Loop
 				.addTripSort(StrategicMappingCommons.NORTH, //
@@ -426,7 +428,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1375") // Tecumseh Mall Rear Entrance
 						)) //
 				.compileBothTripSort());
-		map2.put(3335L, new RouteTripSpec(3335L, // 14
+		map2.put(ROUTE_ID_0 + 8L, new RouteTripSpec(ROUTE_ID_0 + 8L, // 14
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Downtown Transit Terminal
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // Devonshire Mall
 				.addTripSort(StrategicMappingCommons.NORTH, //
@@ -440,7 +442,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1877") // Devonshire Mall at Moxies
 						)) //
 				.compileBothTripSort());
-		map2.put(3325L, new RouteTripSpec(3325L, // 25
+		map2.put(ROUTE_ID_0 + 49L, new RouteTripSpec(ROUTE_ID_0 + 49L, // 25
 				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // St Clair College
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // Morton @ Ojibway
 				.addTripSort(StrategicMappingCommons.EAST, //
@@ -454,7 +456,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("2185") // Morton at Ojibway
 						)) //
 				.compileBothTripSort());
-		map2.put(3377L, new RouteTripSpec(3377L, // 42
+		map2.put(ROUTE_ID_0 + 50L, new RouteTripSpec(ROUTE_ID_0 + 50L, // 42
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Essex
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // Leamington
 				.addTripSort(StrategicMappingCommons.NORTH, //
