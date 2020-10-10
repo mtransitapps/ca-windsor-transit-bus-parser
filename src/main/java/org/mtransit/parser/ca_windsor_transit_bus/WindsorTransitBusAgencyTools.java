@@ -461,15 +461,13 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // Leamington
 				.addTripSort(StrategicMappingCommons.NORTH, //
 						Arrays.asList( //
-								Stops.getALL_STOPS().get("2248"), // Leamington Kinsmen Recreation Co
-								Stops.getALL_STOPS().get("LEM"), // LEAMINGTON KINSMEN REC COMPLEX
+								Stops.getALL_STOPS().get("2248"), "90186", // Leamington Kinsmen Recreation Co
 								Stops.getALL_STOPS().get("1734") // St. Clair College Front Entrance
 						)) //
 				.addTripSort(StrategicMappingCommons.SOUTH, //
 						Arrays.asList( //
 								Stops.getALL_STOPS().get("1734"), // St. Clair College Front Entrance
-								Stops.getALL_STOPS().get("LEM"), // LEAMINGTON KINSMEN REC COMPLEX
-								Stops.getALL_STOPS().get("2248") // Leamington Kinsmen Recreation Co
+								Stops.getALL_STOPS().get("2248"), "90186" // Leamington Kinsmen Recreation Co
 						)) //
 				.compileBothTripSort());
 		ALL_ROUTE_TRIPS2 = map2;
@@ -504,8 +502,11 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.getId())) {
 			return; // split
 		}
-		if (isGoodEnoughAccepted()) {
-			mTrip.setHeadsignString(cleanTripHeadsign(gTrip.getTripHeadsign()), gTrip.getDirectionId() == null ? 0 : gTrip.getDirectionId());
+		if (mRoute.getId() == ROUTE_ID_0 + 154L) { // C3 LOOP
+			mTrip.setHeadsignString(
+				cleanTripHeadsign(gTrip.getTripHeadsign()),
+				gTrip.getDirectionIdOrDefault()
+			);
 			return;
 		}
 		throw new MTLog.Fatal("Unexpected trip (unexpected route ID: %s): %s", mRoute.getId(), gTrip.toStringPlus());
