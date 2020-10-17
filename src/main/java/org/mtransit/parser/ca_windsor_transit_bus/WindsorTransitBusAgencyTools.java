@@ -160,7 +160,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 		return super.getRouteColor(gRoute);
 	}
 
-	private static final long ROUTE_ID_0 = 3327L;
+	private static final long ROUTE_ID_0 = 3430L;
 
 	private static HashMap<Long, RouteTripSpec> ALL_ROUTE_TRIPS2;
 
@@ -502,7 +502,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.getId())) {
 			return; // split
 		}
-		if (mRoute.getId() == ROUTE_ID_0 + 154L) { // C3 LOOP
+		if (mRoute.getId() == ROUTE_ID_0 + 51L) { // C3 LOOP
 			mTrip.setHeadsignString(
 				cleanTripHeadsign(gTrip.getTripHeadsign()),
 				gTrip.getDirectionIdOrDefault()
