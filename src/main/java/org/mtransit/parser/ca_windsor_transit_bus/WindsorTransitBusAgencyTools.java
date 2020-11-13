@@ -290,7 +290,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1008"), // == Ouellette at Elliott
 								Stops.getALL_STOPS().get("1010"), // != Ouellette at Erie
 								Stops.getALL_STOPS().get("1544"), // != Giles at Parent
-								Stops.getALL_STOPS().get("1429"), // != Erie at Ouellette
+								Stops.getALL_STOPS().get("1429"), "92613", // != Erie at Ouellette
 								Stops.getALL_STOPS().get("2063"), // != Giles at Parent
 								Stops.getALL_STOPS().get("1546"), // == Ottawa at Parent
 								Stops.getALL_STOPS().get("1559"), // == Ottawa at Walker
