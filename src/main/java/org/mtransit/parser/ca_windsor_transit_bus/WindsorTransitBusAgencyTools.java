@@ -325,21 +325,21 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // St Clair College
 				.addTripSort(StrategicMappingCommons.NORTH, //
 						Arrays.asList( //
-								Stops.getALL_STOPS().get("1734"), // St. Clair College Front Entrance
+								Stops.getALL_STOPS().get("1734"), "93686", // St. Clair College Front Entrance
 								Stops.getALL_STOPS().get("1663") // Windsor Transit Terminal
 						)) //
 				.addTripSort(StrategicMappingCommons.SOUTH, //
 						Arrays.asList( //
 								Stops.getALL_STOPS().get("1663"), // Windsor Transit Terminal
-								Stops.getALL_STOPS().get("1734") // St. Clair College Front Entrance
+								Stops.getALL_STOPS().get("1734"), "93686" // St. Clair College Front Entrance
 						)) //
 				.compileBothTripSort());
-		map2.put(ROUTE_ID_0 + 6L, new RouteTripSpec(ROUTE_ID_0 + 6L, // 6
+		map2.put(ROUTE_ID_0 + 6L, new RouteTripSpec(ROUTE_ID_0 + 6L, // 6 // EMPTY HEAD-SIGN
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Downtown Transit Terminal
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // St Clair College
 				.addTripSort(StrategicMappingCommons.NORTH, //
 						Arrays.asList( //
-								Stops.getALL_STOPS().get("1734"), // == St. Clair College Front Entrance
+								Stops.getALL_STOPS().get("1734"), "93686", // == St. Clair College Front Entrance
 								Stops.getALL_STOPS().get("1736"), // != Geraedts at St. Clair Residence
 								Stops.getALL_STOPS().get("1870"), // != Cabana at McGraw
 								Stops.getALL_STOPS().get("1817"), // != Cousineau at Cousineau Circle
@@ -355,7 +355,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1732"), // !-= Cousineau at Highway 3
 								Stops.getALL_STOPS().get("1869"), // != Cabana at McGraw
 								Stops.getALL_STOPS().get("1867"), // !-= Cabana at Dominion
-								Stops.getALL_STOPS().get("1734") // St. Clair College Front Entrance
+								Stops.getALL_STOPS().get("1734"), "93686" // St. Clair College Front Entrance
 						)) //
 				.compileBothTripSort());
 		map2.put(ROUTE_ID_0 + 11L, new RouteTripSpec(ROUTE_ID_0 + 11L, // 7
@@ -448,11 +448,11 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(StrategicMappingCommons.EAST, //
 						Arrays.asList( //
 								Stops.getALL_STOPS().get("2185"), // Morton at Ojibway
-								Stops.getALL_STOPS().get("1734") // St Clair Front Entrance
+								Stops.getALL_STOPS().get("1734"), "93686" // St Clair Front Entrance
 						)) //
 				.addTripSort(StrategicMappingCommons.WEST, //
 						Arrays.asList( //
-								Stops.getALL_STOPS().get("1734"), // St Clair Front Entrance
+								Stops.getALL_STOPS().get("1734"), "93686", // St Clair Front Entrance
 								Stops.getALL_STOPS().get("2185") // Morton at Ojibway
 						)) //
 				.compileBothTripSort());
@@ -462,11 +462,11 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(StrategicMappingCommons.NORTH, //
 						Arrays.asList( //
 								Stops.getALL_STOPS().get("2248"), "90186", // Leamington Kinsmen Recreation Co
-								Stops.getALL_STOPS().get("1734") // St. Clair College Front Entrance
+								Stops.getALL_STOPS().get("1734"), "93686" // St. Clair College Front Entrance
 						)) //
 				.addTripSort(StrategicMappingCommons.SOUTH, //
 						Arrays.asList( //
-								Stops.getALL_STOPS().get("1734"), // St. Clair College Front Entrance
+								Stops.getALL_STOPS().get("1734"), "93686", // St. Clair College Front Entrance
 								Stops.getALL_STOPS().get("2248"), "90186" // Leamington Kinsmen Recreation Co
 						)) //
 				.compileBothTripSort());
