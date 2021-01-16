@@ -1,7 +1,7 @@
 package org.mtransit.parser.ca_windsor_transit_bus;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.mtransit.commons.StrategicMappingCommons;
 import org.mtransit.parser.CleanUtils;
 import org.mtransit.parser.DefaultAgencyTools;
@@ -9,6 +9,7 @@ import org.mtransit.parser.MTLog;
 import org.mtransit.parser.Pair;
 import org.mtransit.parser.SplitUtils;
 import org.mtransit.parser.SplitUtils.RouteTripSpec;
+import org.mtransit.parser.StringUtils;
 import org.mtransit.parser.Utils;
 import org.mtransit.parser.gtfs.data.GCalendar;
 import org.mtransit.parser.gtfs.data.GCalendarDate;
@@ -36,7 +37,7 @@ import java.util.Locale;
 // https://windsor.mapstrat.com/current/google_transit.zip
 public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 
-	public static void main(String[] args) {
+	public static void main(@Nullable String[] args) {
 		if (args == null || args.length == 0) {
 			args = new String[3];
 			args[0] = "input/gtfs.zip";
@@ -46,49 +47,52 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 		new WindsorTransitBusAgencyTools().start(args);
 	}
 
-	private HashSet<String> serviceIds;
+	@Nullable
+	private HashSet<Integer> serviceIdInts;
 
 	@Override
-	public void start(String[] args) {
+	public void start(@NotNull String[] args) {
 		MTLog.log("Generating Windsor Transit bus data...");
 		long start = System.currentTimeMillis();
-		this.serviceIds = extractUsefulServiceIds(args, this, true);
+		this.serviceIdInts = extractUsefulServiceIdInts(args, this, true);
 		super.start(args);
 		MTLog.log("Generating Windsor Transit bus data... DONE in %s.", Utils.getPrettyDuration(System.currentTimeMillis() - start));
 	}
 
 	@Override
 	public boolean excludingAll() {
-		return this.serviceIds != null && this.serviceIds.isEmpty();
+		return this.serviceIdInts != null && this.serviceIdInts.isEmpty();
 	}
 
 	@Override
-	public boolean excludeCalendar(GCalendar gCalendar) {
-		if (this.serviceIds != null) {
-			return excludeUselessCalendar(gCalendar, this.serviceIds);
+	public boolean excludeCalendar(@NotNull GCalendar gCalendar) {
+		if (this.serviceIdInts != null) {
+			return excludeUselessCalendarInt(gCalendar, this.serviceIdInts);
 		}
 		return super.excludeCalendar(gCalendar);
 	}
 
 	@Override
-	public boolean excludeCalendarDate(GCalendarDate gCalendarDates) {
-		if (this.serviceIds != null) {
-			return excludeUselessCalendarDate(gCalendarDates, this.serviceIds);
+	public boolean excludeCalendarDate(@NotNull GCalendarDate gCalendarDates) {
+		if (this.serviceIdInts != null) {
+			return excludeUselessCalendarDateInt(gCalendarDates, this.serviceIdInts);
 		}
 		return super.excludeCalendarDate(gCalendarDates);
 	}
 
 	@Override
-	public boolean excludeTrip(GTrip gTrip) {
-		if ("NotinService".equals(gTrip.getTripHeadsign())) {
+	public boolean excludeTrip(@NotNull GTrip gTrip) {
+		if ("notinservice".equalsIgnoreCase(gTrip.getTripHeadsign())
+				|| "not in service".equalsIgnoreCase(gTrip.getTripHeadsign())) {
 			return true; // EXCLUDE
 		}
-		if (this.serviceIds != null) {
-			return excludeUselessTrip(gTrip, this.serviceIds);
+		if (this.serviceIdInts != null) {
+			return excludeUselessTripInt(gTrip, this.serviceIdInts);
 		}
 		return super.excludeTrip(gTrip);
 	}
 
+	@NotNull
 	@Override
 	public Integer getAgencyRouteType() {
 		return MAgency.ROUTE_TYPE_BUS;
@@ -97,17 +101,19 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 	private static final String RSN_TUNNEL_BUS = "2222";
 
 	@Override
-	public long getRouteId(GRoute gRoute) { // route_id used by GTFS-RT
+	public long getRouteId(@NotNull GRoute gRoute) { // route_id used by GTFS-RT
 		return super.getRouteId(gRoute);
 	}
 
+	@Nullable
 	@Override
-	public String getRouteShortName(GRoute gRoute) {
+	public String getRouteShortName(@NotNull GRoute gRoute) {
 		return super.getRouteShortName(gRoute); // used by Real-Time API
 	}
 
+	@NotNull
 	@Override
-	public String getRouteLongName(GRoute gRoute) {
+	public String getRouteLongName(@NotNull GRoute gRoute) {
 		String routeLongName = gRoute.getRouteLongName();
 		routeLongName = routeLongName.toLowerCase(Locale.ENGLISH);
 		return CleanUtils.cleanLabel(routeLongName);
@@ -116,6 +122,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 	private static final String AGENCY_COLOR_BLUE = "009AD6"; // BLUE (from web site logo)
 	private static final String AGENCY_COLOR = AGENCY_COLOR_BLUE;
 
+	@NotNull
 	@Override
 	public String getAgencyColor() {
 		return AGENCY_COLOR;
@@ -125,8 +132,9 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 	private static final String RSN_1C = "1C";
 	private static final String RSN_3W = "3W";
 
+	@Nullable
 	@Override
-	public String getRouteColor(GRoute gRoute) {
+	public String getRouteColor(@NotNull GRoute gRoute) {
 		if (StringUtils.isEmpty(gRoute.getRouteColor())) {
 			if (Utils.isDigitsOnly(gRoute.getRouteShortName())) {
 				switch (Integer.parseInt(gRoute.getRouteShortName())) {
@@ -166,6 +174,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 
 	static {
 		HashMap<Long, RouteTripSpec> map2 = new HashMap<>();
+		//noinspection deprecation
 		map2.put(ROUTE_ID_0 + 1L, new RouteTripSpec(ROUTE_ID_0 + 1L, // 1A
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Downtown Transit Terminal
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // Devonshire Mall
@@ -184,6 +193,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1051") // Devonshire Mall at Moxies
 						)) //
 				.compileBothTripSort());
+		//noinspection deprecation
 		map2.put(ROUTE_ID_0 + 2L, new RouteTripSpec(ROUTE_ID_0 + 2L, // 1C
 				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // Forest Glade
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // College Ave Community Ctr / Tayfour Campus
@@ -203,6 +213,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1834") // Tayfour Campus Terminal =>
 						)) //
 				.compileBothTripSort());
+		//noinspection deprecation
 		map2.put(ROUTE_ID_0 + 3L, new RouteTripSpec(ROUTE_ID_0 + 3L, // 2
 				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // Tecumseh Mall
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // Tecumseh Mall
@@ -234,6 +245,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1878") // != Hotel Dieu Grace Healthcare =>
 						)) //
 				.compileBothTripSort());
+		//noinspection deprecation
 		map2.put(ROUTE_ID_0 + 4L, new RouteTripSpec(ROUTE_ID_0 + 4L, // 3
 				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // Transit Ctr
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // College Ave Community Ctr
@@ -264,6 +276,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1834") // Tayfour Campus Terminal =>
 						)) //
 				.compileBothTripSort());
+		//noinspection deprecation
 		map2.put(ROUTE_ID_0 + 10L, new RouteTripSpec(ROUTE_ID_0 + 10L, // 3W
 				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // Downtown Transit Terminal
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // College Ave Community Ctr / Tayfour Campus
@@ -281,6 +294,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1834") // Tayfour Campus Terminal =>
 						)) //
 				.compileBothTripSort());
+		//noinspection deprecation
 		map2.put(ROUTE_ID_0 + 5L, new RouteTripSpec(ROUTE_ID_0 + 5L, // 4
 				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // Meadowbrook via Tecumseh Mall
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // Downtown Transit Terminal
@@ -320,6 +334,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1529") // Transit Windsor Terminal
 						)) //
 				.compileBothTripSort());
+		//noinspection deprecation
 		map2.put(ROUTE_ID_0 + 12L, new RouteTripSpec(ROUTE_ID_0 + 12L, // 5
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Downtown Transit Terminal
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // St Clair College
@@ -334,6 +349,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1734"), "93686" // St. Clair College Front Entrance
 						)) //
 				.compileBothTripSort());
+		//noinspection deprecation
 		map2.put(ROUTE_ID_0 + 6L, new RouteTripSpec(ROUTE_ID_0 + 6L, // 6 // EMPTY HEAD-SIGN
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Downtown Transit Terminal
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // St Clair College
@@ -358,6 +374,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1734"), "93686" // St. Clair College Front Entrance
 						)) //
 				.compileBothTripSort());
+		//noinspection deprecation
 		map2.put(ROUTE_ID_0 + 11L, new RouteTripSpec(ROUTE_ID_0 + 11L, // 7
 				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // South Walker Rd
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // Tayfour Campus / College Ave Community Ctr
@@ -376,6 +393,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1878") // Tayfour Campus Terminal =>
 						)) //
 				.compileBothTripSort());
+		//noinspection deprecation
 		map2.put(ROUTE_ID_0 + 7L, new RouteTripSpec(ROUTE_ID_0 + 7L, // 8
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Downtown Transit Terminal
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // South Walker Rd
@@ -390,6 +408,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1997") // Sixth Concession at North Talbot
 						)) //
 				.compileBothTripSort());
+		//noinspection deprecation
 		map2.put(ROUTE_ID_0 + 9L, new RouteTripSpec(ROUTE_ID_0 + 9L, // 2222 - Tunnel Bus
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Detroit
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // Windsor Transit Terminal
@@ -406,6 +425,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("2116") // Windsor Transit Terminal
 						)) //
 				.compileBothTripSort());
+		//noinspection deprecation
 		map2.put(ROUTE_ID_0 + 13L, new RouteTripSpec(ROUTE_ID_0 + 13L, // 10
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // North Loop
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // South Loop
@@ -428,6 +448,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1375") // Tecumseh Mall Rear Entrance
 						)) //
 				.compileBothTripSort());
+		//noinspection deprecation
 		map2.put(ROUTE_ID_0 + 8L, new RouteTripSpec(ROUTE_ID_0 + 8L, // 14
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Downtown Transit Terminal
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // Devonshire Mall
@@ -442,6 +463,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("1877") // Devonshire Mall at Moxies
 						)) //
 				.compileBothTripSort());
+		//noinspection deprecation
 		map2.put(ROUTE_ID_0 + 49L, new RouteTripSpec(ROUTE_ID_0 + 49L, // 25
 				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // St Clair College
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // Morton @ Ojibway
@@ -456,41 +478,44 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("2185") // Morton at Ojibway
 						)) //
 				.compileBothTripSort());
+		//noinspection deprecation
 		map2.put(ROUTE_ID_0 + 50L, new RouteTripSpec(ROUTE_ID_0 + 50L, // 42
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Essex
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // Leamington
 				.addTripSort(StrategicMappingCommons.NORTH, //
 						Arrays.asList( //
-								Stops.getALL_STOPS().get("2248"), "90186", // Leamington Kinsmen Recreation Co
+								Stops.getALL_STOPS().get("2248"), "94596", // Nature Fresh Farms Recreation Centre
 								Stops.getALL_STOPS().get("1734"), "93686" // St. Clair College Front Entrance
 						)) //
 				.addTripSort(StrategicMappingCommons.SOUTH, //
 						Arrays.asList( //
 								Stops.getALL_STOPS().get("1734"), "93686", // St. Clair College Front Entrance
-								Stops.getALL_STOPS().get("2248"), "90186" // Leamington Kinsmen Recreation Co
+								Stops.getALL_STOPS().get("2248"), "94596" // Nature Fresh Farms Recreation Centre
 						)) //
 				.compileBothTripSort());
 		ALL_ROUTE_TRIPS2 = map2;
 	}
 
 	@Override
-	public int compareEarly(long routeId, List<MTripStop> list1, List<MTripStop> list2, MTripStop ts1, MTripStop ts2, GStop ts1GStop, GStop ts2GStop) {
+	public int compareEarly(long routeId, @NotNull List<MTripStop> list1, @NotNull List<MTripStop> list2, @NotNull MTripStop ts1, @NotNull MTripStop ts2, @NotNull GStop ts1GStop, @NotNull GStop ts2GStop) {
 		if (ALL_ROUTE_TRIPS2.containsKey(routeId)) {
 			return ALL_ROUTE_TRIPS2.get(routeId).compare(routeId, list1, list2, ts1, ts2, ts1GStop, ts2GStop, this);
 		}
 		return super.compareEarly(routeId, list1, list2, ts1, ts2, ts1GStop, ts2GStop);
 	}
 
+	@NotNull
 	@Override
-	public ArrayList<MTrip> splitTrip(MRoute mRoute, GTrip gTrip, GSpec gtfs) {
+	public ArrayList<MTrip> splitTrip(@NotNull MRoute mRoute, @Nullable GTrip gTrip, @NotNull GSpec gtfs) {
 		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.getId())) {
 			return ALL_ROUTE_TRIPS2.get(mRoute.getId()).getAllTrips();
 		}
 		return super.splitTrip(mRoute, gTrip, gtfs);
 	}
 
+	@NotNull
 	@Override
-	public Pair<Long[], Integer[]> splitTripStop(MRoute mRoute, GTrip gTrip, GTripStop gTripStop, ArrayList<MTrip> splitTrips, GSpec routeGTFS) {
+	public Pair<Long[], Integer[]> splitTripStop(@NotNull MRoute mRoute, @NotNull GTrip gTrip, @NotNull GTripStop gTripStop, @NotNull ArrayList<MTrip> splitTrips, @NotNull GSpec routeGTFS) {
 		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.getId())) {
 			return SplitUtils.splitTripStop(mRoute, gTrip, gTripStop, routeGTFS, ALL_ROUTE_TRIPS2.get(mRoute.getId()), this);
 		}
@@ -498,46 +523,52 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 	}
 
 	@Override
-	public void setTripHeadsign(MRoute mRoute, MTrip mTrip, GTrip gTrip, GSpec gtfs) {
+	public void setTripHeadsign(@NotNull MRoute mRoute, @NotNull MTrip mTrip, @NotNull GTrip gTrip, @NotNull GSpec gtfs) {
 		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.getId())) {
 			return; // split
 		}
 		if (mRoute.getId() == ROUTE_ID_0 + 51L) { // C3 LOOP
+			String tripHeadsign = gTrip.getTripHeadsign();
+			if (StringUtils.isEmpty(tripHeadsign)) {
+				tripHeadsign = mRoute.getShortName();
+			}
 			mTrip.setHeadsignString(
-				cleanTripHeadsign(gTrip.getTripHeadsign()),
-				gTrip.getDirectionIdOrDefault()
+					cleanTripHeadsign(tripHeadsign),
+					gTrip.getDirectionIdOrDefault()
 			);
 			return;
 		}
 		throw new MTLog.Fatal("Unexpected trip (unexpected route ID: %s): %s", mRoute.getId(), gTrip.toStringPlus());
 	}
 
+	@NotNull
 	@Override
-	public String cleanTripHeadsign(String tripHeadsign) {
+	public String cleanTripHeadsign(@NotNull String tripHeadsign) {
 		tripHeadsign = CleanUtils.cleanStreetTypes(tripHeadsign);
 		return CleanUtils.cleanLabel(tripHeadsign);
 	}
 
 	@Override
-	public boolean mergeHeadsign(MTrip mTrip, MTrip mTripToMerge) {
+	public boolean mergeHeadsign(@NotNull MTrip mTrip, @NotNull MTrip mTripToMerge) {
 		throw new MTLog.Fatal("Unexpected trip to merge %s VS %s!", mTrip, mTripToMerge);
 	}
 
+	@NotNull
 	@Override
-	public String cleanStopName(String gStopName) {
+	public String cleanStopName(@NotNull String gStopName) {
 		gStopName = CleanUtils.CLEAN_AT.matcher(gStopName).replaceAll(CleanUtils.CLEAN_AT_REPLACEMENT);
 		gStopName = CleanUtils.cleanStreetTypes(gStopName);
 		return CleanUtils.cleanLabel(gStopName);
 	}
 
 	@Override
-	public int getStopId(GStop gStop) { // used by GTFS-RT
+	public int getStopId(@NotNull GStop gStop) { // used by GTFS-RT
 		return super.getStopId(gStop);
 	}
 
 	@NotNull
 	@Override
-	public String getStopCode(GStop gStop) { // used by StrategicMapping API
+	public String getStopCode(@NotNull GStop gStop) { // used by StrategicMapping API
 		if ("Sto125649".equals(gStop.getStopCode())) {
 			return "77" + "1262"; // Wyandotte @ Metro
 		}
