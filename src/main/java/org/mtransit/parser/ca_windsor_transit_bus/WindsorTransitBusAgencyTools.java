@@ -168,7 +168,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 		return super.getRouteColor(gRoute);
 	}
 
-	private static final long ROUTE_ID_0 = 3534L;
+	private static final long ROUTE_ID_0 = 15L;
 
 	private static final HashMap<Long, RouteTripSpec> ALL_ROUTE_TRIPS2;
 
@@ -464,7 +464,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 						)) //
 				.compileBothTripSort());
 		//noinspection deprecation
-		map2.put(ROUTE_ID_0 + 49L, new RouteTripSpec(ROUTE_ID_0 + 49L, // 25
+		map2.put(ROUTE_ID_0 + 686L, new RouteTripSpec(ROUTE_ID_0 + 686L, // 25
 				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // St Clair College
 				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // Morton @ Ojibway
 				.addTripSort(StrategicMappingCommons.EAST, //
@@ -479,7 +479,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 						)) //
 				.compileBothTripSort());
 		//noinspection deprecation
-		map2.put(ROUTE_ID_0 + 50L, new RouteTripSpec(ROUTE_ID_0 + 50L, // 42
+		map2.put(ROUTE_ID_0 + 2597L, new RouteTripSpec(ROUTE_ID_0 + 2597L, // 42
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Essex
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // Leamington
 				.addTripSort(StrategicMappingCommons.NORTH, //
@@ -527,7 +527,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.getId())) {
 			return; // split
 		}
-		if (mRoute.getId() == ROUTE_ID_0 + 51L) { // C3 LOOP
+		if (mRoute.getId() == ROUTE_ID_0 + 3466L) { // C3 LOOP
 			String tripHeadsign = gTrip.getTripHeadsign();
 			if (StringUtils.isEmpty(tripHeadsign)) {
 				tripHeadsign = mRoute.getShortName();
