@@ -30,6 +30,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Pattern;
+
+import static org.mtransit.parser.StringUtils.EMPTY;
 
 // https://opendata.citywindsor.ca/Opendata/Details/218
 // https://opendata.citywindsor.ca/Uploads/google_transit.zip
@@ -175,257 +178,6 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 	static {
 		HashMap<Long, RouteTripSpec> map2 = new HashMap<>();
 		//noinspection deprecation
-		map2.put(ROUTE_ID_0 + 1L, new RouteTripSpec(ROUTE_ID_0 + 1L, // 1A
-				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Downtown Transit Terminal
-				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // Devonshire Mall
-				.addTripSort(StrategicMappingCommons.NORTH, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("1051"), // Devonshire Mall at Moxies
-								Stops.getALL_STOPS().get("1000") // Windsor Transit Terminal
-						)) //
-				.addTripSort(StrategicMappingCommons.SOUTH, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("1000"), // Windsor Transit Terminal
-								Stops.getALL_STOPS().get("1049"), // == Howard at Roundhouse
-								Stops.getALL_STOPS().get("1050"), // != Sydney at Windsor Commons
-								Stops.getALL_STOPS().get("1881"), // != Marentette at Division
-								Stops.getALL_STOPS().get("2111"), // != Marentette at Sydney
-								Stops.getALL_STOPS().get("1051") // Devonshire Mall at Moxies
-						)) //
-				.compileBothTripSort());
-		//noinspection deprecation
-		map2.put(ROUTE_ID_0 + 2L, new RouteTripSpec(ROUTE_ID_0 + 2L, // 1C
-				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // Forest Glade
-				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // College Ave Community Ctr / Tayfour Campus
-				.addTripSort(StrategicMappingCommons.EAST, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("1834"), // Tayfour Campus Terminal <=
-								Stops.getALL_STOPS().get("1052"), // College Ave. at Community Centre <=
-								Stops.getALL_STOPS().get("2136"), // University at Curry
-								Stops.getALL_STOPS().get("1173"), // Tecumseh Mall Rear Entrance
-								Stops.getALL_STOPS().get("1197") // Forest Glade at Mulberry
-						)) //
-				.addTripSort(StrategicMappingCommons.WEST, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("1197"), // Forest Glade at Mulberry
-								Stops.getALL_STOPS().get("1126"), // Tecumseh at Factoria
-								Stops.getALL_STOPS().get("1052"), // College Ave. at Community Centre =>
-								Stops.getALL_STOPS().get("1834") // Tayfour Campus Terminal =>
-						)) //
-				.compileBothTripSort());
-		//noinspection deprecation
-		map2.put(ROUTE_ID_0 + 3L, new RouteTripSpec(ROUTE_ID_0 + 3L, // 2
-				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // Tecumseh Mall
-				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // Tecumseh Mall
-				.addTripSort(StrategicMappingCommons.EAST, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("1878"), // != Hotel Dieu Grace Healthcare <=
-								Stops.getALL_STOPS().get("2062"), // == Prince at Wells
-								Stops.getALL_STOPS().get("2090"), // != Prince at College
-								Stops.getALL_STOPS().get("1072"), // != Mill at Sandwich
-								Stops.getALL_STOPS().get("2072"), // !=  College at Prince
-								Stops.getALL_STOPS().get("1073"), // != Mill at Sandwich
-								Stops.getALL_STOPS().get("1222"), // == Wyandotte at Mill
-								Stops.getALL_STOPS().get("1834"), // != Hotel Dieu Grace Healthcare <=
-								Stops.getALL_STOPS().get("2036"), // == Prince at Tecumseh
-								Stops.getALL_STOPS().get("1231"), // Wyandotte at Randolph
-								Stops.getALL_STOPS().get("1375") // Tecumseh Mall Rear Entrance
-						)) //
-				.addTripSort(StrategicMappingCommons.WEST, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("1375"), // Tecumseh Mall Rear Entrance
-								Stops.getALL_STOPS().get("1220"), // == Mill at Peter
-								Stops.getALL_STOPS().get("1070"), // != Mill at Wyandotte
-								Stops.getALL_STOPS().get("1054"), // != College at Prince
-								Stops.getALL_STOPS().get("1218"), // != Sandwich at Brock
-								Stops.getALL_STOPS().get("2091"), // != Prince at College
-								Stops.getALL_STOPS().get("2107"), // == Prince at Wells
-								Stops.getALL_STOPS().get("2121"), // == Prince at Matchette
-								Stops.getALL_STOPS().get("1834"), // != Hotel Dieu Grace Healthcare =>
-								Stops.getALL_STOPS().get("1878") // != Hotel Dieu Grace Healthcare =>
-						)) //
-				.compileBothTripSort());
-		//noinspection deprecation
-		map2.put(ROUTE_ID_0 + 4L, new RouteTripSpec(ROUTE_ID_0 + 4L, // 3
-				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // Transit Ctr
-				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // College Ave Community Ctr
-				.addTripSort(StrategicMappingCommons.EAST, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("1834"), // Tayfour Campus Terminal <=
-								Stops.getALL_STOPS().get("1399"), // ++ Tecumseh at Northway
-								Stops.getALL_STOPS().get("1248"), // != Wyandotte at Victoria
-								Stops.getALL_STOPS().get("2051"), // != Transit Terminal at Chatham <= START
-								Stops.getALL_STOPS().get("1004"), // != Ouellette at Park
-								Stops.getALL_STOPS().get("1006"), // == Ouellette at Wyandotte
-								Stops.getALL_STOPS().get("1132"), // ++ Tecumseh at Meldrum
-								Stops.getALL_STOPS().get("1134"), // ++ Tecumseh at Central
-								Stops.getALL_STOPS().get("1474"), // ++ George at Tecumseh
-								Stops.getALL_STOPS().get("1506"), // === Plymouth at Grand Marais
-								Stops.getALL_STOPS().get("1507"), // !== Central at Temple
-								Stops.getALL_STOPS().get("1522"), // == North Service Road at Pillette
-								Stops.getALL_STOPS().get("1332"), // xx Service Road at Electrical Union #WTF
-								Stops.getALL_STOPS().get("1530"), // != North Service Road at Purolator
-								Stops.getALL_STOPS().get("1332"), // !== xx Service Road at Electrical Union
-								Stops.getALL_STOPS().get("1524") // === Transit Centre Front Entrance
-						)) //
-				.addTripSort(StrategicMappingCommons.WEST, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("1524"), // Transit Centre Front Entrance
-								Stops.getALL_STOPS().get("1504"), // ++ N. Service at Central
-								Stops.getALL_STOPS().get("1396"), // Tecumseh at Felix
-								Stops.getALL_STOPS().get("1834") // Tayfour Campus Terminal =>
-						)) //
-				.compileBothTripSort());
-		//noinspection deprecation
-		map2.put(ROUTE_ID_0 + 10L, new RouteTripSpec(ROUTE_ID_0 + 10L, // 3W
-				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // Downtown Transit Terminal
-				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // College Ave Community Ctr / Tayfour Campus
-				.addTripSort(StrategicMappingCommons.EAST, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("1834"), // Tayfour Campus Terminal <=
-								Stops.getALL_STOPS().get("1376"), // College Ave. at Community Centre <=
-								Stops.getALL_STOPS().get("2051") // Transit Terminal at Chatham
-						)) //
-				.addTripSort(StrategicMappingCommons.WEST, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("2051"), // Transit Terminal at Chatham
-								Stops.getALL_STOPS().get("1396"), // Tecumseh at Felix
-								Stops.getALL_STOPS().get("1376"), // College Ave. at Community Centre =>
-								Stops.getALL_STOPS().get("1834") // Tayfour Campus Terminal =>
-						)) //
-				.compileBothTripSort());
-		//noinspection deprecation
-		map2.put(ROUTE_ID_0 + 5L, new RouteTripSpec(ROUTE_ID_0 + 5L, // 4
-				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // Meadowbrook via Tecumseh Mall
-				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // Downtown Transit Terminal
-				.addTripSort(StrategicMappingCommons.EAST, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("1529"), // Transit Windsor Terminal
-								Stops.getALL_STOPS().get("1008"), // == Ouellette at Elliott
-								Stops.getALL_STOPS().get("1010"), // != Ouellette at Erie
-								Stops.getALL_STOPS().get("1544"), // != Giles at Parent
-								Stops.getALL_STOPS().get("1429"), "92613", // != Erie at Ouellette
-								Stops.getALL_STOPS().get("2063"), // != Giles at Parent
-								Stops.getALL_STOPS().get("1546"), // == Ottawa at Parent
-								Stops.getALL_STOPS().get("1559"), // == Ottawa at Walker
-								Stops.getALL_STOPS().get("1661"), // != Walker at Ontario
-								Stops.getALL_STOPS().get("1322"), // != Drouillard at Metcalfe
-								Stops.getALL_STOPS().get("1561"), // != Seminole at Walker
-								Stops.getALL_STOPS().get("1563"), // != Seminole at Albert
-								Stops.getALL_STOPS().get("1565"), // == Seminole at Drouillard
-								Stops.getALL_STOPS().get("1644"), // Lauzon Rd. at Hawthorne
-								Stops.getALL_STOPS().get("1656") // Essex Way at Meadowbrook
-						)) //
-				.addTripSort(StrategicMappingCommons.WEST, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("1656"), // Essex Way at Meadowbrook
-								Stops.getALL_STOPS().get("1566"), // == Seminole at Drouillard
-								Stops.getALL_STOPS().get("1564"), // != Seminole at Albert
-								Stops.getALL_STOPS().get("1562"), // != Seminole at Walker
-								Stops.getALL_STOPS().get("1462"), // != Drouillard at Metcalfe
-								Stops.getALL_STOPS().get("2063"), // != Giles at Parent
-								Stops.getALL_STOPS().get("1560"), // == Ottawa at Monmouth
-								Stops.getALL_STOPS().get("1545"), // == Parent at Ottawa
-								Stops.getALL_STOPS().get("2064"), // != Parent at Giles
-								Stops.getALL_STOPS().get("1428"), // != Erie at Ouellette
-								Stops.getALL_STOPS().get("1543"), // != Giles at Elsmere
-								Stops.getALL_STOPS().get("1011"), // != Ouellette at Erie
-								Stops.getALL_STOPS().get("1009"), // == Ouellette at Ouellette Manor
-								Stops.getALL_STOPS().get("1529") // Transit Windsor Terminal
-						)) //
-				.compileBothTripSort());
-		//noinspection deprecation
-		map2.put(ROUTE_ID_0 + 12L, new RouteTripSpec(ROUTE_ID_0 + 12L, // 5
-				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Downtown Transit Terminal
-				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // St Clair College
-				.addTripSort(StrategicMappingCommons.NORTH, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("1734"), "93686", // St. Clair College Front Entrance
-								Stops.getALL_STOPS().get("1663") // Windsor Transit Terminal
-						)) //
-				.addTripSort(StrategicMappingCommons.SOUTH, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("1663"), // Windsor Transit Terminal
-								Stops.getALL_STOPS().get("1734"), "93686" // St. Clair College Front Entrance
-						)) //
-				.compileBothTripSort());
-		//noinspection deprecation
-		map2.put(ROUTE_ID_0 + 6L, new RouteTripSpec(ROUTE_ID_0 + 6L, // 6 // EMPTY HEAD-SIGN
-				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Downtown Transit Terminal
-				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // St Clair College
-				.addTripSort(StrategicMappingCommons.NORTH, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("1734"), "93686", // == St. Clair College Front Entrance
-								Stops.getALL_STOPS().get("1736"), // != Geraedts at St. Clair Residence
-								Stops.getALL_STOPS().get("1870"), // != Cabana at McGraw
-								Stops.getALL_STOPS().get("1817"), // != Cousineau at Cousineau Circle
-								Stops.getALL_STOPS().get("1788"), // != Cabana at Dougall
-								Stops.getALL_STOPS().get("1786"), // == Dougall at Granada
-								Stops.getALL_STOPS().get("1737") // Transit Terminal at Chatham
-						)) //
-				.addTripSort(StrategicMappingCommons.SOUTH, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("1737"), // Transit Terminal at Chatham
-								Stops.getALL_STOPS().get("1787"), // == Dougall at Granada
-								Stops.getALL_STOPS().get("1789"), "715", // != Cabana at Dougall
-								Stops.getALL_STOPS().get("1732"), // !-= Cousineau at Highway 3
-								Stops.getALL_STOPS().get("1869"), // != Cabana at McGraw
-								Stops.getALL_STOPS().get("1867"), // !-= Cabana at Dominion
-								Stops.getALL_STOPS().get("1734"), "93686" // St. Clair College Front Entrance
-						)) //
-				.compileBothTripSort());
-		//noinspection deprecation
-		map2.put(ROUTE_ID_0 + 11L, new RouteTripSpec(ROUTE_ID_0 + 11L, // 7
-				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // South Walker Rd
-				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // Tayfour Campus / College Ave Community Ctr
-				.addTripSort(StrategicMappingCommons.EAST, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("1878"), // Tayfour Campus Terminal <=
-								Stops.getALL_STOPS().get("1819"), // College Ave. at Community Centre <=
-								Stops.getALL_STOPS().get("1884"), // Provincial at Humane Society
-								Stops.getALL_STOPS().get("1893") // Legacy Park at Sears Home
-						)) //
-				.addTripSort(StrategicMappingCommons.WEST, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("1893"), // Legacy Park at Sears Home
-								Stops.getALL_STOPS().get("1051"), // Devonshire Mall at Moxies
-								Stops.getALL_STOPS().get("1819"), // College Ave. at Community Centre =>
-								Stops.getALL_STOPS().get("1878") // Tayfour Campus Terminal =>
-						)) //
-				.compileBothTripSort());
-		//noinspection deprecation
-		map2.put(ROUTE_ID_0 + 7L, new RouteTripSpec(ROUTE_ID_0 + 7L, // 8
-				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Downtown Transit Terminal
-				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // South Walker Rd
-				.addTripSort(StrategicMappingCommons.NORTH, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("1997"), // Sixth Concession at North Talbot
-								Stops.getALL_STOPS().get("1894") // Transit Terminal Church at Pitt
-						)) //
-				.addTripSort(StrategicMappingCommons.SOUTH, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("1894"), // Transit Terminal Church at Pitt
-								Stops.getALL_STOPS().get("1997") // Sixth Concession at North Talbot
-						)) //
-				.compileBothTripSort());
-		//noinspection deprecation
-		map2.put(ROUTE_ID_0 + 9L, new RouteTripSpec(ROUTE_ID_0 + 9L, // 2222 - Tunnel Bus
-				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Detroit
-				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // Windsor Transit Terminal
-				.addTripSort(StrategicMappingCommons.NORTH, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("2116"), // Windsor Transit Terminal
-								Stops.getALL_STOPS().get("2239"), // == Grand River at 2nd
-								Stops.getALL_STOPS().get("1427") // != LCA =>
-						)) //
-				.addTripSort(StrategicMappingCommons.SOUTH, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("1427"), // != LCA <=
-								Stops.getALL_STOPS().get("2241"), // == Cass at Bagley
-								Stops.getALL_STOPS().get("2116") // Windsor Transit Terminal
-						)) //
-				.compileBothTripSort());
-		//noinspection deprecation
 		map2.put(ROUTE_ID_0 + 13L, new RouteTripSpec(ROUTE_ID_0 + 13L, // 10
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // North Loop
 				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // South Loop
@@ -446,51 +198,6 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 								Stops.getALL_STOPS().get("2039"), // != WFCU Centre Main Entrance
 								Stops.getALL_STOPS().get("2041"), // == McHugh at Darfield
 								Stops.getALL_STOPS().get("1375") // Tecumseh Mall Rear Entrance
-						)) //
-				.compileBothTripSort());
-		//noinspection deprecation
-		map2.put(ROUTE_ID_0 + 8L, new RouteTripSpec(ROUTE_ID_0 + 8L, // 14
-				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Downtown Transit Terminal
-				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // Devonshire Mall
-				.addTripSort(StrategicMappingCommons.NORTH, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("1877"), // Devonshire Mall at Moxies
-								Stops.getALL_STOPS().get("2051") // Transit Terminal at Chatham
-						)) //
-				.addTripSort(StrategicMappingCommons.SOUTH, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("2051"), // Transit Terminal at Chatham
-								Stops.getALL_STOPS().get("1877") // Devonshire Mall at Moxies
-						)) //
-				.compileBothTripSort());
-		//noinspection deprecation
-		map2.put(ROUTE_ID_0 + 686L, new RouteTripSpec(ROUTE_ID_0 + 686L, // 25
-				StrategicMappingCommons.EAST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), // St Clair College
-				StrategicMappingCommons.WEST, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) // Morton @ Ojibway
-				.addTripSort(StrategicMappingCommons.EAST, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("2185"), // Morton at Ojibway
-								Stops.getALL_STOPS().get("1734"), "93686" // St Clair Front Entrance
-						)) //
-				.addTripSort(StrategicMappingCommons.WEST, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("1734"), "93686", // St Clair Front Entrance
-								Stops.getALL_STOPS().get("2185") // Morton at Ojibway
-						)) //
-				.compileBothTripSort());
-		//noinspection deprecation
-		map2.put(ROUTE_ID_0 + 2597L, new RouteTripSpec(ROUTE_ID_0 + 2597L, // 42
-				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // Essex
-				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // Leamington
-				.addTripSort(StrategicMappingCommons.NORTH, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("2248"), "94596", // Nature Fresh Farms Recreation Centre
-								Stops.getALL_STOPS().get("1734"), "93686" // St. Clair College Front Entrance
-						)) //
-				.addTripSort(StrategicMappingCommons.SOUTH, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("1734"), "93686", // St. Clair College Front Entrance
-								Stops.getALL_STOPS().get("2248"), "94596" // Nature Fresh Farms Recreation Centre
 						)) //
 				.compileBothTripSort());
 		ALL_ROUTE_TRIPS2 = map2;
@@ -527,24 +234,67 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.getId())) {
 			return; // split
 		}
-		if (mRoute.getId() == ROUTE_ID_0 + 3466L) { // C3 LOOP
-			String tripHeadsign = gTrip.getTripHeadsign();
-			if (StringUtils.isEmpty(tripHeadsign)) {
-				tripHeadsign = mRoute.getShortName();
-			}
-			mTrip.setHeadsignString(
-					cleanTripHeadsign(tripHeadsign),
-					gTrip.getDirectionIdOrDefault()
-			);
-			return;
+		mTrip.setHeadsignString(
+				cleanTripHeadsign(gTrip.getTripHeadsignOrDefault()),
+				gTrip.getDirectionIdOrDefault()
+		);
+	}
+
+	@Override
+	public boolean directionFinderEnabled() {
+		return true;
+	}
+
+	@Override
+	public boolean directionFinderEnabled(long routeId, @NotNull GRoute gRoute) {
+		if (routeId == ROUTE_ID_0 + 13) { // 10
+			return false; // because 2 direction_id w/ same head-sign & last stop (2 different loops)
 		}
-		throw new MTLog.Fatal("Unexpected trip (unexpected route ID: %s): %s", mRoute.getId(), gTrip.toStringPlus());
+		return super.directionFinderEnabled(routeId, gRoute);
 	}
 
 	@NotNull
 	@Override
+	public String cleanDirectionHeadsign(boolean fromStopName, @NotNull String directionHeadSign) {
+		directionHeadSign = super.cleanDirectionHeadsign(fromStopName, directionHeadSign);
+		if (fromStopName) {
+			directionHeadSign = WINDSOR_TT_.matcher(directionHeadSign).replaceAll(WINDSOR_TT_REPLACEMENT);
+		}
+		return directionHeadSign;
+	}
+
+	@NotNull
+	@Override
+	public List<Integer> getDirectionTypes() {
+		return Arrays.asList(
+				MTrip.HEADSIGN_TYPE_DIRECTION,
+				MTrip.HEADSIGN_TYPE_STRING
+		);
+	}
+
+	private static final Pattern HDGH_ = CleanUtils.cleanWords("hotel dieu grace healthcare");
+	private static final String HDGH_REPLACEMENT = CleanUtils.cleanWordsReplacement("HDGH");
+
+	private static final Pattern ALL_ENTRANCE_ = CleanUtils.cleanWords("rear entrance", "front entrance");
+
+	private static final Pattern WINDSOR_TT_ = CleanUtils.cleanWords(
+			"transit windsor terminal", "transit windsor term",
+			"transit terminal", "transit term"
+	);
+	private static final String WINDSOR_TT_REPLACEMENT = CleanUtils.cleanWordsReplacement("Windsor Transit Terminal");
+
+	private static final Pattern RSN_BOUNDS_ = Pattern.compile("(^\\d+ (eastbound|westbound|northbound|southbound|e|w|n|s))", Pattern.CASE_INSENSITIVE);
+	private static final String RSN_BOUNDS_REPLACEMENT = "$2";
+
+	@NotNull
+	@Override
 	public String cleanTripHeadsign(@NotNull String tripHeadsign) {
+		tripHeadsign = RSN_BOUNDS_.matcher(tripHeadsign).replaceAll(RSN_BOUNDS_REPLACEMENT);
+		tripHeadsign = WINDSOR_TT_.matcher(tripHeadsign).replaceAll(WINDSOR_TT_REPLACEMENT);
+		tripHeadsign = HDGH_.matcher(tripHeadsign).replaceAll(HDGH_REPLACEMENT);
+		tripHeadsign = ALL_ENTRANCE_.matcher(tripHeadsign).replaceAll(EMPTY);
 		tripHeadsign = CleanUtils.cleanBounds(tripHeadsign);
+		tripHeadsign = CleanUtils.cleanNumbers(tripHeadsign);
 		tripHeadsign = CleanUtils.cleanStreetTypes(tripHeadsign);
 		return CleanUtils.cleanLabel(tripHeadsign);
 	}
@@ -560,6 +310,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 		gStopName = CleanUtils.CLEAN_AND.matcher(gStopName).replaceAll(CleanUtils.CLEAN_AND_REPLACEMENT);
 		gStopName = CleanUtils.CLEAN_AT.matcher(gStopName).replaceAll(CleanUtils.CLEAN_AT_REPLACEMENT);
 		gStopName = CleanUtils.cleanBounds(gStopName);
+		gStopName = CleanUtils.cleanNumbers(gStopName);
 		gStopName = CleanUtils.cleanStreetTypes(gStopName);
 		return CleanUtils.cleanLabel(gStopName);
 	}
