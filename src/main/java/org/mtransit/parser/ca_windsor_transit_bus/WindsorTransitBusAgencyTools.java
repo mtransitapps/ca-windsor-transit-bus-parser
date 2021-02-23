@@ -4,27 +4,16 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.mtransit.commons.CharUtils;
 import org.mtransit.commons.CleanUtils;
-import org.mtransit.commons.StrategicMappingCommons;
 import org.mtransit.commons.StringUtils;
 import org.mtransit.parser.DefaultAgencyTools;
 import org.mtransit.parser.MTLog;
-import org.mtransit.parser.Pair;
-import org.mtransit.parser.SplitUtils;
-import org.mtransit.parser.SplitUtils.RouteTripSpec;
 import org.mtransit.parser.gtfs.data.GRoute;
-import org.mtransit.parser.gtfs.data.GSpec;
 import org.mtransit.parser.gtfs.data.GStop;
 import org.mtransit.parser.gtfs.data.GTrip;
-import org.mtransit.parser.gtfs.data.GTripStop;
 import org.mtransit.parser.mt.data.MAgency;
-import org.mtransit.parser.mt.data.MDirectionType;
-import org.mtransit.parser.mt.data.MRoute;
 import org.mtransit.parser.mt.data.MTrip;
-import org.mtransit.parser.mt.data.MTripStop;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.regex.Pattern;
@@ -138,81 +127,17 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 
 	private static final long ROUTE_ID_0 = 15L;
 
-	private static final HashMap<Long, SplitUtils.RouteTripSpec> ALL_ROUTE_TRIPS2;
-
-	static {
-		HashMap<Long, SplitUtils.RouteTripSpec> map2 = new HashMap<>();
-		//noinspection deprecation
-		map2.put(ROUTE_ID_0 + 13L, new RouteTripSpec(ROUTE_ID_0 + 13L, // 10
-				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // North Loop
-				StrategicMappingCommons.SOUTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) // South Loop
-				.addTripSort(StrategicMappingCommons.NORTH, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("1375"), // Tecumseh Mall Rear Entrance
-								Stops.getALL_STOPS().get("2049"), // == McHugh at Darfield
-								Stops.getALL_STOPS().get("2048"), // != WFCU Centre Main Entrance
-								Stops.getALL_STOPS().get("2047"), // != McHugh at Mickey Renuad Way
-								Stops.getALL_STOPS().get("2046"), // == McHugh at Cypress
-								Stops.getALL_STOPS().get("1998") // Tecumseh Mall Rear Entrance
-						)) //
-				.addTripSort(StrategicMappingCommons.SOUTH, //
-						Arrays.asList( //
-								Stops.getALL_STOPS().get("1998"), // Tecumseh Mall Rear Entrance
-								Stops.getALL_STOPS().get("2034"), // == McHugh at Cypress
-								Stops.getALL_STOPS().get("2038"), // != McHugh at Micky Renaud Way
-								Stops.getALL_STOPS().get("2039"), // != WFCU Centre Main Entrance
-								Stops.getALL_STOPS().get("2041"), // == McHugh at Darfield
-								Stops.getALL_STOPS().get("1375") // Tecumseh Mall Rear Entrance
-						)) //
-				.compileBothTripSort());
-		ALL_ROUTE_TRIPS2 = map2;
-	}
-
 	@Override
-	public int compareEarly(long routeId, @NotNull List<MTripStop> list1, @NotNull List<MTripStop> list2, @NotNull MTripStop ts1, @NotNull MTripStop ts2, @NotNull GStop ts1GStop, @NotNull GStop ts2GStop) {
-		if (ALL_ROUTE_TRIPS2.containsKey(routeId)) {
-			return ALL_ROUTE_TRIPS2.get(routeId).compare(routeId, list1, list2, ts1, ts2, ts1GStop, ts2GStop, this);
+	public boolean allowNonDescriptiveHeadSigns(long routeId) {
+		if (routeId == ROUTE_ID_0 + 13L) { // 10
+			return true; // because 2 direction_id w/ same head-sign & last stop
 		}
-		return super.compareEarly(routeId, list1, list2, ts1, ts2, ts1GStop, ts2GStop);
-	}
-
-	@NotNull
-	@Override
-	public ArrayList<MTrip> splitTrip(@NotNull MRoute mRoute, @Nullable GTrip gTrip, @NotNull GSpec gtfs) {
-		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.getId())) {
-			return ALL_ROUTE_TRIPS2.get(mRoute.getId()).getAllTrips();
-		}
-		return super.splitTrip(mRoute, gTrip, gtfs);
-	}
-
-	@NotNull
-	@Override
-	public Pair<Long[], Integer[]> splitTripStop(@NotNull MRoute mRoute, @NotNull GTrip gTrip, @NotNull GTripStop gTripStop, @NotNull ArrayList<MTrip> splitTrips, @NotNull GSpec routeGTFS) {
-		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.getId())) {
-			return SplitUtils.splitTripStop(mRoute, gTrip, gTripStop, routeGTFS, ALL_ROUTE_TRIPS2.get(mRoute.getId()), this);
-		}
-		return super.splitTripStop(mRoute, gTrip, gTripStop, splitTrips, routeGTFS);
-	}
-
-	@Override
-	public void setTripHeadsign(@NotNull MRoute mRoute, @NotNull MTrip mTrip, @NotNull GTrip gTrip, @NotNull GSpec gtfs) {
-		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.getId())) {
-			return; // split
-		}
-		super.setTripHeadsign(mRoute, mTrip, gTrip, gtfs);
+		return super.allowNonDescriptiveHeadSigns(routeId);
 	}
 
 	@Override
 	public boolean directionFinderEnabled() {
 		return true;
-	}
-
-	@Override
-	public boolean directionFinderEnabled(long routeId, @NotNull GRoute gRoute) {
-		if (routeId == ROUTE_ID_0 + 13) { // 10
-			return false; // because 2 direction_id w/ same head-sign & last stop (2 different loops, can NOT be merged w/ splitter)
-		}
-		return super.directionFinderEnabled(routeId, gRoute);
 	}
 
 	@NotNull
@@ -248,9 +173,12 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 	private static final Pattern RSN_BOUNDS_ = Pattern.compile("(^\\d+ (eastbound|westbound|northbound|southbound|e|w|n|s))", Pattern.CASE_INSENSITIVE);
 	private static final String RSN_BOUNDS_REPLACEMENT = "$2";
 
+	private static final Pattern RLN_RSN_ = Pattern.compile("(^[a-z]+[\\d]+$)", Pattern.CASE_INSENSITIVE);
+
 	@NotNull
 	@Override
 	public String cleanTripHeadsign(@NotNull String tripHeadsign) {
+		tripHeadsign = RLN_RSN_.matcher(tripHeadsign).replaceAll(EMPTY);
 		tripHeadsign = RSN_BOUNDS_.matcher(tripHeadsign).replaceAll(RSN_BOUNDS_REPLACEMENT);
 		tripHeadsign = WINDSOR_TT_.matcher(tripHeadsign).replaceAll(WINDSOR_TT_REPLACEMENT);
 		tripHeadsign = HDGH_.matcher(tripHeadsign).replaceAll(HDGH_REPLACEMENT);
