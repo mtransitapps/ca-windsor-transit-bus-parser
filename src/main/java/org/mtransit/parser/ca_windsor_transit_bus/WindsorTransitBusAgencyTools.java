@@ -2,17 +2,15 @@ package org.mtransit.parser.ca_windsor_transit_bus;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.mtransit.commons.CharUtils;
+import org.mtransit.commons.CleanUtils;
 import org.mtransit.commons.StrategicMappingCommons;
-import org.mtransit.parser.CleanUtils;
+import org.mtransit.commons.StringUtils;
 import org.mtransit.parser.DefaultAgencyTools;
 import org.mtransit.parser.MTLog;
 import org.mtransit.parser.Pair;
 import org.mtransit.parser.SplitUtils;
 import org.mtransit.parser.SplitUtils.RouteTripSpec;
-import org.mtransit.parser.StringUtils;
-import org.mtransit.parser.Utils;
-import org.mtransit.parser.gtfs.data.GCalendar;
-import org.mtransit.parser.gtfs.data.GCalendarDate;
 import org.mtransit.parser.gtfs.data.GRoute;
 import org.mtransit.parser.gtfs.data.GSpec;
 import org.mtransit.parser.gtfs.data.GStop;
@@ -27,7 +25,6 @@ import org.mtransit.parser.mt.data.MTripStop;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.regex.Pattern;
@@ -40,47 +37,19 @@ import static org.mtransit.parser.StringUtils.EMPTY;
 // https://windsor.mapstrat.com/current/google_transit.zip
 public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 
-	public static void main(@Nullable String[] args) {
-		if (args == null || args.length == 0) {
-			args = new String[3];
-			args[0] = "input/gtfs.zip";
-			args[1] = "../../mtransitapps/ca-windsor-transit-bus-android/res/raw/";
-			args[2] = ""; // files-prefix
-		}
+	public static void main(@NotNull String[] args) {
 		new WindsorTransitBusAgencyTools().start(args);
 	}
 
-	@Nullable
-	private HashSet<Integer> serviceIdInts;
-
 	@Override
-	public void start(@NotNull String[] args) {
-		MTLog.log("Generating Windsor Transit bus data...");
-		long start = System.currentTimeMillis();
-		this.serviceIdInts = extractUsefulServiceIdInts(args, this, true);
-		super.start(args);
-		MTLog.log("Generating Windsor Transit bus data... DONE in %s.", Utils.getPrettyDuration(System.currentTimeMillis() - start));
+	public boolean defaultExcludeEnabled() {
+		return true;
 	}
 
+	@NotNull
 	@Override
-	public boolean excludingAll() {
-		return this.serviceIdInts != null && this.serviceIdInts.isEmpty();
-	}
-
-	@Override
-	public boolean excludeCalendar(@NotNull GCalendar gCalendar) {
-		if (this.serviceIdInts != null) {
-			return excludeUselessCalendarInt(gCalendar, this.serviceIdInts);
-		}
-		return super.excludeCalendar(gCalendar);
-	}
-
-	@Override
-	public boolean excludeCalendarDate(@NotNull GCalendarDate gCalendarDates) {
-		if (this.serviceIdInts != null) {
-			return excludeUselessCalendarDateInt(gCalendarDates, this.serviceIdInts);
-		}
-		return super.excludeCalendarDate(gCalendarDates);
+	public String getAgencyName() {
+		return "Transit Windsor";
 	}
 
 	@Override
@@ -88,9 +57,6 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 		if ("notinservice".equalsIgnoreCase(gTrip.getTripHeadsign())
 				|| "not in service".equalsIgnoreCase(gTrip.getTripHeadsign())) {
 			return true; // EXCLUDE
-		}
-		if (this.serviceIdInts != null) {
-			return excludeUselessTripInt(gTrip, this.serviceIdInts);
 		}
 		return super.excludeTrip(gTrip);
 	}
@@ -116,8 +82,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 
 	@NotNull
 	@Override
-	public String getRouteLongName(@NotNull GRoute gRoute) {
-		String routeLongName = gRoute.getRouteLongNameOrDefault();
+	public String cleanRouteLongName(@NotNull String routeLongName) {
 		routeLongName = CleanUtils.toLowerCaseUpperCaseWords(Locale.ENGLISH, routeLongName);
 		return CleanUtils.cleanLabel(routeLongName);
 	}
@@ -139,7 +104,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 	@Override
 	public String getRouteColor(@NotNull GRoute gRoute) {
 		if (StringUtils.isEmpty(gRoute.getRouteColor())) {
-			if (Utils.isDigitsOnly(gRoute.getRouteShortName())) {
+			if (CharUtils.isDigitsOnly(gRoute.getRouteShortName())) {
 				switch (Integer.parseInt(gRoute.getRouteShortName())) {
 				// @formatter:off
                 case 2: return "F68312";
@@ -173,10 +138,10 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 
 	private static final long ROUTE_ID_0 = 15L;
 
-	private static final HashMap<Long, RouteTripSpec> ALL_ROUTE_TRIPS2;
+	private static final HashMap<Long, SplitUtils.RouteTripSpec> ALL_ROUTE_TRIPS2;
 
 	static {
-		HashMap<Long, RouteTripSpec> map2 = new HashMap<>();
+		HashMap<Long, SplitUtils.RouteTripSpec> map2 = new HashMap<>();
 		//noinspection deprecation
 		map2.put(ROUTE_ID_0 + 13L, new RouteTripSpec(ROUTE_ID_0 + 13L, // 10
 				StrategicMappingCommons.NORTH, MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), // North Loop
@@ -234,10 +199,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.getId())) {
 			return; // split
 		}
-		mTrip.setHeadsignString(
-				cleanTripHeadsign(gTrip.getTripHeadsignOrDefault()),
-				gTrip.getDirectionIdOrDefault()
-		);
+		super.setTripHeadsign(mRoute, mTrip, gTrip, gtfs);
 	}
 
 	@Override
@@ -248,7 +210,7 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 	@Override
 	public boolean directionFinderEnabled(long routeId, @NotNull GRoute gRoute) {
 		if (routeId == ROUTE_ID_0 + 13) { // 10
-			return false; // because 2 direction_id w/ same head-sign & last stop (2 different loops)
+			return false; // because 2 direction_id w/ same head-sign & last stop (2 different loops, can NOT be merged w/ splitter)
 		}
 		return super.directionFinderEnabled(routeId, gRoute);
 	}
@@ -297,11 +259,6 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 		tripHeadsign = CleanUtils.cleanNumbers(tripHeadsign);
 		tripHeadsign = CleanUtils.cleanStreetTypes(tripHeadsign);
 		return CleanUtils.cleanLabel(tripHeadsign);
-	}
-
-	@Override
-	public boolean mergeHeadsign(@NotNull MTrip mTrip, @NotNull MTrip mTripToMerge) {
-		throw new MTLog.Fatal("Unexpected trip to merge %s VS %s!", mTrip, mTripToMerge);
 	}
 
 	@NotNull
