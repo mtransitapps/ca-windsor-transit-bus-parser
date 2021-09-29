@@ -1,10 +1,10 @@
 package org.mtransit.parser.ca_windsor_transit_bus;
 
+import static org.mtransit.commons.StringUtils.EMPTY;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.mtransit.commons.CharUtils;
 import org.mtransit.commons.CleanUtils;
-import org.mtransit.commons.StringUtils;
 import org.mtransit.parser.DefaultAgencyTools;
 import org.mtransit.parser.MTLog;
 import org.mtransit.parser.gtfs.data.GRoute;
@@ -18,8 +18,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
-import static org.mtransit.parser.StringUtils.EMPTY;
-
 // https://opendata.citywindsor.ca/Opendata/Details/218
 // https://opendata.citywindsor.ca/Uploads/google_transit.zip
 // https://windsor.mapstrat.com/current/
@@ -28,6 +26,12 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 
 	public static void main(@NotNull String[] args) {
 		new WindsorTransitBusAgencyTools().start(args);
+	}
+
+	@Nullable
+	@Override
+	public List<Locale> getSupportedLanguages() {
+		return LANG_EN;
 	}
 
 	@Override
@@ -56,24 +60,37 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 		return MAgency.ROUTE_TYPE_BUS;
 	}
 
-	private static final String RSN_TUNNEL_BUS = "2222";
-
 	@Override
-	public long getRouteId(@NotNull GRoute gRoute) { // route_id used by GTFS-RT
-		return super.getRouteId(gRoute);
+	public boolean defaultRouteIdEnabled() {
+		return true;
 	}
 
-	@Nullable
+	@Override
+	public boolean useRouteShortNameForRouteId() {
+		return false;  // route_id used by GTFS-RT
+	}
+
+	@NotNull
 	@Override
 	public String getRouteShortName(@NotNull GRoute gRoute) {
 		return super.getRouteShortName(gRoute); // used by Real-Time API
 	}
 
+	@Override
+	public boolean defaultRouteLongNameEnabled() {
+		return true;
+	}
+
 	@NotNull
 	@Override
 	public String cleanRouteLongName(@NotNull String routeLongName) {
-		routeLongName = CleanUtils.toLowerCaseUpperCaseWords(Locale.ENGLISH, routeLongName);
+		routeLongName = CleanUtils.toLowerCaseUpperCaseWords(getFirstLanguageNN(), routeLongName);
 		return CleanUtils.cleanLabel(routeLongName);
+	}
+
+	@Override
+	public boolean defaultAgencyColorEnabled() {
+		return true;
 	}
 
 	private static final String AGENCY_COLOR_BLUE = "009AD6"; // BLUE (from web site logo)
@@ -85,44 +102,29 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 		return AGENCY_COLOR;
 	}
 
-	private static final String RSN_1A = "1A";
-	private static final String RSN_1C = "1C";
-	private static final String RSN_3W = "3W";
-
 	@Nullable
 	@Override
-	public String getRouteColor(@NotNull GRoute gRoute) {
-		if (StringUtils.isEmpty(gRoute.getRouteColor())) {
-			if (CharUtils.isDigitsOnly(gRoute.getRouteShortName())) {
-				switch (Integer.parseInt(gRoute.getRouteShortName())) {
-				// @formatter:off
-                case 2: return "F68312";
-                case 3: return "FEDF3F"; // "FFF44C";
-                case 4: return "65C1EF";
-                case 5: return "222771";
-                case 6: return "FBC1A0";
-                case 7: return "184A31";
-                case 8: return "87CF32";
-                case 10: return "F0319A";
-                case 14: return "A67AC4";
-                case 25: return "163A79";
-                case 42: return "8000FF";
-                // @formatter:on
-				}
-			}
-			if (RSN_1A.equalsIgnoreCase(gRoute.getRouteShortName())) {
-				return "B50C43";
-			} else if (RSN_1C.equalsIgnoreCase(gRoute.getRouteShortName())) {
-				return "4E1E18";
-			} else if (RSN_3W.equalsIgnoreCase(gRoute.getRouteShortName())) {
-				return "CE910E";
-			}
-			if (RSN_TUNNEL_BUS.equalsIgnoreCase(gRoute.getRouteShortName())) {
-				return "ED1248";
-			}
-			throw new MTLog.Fatal("Unexpected route color %s!", gRoute);
+	public String provideMissingRouteColor(@NotNull GRoute gRoute) {
+		switch (gRoute.getRouteShortName()) {
+		// @formatter:off
+		case "1A": return "B50C43";
+		case "1C": return "4E1E18";
+		case "2": return "F68312";
+		case "2222": return "ED1248";
+		case "3": return "FEDF3F"; // "FFF44C";
+		case "3W": return "CE910E";
+		case "4": return "65C1EF";
+		case "5": return "222771";
+		case "6": return "FBC1A0";
+		case "7": return "184A31";
+		case "8": return "87CF32";
+		case "10": return "F0319A";
+		case "14": return "A67AC4";
+		case "25": return "163A79";
+		case "42": return "8000FF";
+		// @formatter:on
 		}
-		return super.getRouteColor(gRoute);
+		throw new MTLog.Fatal("Unexpected route color %s!", gRoute);
 	}
 
 	private static final long ROUTE_ID_0 = 15L;
