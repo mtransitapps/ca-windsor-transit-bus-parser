@@ -203,19 +203,19 @@ public class WindsorTransitBusAgencyTools extends DefaultAgencyTools {
 	}
 
 	@Override
-	public int getStopId(@NotNull GStop gStop) { // used by GTFS-RT
-		return super.getStopId(gStop);
+	public int getStopId(@NotNull GStop gStop) {
+		return super.getStopId(gStop); // used by GTFS-RT
 	}
 
 	@NotNull
 	@Override
-	public String getStopCode(@NotNull GStop gStop) { // used by StrategicMapping API
+	public String getStopCode(@NotNull GStop gStop) {
 		if ("Sto125649".equals(gStop.getStopCode())) {
 			return "77" + "1262"; // Wyandotte @ Metro
 		}
 		if (!gStop.getStopCode().startsWith("77")) {
-			return "77" + gStop.getStopCode();
+			return "77" + gStop.getStopCode(); // used by StrategicMapping API
 		}
-		return super.getStopCode(gStop);
+		return super.getStopCode(gStop); // used by StrategicMapping API
 	}
 }
